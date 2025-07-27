@@ -135,7 +135,7 @@ const Dashboard = () => {
     <div className="flex h-screen bg-slate-100 font-sans">
       <Sidebar />
       <main className="flex-1 p-8 overflow-y-auto">
-        <div className="bg-purple-100 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center">
+        <div className="bg-purple-200 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center">
           DASHBOARD
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
