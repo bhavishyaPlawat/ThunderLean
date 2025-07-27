@@ -17,23 +17,23 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
+              isActive ? "hover:text-[#8C4DCF]" : "text-black"
             }
           >
             Home
           </NavLink>
           <NavLink
-            to="/features"
+            
             className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
+              isActive ? "hover:text-[#8C4DCF]" : "text-black"
             }
           >
             Features
           </NavLink>
           <NavLink
-            to="/why-us"
+
             className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
+              isActive ? "hover:text-[#8C4DCF]" : "text-black"
             }
           >
             Why Us?
