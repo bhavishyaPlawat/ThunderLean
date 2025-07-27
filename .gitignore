@@ -1,0 +1,16 @@
+# Node modules (never commit this)
+node_modules/
+
+# Environment variables (your API keys, secrets, etc.)
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS system files
+.DS_Store
+Thumbs.db
