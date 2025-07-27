@@ -1,1 +1,0 @@
-![ThunderLean Logo](flash.png)
