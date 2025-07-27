@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
 
         {/* NAV HEADINGS */}
-        <div className="w-[27.29vw] flex justify-between items-center font-bold gap-4">
+        <div className="w-[21.29vw] flex justify-between items-center font-bold gap-4">
           <NavLink
             to="/"
             className={({ isActive }) =>
