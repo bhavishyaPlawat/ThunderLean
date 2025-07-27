@@ -59,7 +59,7 @@ const Calendar = ({ setSelectedDate }) => {
           <button
             key={d + 1}
             onClick={() => handleDayClick(d + 1)}
-            className={`w-8 h-8 rounded-full ${activeDay === d + 1 ? 'bg-pink-500 text-white' : 'hover:bg-pink-100'}`}
+            className={`w-8 h-8 rounded-full ${activeDay === d + 1 ? 'bg-[#8C4DCF] text-white' : 'hover:bg-purple-100'}`}
           >
             {d + 1}
           </button>
@@ -76,7 +76,8 @@ const NutritionChart = ({ data }) => {
     datasets: [{
       label: 'in grams',
       data: [data.protein, data.carbohydrate, data.fat, data.totalCalories],
-      backgroundColor: ['#f472b6', '#f472b6', '#f472b6', '#f472b6'],
+      backgroundColor: ['rgb(140, 77, 207)', 'rgb(197, 166, 243)'],
+
       borderWidth: 1,
     }],
   };
@@ -98,7 +99,7 @@ const GoalChart = () => {
     labels: ['Completed', 'Remaining'],
     datasets: [{
       data: [2, 8],
-      backgroundColor: ['rgb(219, 39, 119)', 'rgb(229, 231, 235)'],
+      backgroundColor: ['rgb(140, 77, 207)', 'rgb(197, 166, 243)'],
       borderColor: ['#fff'],
       borderWidth: 4,
       circumference: 270,
@@ -134,7 +135,7 @@ const Dashboard = () => {
     <div className="flex h-screen bg-slate-100 font-sans">
       <Sidebar />
       <main className="flex-1 p-8 overflow-y-auto">
-        <div className="bg-pink-100 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center">
+        <div className="bg-purple-100 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center">
           DASHBOARD
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -150,10 +151,7 @@ const Dashboard = () => {
             <NutritionChart data={chartData} />
             <div className="flex justify-center items-center space-x-8">
               <GoalChart />
-              <div>
-                <p className="font-semibold text-gray-700">Goal</p>
-                <button className="mt-2 bg-pink-500 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-pink-600">Completed</button>
-              </div>
+              
             </div>
           </div>
         </div>

@@ -51,7 +51,7 @@ const Sidebar = ({ activePage }) => {
               key={slug}
               onClick={() => handleNavigate(slug)}
               className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition ${
-                isActive ? "bg-pink-500/20 border border-pink-400 text-white" : "hover:bg-white/10 text-gray-300"
+                isActive ? "bg-pink-500/20 border border-pink-400 text-black" : "hover:bg-white/10 text-black"
               }`}
             >
               <Icon active={isActive} />
