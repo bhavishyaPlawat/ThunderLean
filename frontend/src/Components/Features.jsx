@@ -2,9 +2,9 @@ import React from "react";
 
 const Features = () => {
   return (
-    <div className="relative h-[60vh]">
+    <div id="features" className="relative h-[60vh]">
       {/* Features Gradient Box */}
-      <div className="absolute left-[4vw] top-[19vh] w-[91.25vw] h-[7.87vh] bg-custom-gradient rounded-[1.38vw] flex items-center justify-center">
+      <div className="absolute left-[4vw] top-[12vh] w-[91.25vw] h-[7.87vh] bg-custom-gradient rounded-[1.38vw] flex items-center justify-center">
         <h2 className="text-black text-[2vw] font-bold font-Gilroy">
           Features
         </h2>

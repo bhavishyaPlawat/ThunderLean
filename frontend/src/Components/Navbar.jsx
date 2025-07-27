@@ -1,13 +1,18 @@
 import React from "react";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="ml-[15%] max-w-[70%] max-h-[4.44vh]">
       <div className="flex justify-between items-center">
         {/* LOGO */}
-        <div className="w-[8.33vw] h-[3.67vh] flex justify-between items-center">
+        <div
+          onClick={() => navigate("/")}
+          className="w-[8.33vw] h-[3.67vh] flex justify-between items-center hover:cursor-pointer"
+        >
           <AiFillThunderbolt className="h-[3.67vh] w-[3.67vw]" />
           <span className="uppercase h-[2.67vh] w-[6.04vw]">ThunderLean</span>
         </div>
@@ -17,27 +22,21 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "hover:text-[#8C4DCF]" : "text-black"
+              isActive ? "text-[#8C4DCF]" : "text-black"
             }
           >
             Home
           </NavLink>
-          <NavLink
-            
-            className={({ isActive }) =>
-              isActive ? "hover:text-[#8C4DCF]" : "text-black"
-            }
-          >
-            Features
-          </NavLink>
-          <NavLink
 
-            className={({ isActive }) =>
-              isActive ? "hover:text-[#8C4DCF]" : "text-black"
-            }
-          >
+          {/* Link to #features on the same page */}
+          <a href="#features" className="hover:text-[#8C4DCF]">
+            Features
+          </a>
+
+          {/* Optional: Link to another section */}
+          <a href="#whyus" className="hover:text-[#8C4DCF]">
             Why Us?
-          </NavLink>
+          </a>
         </div>
 
         {/* BUTTONS */}
