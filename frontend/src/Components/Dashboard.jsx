@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from './sidebar'; // Adjust path as needed
-import { Bar, Doughnut } from 'react-chartjs-2';
+import React, { useState, useEffect } from "react";
+import Sidebar from "./sidebar"; // Adjust path as needed
+import { Bar, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,16 +10,29 @@ import {
   Tooltip,
   Legend,
   ArcElement,
-} from 'chart.js';
+} from "chart.js";
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
+);
 
 // --- MOCK DATA ---
 const dailyNutritionData = {
-  '2025-08-05': { protein: 70, carbohydrate: 150, fat: 50, totalCalories: 250 },
-  '2025-08-16': { protein: 90, carbohydrate: 180, fat: 60, totalCalories: 280 },
-  '2025-08-17': { protein: 85, carbohydrate: 200, fat: 55, totalCalories: 300 },
-  '2025-08-24': { protein: 100, carbohydrate: 220, fat: 70, totalCalories: 320 },
+  "2025-08-05": { protein: 70, carbohydrate: 150, fat: 50, totalCalories: 250 },
+  "2025-08-16": { protein: 90, carbohydrate: 180, fat: 60, totalCalories: 280 },
+  "2025-08-17": { protein: 85, carbohydrate: 200, fat: 55, totalCalories: 300 },
+  "2025-08-24": {
+    protein: 100,
+    carbohydrate: 220,
+    fat: 70,
+    totalCalories: 320,
+  },
 };
 
 // --- Calendar Component ---
@@ -27,39 +40,67 @@ const Calendar = ({ setSelectedDate }) => {
   const [date, setDate] = useState(new Date(2025, 7, 17));
   const [activeDay, setActiveDay] = useState(17);
 
-  const monthNames = [..."January February March April May June July August September October November December".split(" ")];
-  const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const monthNames = [
+    ..."January February March April May June July August September October November December".split(
+      " "
+    ),
+  ];
+  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
 
-  const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  const firstDayOfMonth = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    1
+  ).getDay();
+  const daysInMonth = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
 
   const changeMonth = (offset) => {
-    setDate(prev => new Date(prev.getFullYear(), prev.getMonth() + offset, 1));
+    setDate(
+      (prev) => new Date(prev.getFullYear(), prev.getMonth() + offset, 1)
+    );
     setActiveDay(null);
   };
 
   const handleDayClick = (day) => {
     setActiveDay(day);
     const newDate = new Date(date.getFullYear(), date.getMonth(), day);
-    const dateString = newDate.toISOString().split('T')[0];
+    const dateString = newDate.toISOString().split("T")[0];
     setSelectedDate(dateString);
   };
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md border border-purple-200">
       <div className="flex justify-between items-center mb-4">
-        <button onClick={() => changeMonth(-1)}>&lt;</button>
-        <h3 className="font-bold">{monthNames[date.getMonth()]} {date.getFullYear()}</h3>
-        <button onClick={() => changeMonth(1)}>&gt;</button>
+        <button onClick={() => changeMonth(-1)} className="text-lg font-bold">
+          &lt;
+        </button>
+        <h3 className="font-bold text-lg">
+          {monthNames[date.getMonth()]} {date.getFullYear()}
+        </h3>
+        <button onClick={() => changeMonth(1)} className="text-lg font-bold">
+          &gt;
+        </button>
       </div>
       <div className="grid grid-cols-7 gap-y-2 text-center text-sm text-gray-500">
-        {daysOfWeek.map((d, i) => <div key={`${d}-${i}`}>{d}</div>)}
-        {Array.from({ length: firstDayOfMonth }).map((_, i) => <div key={`e-${i}`} />)}
+        {daysOfWeek.map((d, i) => (
+          <div key={`${d}-${i}`}>{d}</div>
+        ))}
+        {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+          <div key={`e-${i}`} />
+        ))}
         {Array.from({ length: daysInMonth }).map((_, d) => (
           <button
             key={d + 1}
             onClick={() => handleDayClick(d + 1)}
-            className={`w-8 h-8 rounded-full ${activeDay === d + 1 ? 'bg-pink-500 text-white' : 'hover:bg-pink-100'}`}
+            className={`w-8 h-8 rounded-full transition-colors ${
+              activeDay === d + 1
+                ? "bg-[#8C4DCF] text-white"
+                : "hover:bg-purple-100"
+            }`}
           >
             {d + 1}
           </button>
@@ -72,13 +113,15 @@ const Calendar = ({ setSelectedDate }) => {
 // --- Nutrition Chart ---
 const NutritionChart = ({ data }) => {
   const chartData = {
-    labels: ['Protein', 'Carbs', 'Fat', 'Calories'],
-    datasets: [{
-      label: 'in grams',
-      data: [data.protein, data.carbohydrate, data.fat, data.totalCalories],
-      backgroundColor: ['#f472b6', '#f472b6', '#f472b6', '#f472b6'],
-      borderWidth: 1,
-    }],
+    labels: ["Protein", "Carbohydrate", "Fat", "Total Calories"],
+    datasets: [
+      {
+        label: "in grams",
+        data: [data.protein, data.carbohydrate, data.fat, data.totalCalories],
+        backgroundColor: ["rgb(140, 77, 207)", "rgb(197, 166, 243)"],
+        borderWidth: 1,
+      },
+    ],
   };
   const options = {
     responsive: true,
@@ -95,22 +138,24 @@ const NutritionChart = ({ data }) => {
 // --- Goal Chart ---
 const GoalChart = () => {
   const data = {
-    labels: ['Completed', 'Remaining'],
-    datasets: [{
-      data: [2, 8],
-      backgroundColor: ['rgb(219, 39, 119)', 'rgb(229, 231, 235)'],
-      borderColor: ['#fff'],
-      borderWidth: 4,
-      circumference: 270,
-      rotation: 225,
-    }],
+    labels: ["Completed", "Remaining"],
+    datasets: [
+      {
+        data: [2, 8],
+        backgroundColor: ["rgb(140, 77, 207)", "rgb(197, 166, 243)"],
+        borderColor: ["#fff"],
+        borderWidth: 4,
+        circumference: 270,
+        rotation: 225,
+      },
+    ],
   };
   const options = {
-    cutout: '80%',
+    cutout: "80%",
     plugins: { legend: { display: false }, tooltip: { enabled: false } },
   };
   return (
-    <div className="relative w-48 h-48">
+    <div className="relative w-48 h-48 sm:w-56 sm:h-56">
       <Doughnut data={data} options={options} />
       <div className="absolute inset-0 flex flex-col justify-center items-center">
         <span className="font-bold text-xl text-gray-700">Lose</span>
@@ -123,37 +168,54 @@ const GoalChart = () => {
 
 // --- Main Dashboard ---
 const Dashboard = () => {
-  const [selectedDate, setSelectedDate] = useState('2025-08-17');
-  const [chartData, setChartData] = useState({ protein: 0, carbohydrate: 0, fat: 0, totalCalories: 0 });
+  const [selectedDate, setSelectedDate] = useState("2025-08-17");
+  const [chartData, setChartData] = useState({
+    protein: 0,
+    carbohydrate: 0,
+    fat: 0,
+    totalCalories: 0,
+  });
 
   useEffect(() => {
-    setChartData(dailyNutritionData[selectedDate] || { protein: 0, carbohydrate: 0, fat: 0, totalCalories: 0 });
+    setChartData(
+      dailyNutritionData[selectedDate] || {
+        protein: 0,
+        carbohydrate: 0,
+        fat: 0,
+        totalCalories: 0,
+      }
+    );
   }, [selectedDate]);
 
   return (
-    <div className="flex h-screen bg-slate-100 font-sans">
-      <Sidebar />
-      <main className="flex-1 p-8 overflow-y-auto">
-        <div className="bg-pink-100 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center">
+    <div className="flex flex-col md:flex-row h-screen bg-slate-100 font-sans">
+      {/* Passing "dashboard" as the activePage prop */}
+      <Sidebar activePage="dashboard" />
+      <main className="flex-1 p-4 sm:p-8 overflow-y-auto">
+        <div className="bg-purple-200 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center text-xl">
           DASHBOARD
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1 space-y-8">
             <Calendar setSelectedDate={setSelectedDate} />
             <div className="bg-white p-6 rounded-lg shadow-md space-y-3 text-center border border-purple-200">
-              <p className="text-gray-600">Streak: <span className="font-bold text-orange-500">🔥 10 Days</span></p>
-              <p className="text-gray-600">Goal: <span className="font-bold text-gray-800">Lose 12kg</span></p>
-              <p className="text-gray-600">Completed: <span className="font-bold text-green-500">Lost 2kg</span></p>
+              <p className="text-gray-600">
+                Streak:{" "}
+                <span className="font-bold text-orange-500">🔥 10 Days</span>
+              </p>
+              <p className="text-gray-600">
+                Goal: <span className="font-bold text-gray-800">Lose 12kg</span>
+              </p>
+              <p className="text-gray-600">
+                Completed:{" "}
+                <span className="font-bold text-green-500">Lost 2kg</span>
+              </p>
             </div>
           </div>
           <div className="lg:col-span-2 space-y-8">
             <NutritionChart data={chartData} />
-            <div className="flex justify-center items-center space-x-8">
+            <div className="flex justify-center items-center">
               <GoalChart />
-              <div>
-                <p className="font-semibold text-gray-700">Goal</p>
-                <button className="mt-2 bg-pink-500 text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-pink-600">Completed</button>
-              </div>
             </div>
           </div>
         </div>

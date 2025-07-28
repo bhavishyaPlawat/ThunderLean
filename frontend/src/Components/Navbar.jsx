@@ -1,55 +1,103 @@
-import React from "react";
-import { AiFillThunderbolt } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import {
+  AiFillThunderbolt,
+  AiOutlineMenu,
+  AiOutlineClose,
+} from "react-icons/ai";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <nav className="ml-[15%] max-w-[70%] max-h-[4.44vh]">
+    <nav className="relative px-4 sm:px-6 lg:px-8 py-4">
       <div className="flex justify-between items-center">
         {/* LOGO */}
-        <div className="w-[8.33vw] h-[3.67vh] flex justify-between items-center">
-          <AiFillThunderbolt className="h-[3.67vh] w-[3.67vw]" />
-          <span className="uppercase h-[2.67vh] w-[6.04vw]">ThunderLean</span>
+        <div
+          onClick={() => navigate("/")}
+          className="flex items-center hover:cursor-pointer"
+        >
+          <AiFillThunderbolt className="h-8 w-8 text-purple-600" />
+          <span className="ml-2 text-xl font-bold uppercase">ThunderLean</span>
         </div>
 
-        {/* NAV HEADINGS */}
-        <div className="w-[27.29vw] flex justify-between items-center font-bold gap-4">
+        {/* NAV HEADINGS - Desktop */}
+        <div className="hidden md:flex items-center font-bold gap-8">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
+              isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
             }
           >
             Home
           </NavLink>
-          <NavLink
-            to="/features"
-            className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
-            }
-          >
+          <a href="#features" className="hover:text-[#8C4DCF]">
             Features
-          </NavLink>
-          <NavLink
-            to="/why-us"
-            className={({ isActive }) =>
-              isActive ? "text-[#8C4DCF]" : "text-black"
-            }
-          >
+          </a>
+          <a href="#whyus" className="hover:text-[#8C4DCF]">
             Why Us?
-          </NavLink>
+          </a>
         </div>
 
-        {/* BUTTONS */}
-        <div className="w-[12.92vw] h-[4.44vh] flex justify-between">
-          <button className="w-[6.18vw] h-[4.44vh] bg-[#2C2C2C] text-[#F5F5F5] rounded-md flex items-center justify-center">
+        {/* BUTTONS - Desktop */}
+        <div className="hidden md:flex items-center gap-4">
+          <button className="px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
             Sign Up
           </button>
-          <button className="w-[5.07vw] h-[4.44vh] bg-white text-[#2C2C2C] rounded-md flex items-center justify-center">
+          <button className="px-6 py-2 bg-white text-[#2C2C2C] rounded-md">
             Login
           </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? (
+              <AiOutlineClose size={24} />
+            ) : (
+              <AiOutlineMenu size={24} />
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
+          <div className="flex flex-col items-center gap-4">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+              }
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+            <a
+              href="#features"
+              className="hover:text-[#8C4DCF]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Features
+            </a>
+            <a
+              href="#whyus"
+              className="hover:text-[#8C4DCF]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Why Us?
+            </a>
+            <button className="w-full px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
+              Sign Up
+            </button>
+            <button className="w-full px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
+              Login
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
