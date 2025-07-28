@@ -96,11 +96,13 @@ const Calendar = ({ setSelectedDate }) => {
           <button
             key={d + 1}
             onClick={() => handleDayClick(d + 1)}
+
             className={`w-8 h-8 rounded-full transition-colors ${
               activeDay === d + 1
                 ? "bg-[#8C4DCF] text-white"
                 : "hover:bg-purple-100"
             }`}
+
           >
             {d + 1}
           </button>
@@ -113,6 +115,7 @@ const Calendar = ({ setSelectedDate }) => {
 // --- Nutrition Chart ---
 const NutritionChart = ({ data }) => {
   const chartData = {
+
     labels: ["Protein", "Carbohydrate", "Fat", "Total Calories"],
     datasets: [
       {
@@ -122,6 +125,7 @@ const NutritionChart = ({ data }) => {
         borderWidth: 1,
       },
     ],
+
   };
   const options = {
     responsive: true,
@@ -138,6 +142,7 @@ const NutritionChart = ({ data }) => {
 // --- Goal Chart ---
 const GoalChart = () => {
   const data = {
+
     labels: ["Completed", "Remaining"],
     datasets: [
       {
@@ -149,6 +154,7 @@ const GoalChart = () => {
         rotation: 225,
       },
     ],
+
   };
   const options = {
     cutout: "80%",
@@ -188,11 +194,13 @@ const Dashboard = () => {
   }, [selectedDate]);
 
   return (
+
     <div className="flex flex-col md:flex-row h-screen bg-slate-100 font-sans">
       {/* Passing "dashboard" as the activePage prop */}
       <Sidebar activePage="dashboard" />
       <main className="flex-1 p-4 sm:p-8 overflow-y-auto">
         <div className="bg-purple-200 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center text-xl">
+
           DASHBOARD
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -216,6 +224,7 @@ const Dashboard = () => {
             <NutritionChart data={chartData} />
             <div className="flex justify-center items-center">
               <GoalChart />
+
             </div>
           </div>
         </div>

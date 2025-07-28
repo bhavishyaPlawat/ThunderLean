@@ -1,14 +1,18 @@
+
 import React, { useState } from "react";
 import {
   AiFillThunderbolt,
   AiOutlineMenu,
   AiOutlineClose,
 } from "react-icons/ai";
+
 import { useNavigate, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   return (
     <nav className="relative px-4 sm:px-6 lg:px-8 py-4">
@@ -16,6 +20,7 @@ const Navbar = () => {
         {/* LOGO */}
         <div
           onClick={() => navigate("/")}
+
           className="flex items-center hover:cursor-pointer"
         >
           <AiFillThunderbolt className="h-8 w-8 text-purple-600" />
@@ -24,6 +29,7 @@ const Navbar = () => {
 
         {/* NAV HEADINGS - Desktop */}
         <div className="hidden md:flex items-center font-bold gap-8">
+
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -32,9 +38,11 @@ const Navbar = () => {
           >
             Home
           </NavLink>
+
           <a href="#features" className="hover:text-[#8C4DCF]">
             Features
           </a>
+
           <a href="#whyus" className="hover:text-[#8C4DCF]">
             Why Us?
           </a>

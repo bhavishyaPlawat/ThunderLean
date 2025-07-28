@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
@@ -113,6 +114,7 @@ const Sidebar = ({ activePage }) => {
     { slug: "tdee-calculator", icon: CalculatorIcon, label: "TDEE Calculator" },
     { slug: "ai-track", icon: AiTrackIcon, label: "AI Track" },
     { slug: "get-tip", icon: TipIcon, label: "Get free Tip" },
+
   ];
 
   const handleGoHome = () => {
@@ -121,6 +123,7 @@ const Sidebar = ({ activePage }) => {
 
   const handleNavigate = (slug) => {
     navigate(`/${slug}`);
+
     if (window.innerWidth < 768) {
       setIsOpen(false);
     }
@@ -170,6 +173,7 @@ const Sidebar = ({ activePage }) => {
         </nav>
       </aside>
     </>
+
   );
 };
 

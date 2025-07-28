@@ -3,6 +3,7 @@ import React from "react";
 const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
   return (
+
     <div
       className={`flex flex-col ${flexDirection} items-center gap-8 lg:gap-16`}
     >
@@ -15,6 +16,7 @@ const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
             <li key={index}>{item}</li>
           ))}
         </ul>
+
       </div>
       <div className="md:w-1/2 flex justify-center p-4">
         <img src={imageUrl} alt={imageAlt} className="w-48 h-auto sm:w-56" />

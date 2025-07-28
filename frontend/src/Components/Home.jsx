@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
+
     <div className="overflow-x-hidden bg-[#E3E7F0]">
       <Hero />
 
@@ -21,11 +22,13 @@ const Home = () => {
           </Link>
         </div>
 
+
         {/* This wrapper adds the necessary space between the button and the features title */}
         <div className="pt-16 sm:pt-20">
           <Features />
         </div>
       </section>
+
 
       <PageFooter />
     </div>
