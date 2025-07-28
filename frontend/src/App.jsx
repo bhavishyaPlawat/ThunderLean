@@ -3,7 +3,8 @@ import Routing from "./utils/Routing";
 
 const App = () => {
   return (
-    <div className="bg-[#E3E7F0] min-h-screen overflow-x-hidden no-scrollbar overflow-y-scroll h-screen ">
+    <div className="bg-[#E3E7F0] min-h-screen overflow-x-hidden">
+
       <Routing />
     </div>
   );
