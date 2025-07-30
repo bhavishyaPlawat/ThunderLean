@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../Components/Home";
 import Dashboard from "../Components/Dashboard";
 import TdeeCalculator from "../Components/TdeeCalculator";
-import AiTrack from "../Components/AiTrack";
+// CORRECT
+import AiTrack from "../Components/aiTrack";
 import GetTip from "../Components/GetTip"; // 1. Import the new component
 
 const Routing = () => {
