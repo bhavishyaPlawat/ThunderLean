@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// CORRECT
 import Sidebar from "./sidebar";
 import { RiLightbulbFlashLine, RiLoader4Line } from "react-icons/ri";
 
