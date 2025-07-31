@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 import { FaCamera, FaPaperclip, FaBars } from "react-icons/fa"; // Import FaBars
 import { IoMdAdd } from "react-icons/io";
 
