@@ -2,13 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/vite",
-      "config": { "project": "frontend" }
-    },
-    {
       "src": "backend/app.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/vite"
     }
   ],
   "rewrites": [
@@ -18,7 +17,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend/$1"
+      "destination": "/frontend"
     }
   ]
 }
