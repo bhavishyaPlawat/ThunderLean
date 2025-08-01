@@ -1,19 +1,83 @@
-import React, { useState } from "react";
-import Sidebar from "./sidebar";
-import { FaCamera, FaPaperclip, FaBars } from "react-icons/fa"; // Import FaBars
-import { IoMdAdd } from "react-icons/io";
+import React, { useState, useRef } from "react";
+import Sidebar from "./Sidebar";
+import { FaCamera, FaBars } from "react-icons/fa";
+import axios from "axios";
 
 const AiTrack = () => {
   const [goal, setGoal] = useState("loose");
   const [looseGoal, setLooseGoal] = useState("1kg");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [mealItems, setMealItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [mealDescription, setMealDescription] = useState("");
 
-  const mealItems = [
-    { name: "Breakfast", calories: "370Kcal" },
-    { name: "Lunch", calories: "370Kcal" },
-    { name: "Snacks", calories: "370Kcal" },
-    { name: "Dinner", calories: "370Kcal" },
-  ];
+  const fileInputRef = useRef(null);
+
+  const handleIconClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const analyzeMeal = async (formData) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/ai/analyze-meal",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const resultText = response.data.result;
+      const parsedResult = JSON.parse(resultText);
+
+      const newMeal = {
+        name: parsedResult.name || "Analyzed Meal",
+        calories: parsedResult.calories || "N/A",
+        protein: parsedResult.protein || "N/A",
+        carbs: parsedResult.carbs || "N/A",
+        fat: parsedResult.fat || "N/A",
+      };
+
+      setMealItems((prevItems) => [...prevItems, newMeal]);
+      setMealDescription("");
+    } catch (err) {
+      setError("Failed to analyze meal. Please try again.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("mealImage", file);
+    if (mealDescription) {
+      formData.append("meal", mealDescription);
+    } else {
+      formData.append("meal", file.name);
+    }
+    analyzeMeal(formData);
+  };
+
+  const handleTextSubmit = async () => {
+    if (!mealDescription.trim()) {
+      setError("Please enter a meal description.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("meal", mealDescription);
+    analyzeMeal(formData);
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100 font-sans">
@@ -23,11 +87,8 @@ const AiTrack = () => {
         setIsOpen={setIsSidebarOpen}
       />
 
-      {/* Main Content */}
       <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-        {/* Header with Menu Button */}
         <header className="flex items-center justify-between md:justify-center bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative">
-          {/* Hamburger Menu for Mobile */}
           <button
             onClick={() => setIsSidebarOpen(true)}
             className="md:hidden absolute left-4 text-gray-600"
@@ -39,9 +100,7 @@ const AiTrack = () => {
           </h2>
         </header>
 
-        {/* ... (The rest of your AiTrack component code remains the same) ... */}
         <div className="bg-gradient-to-br from-indigo-100 to-purple-200 p-6 sm:p-8 rounded-3xl shadow-lg w-full max-w-4xl mx-auto">
-          {/* Goal Setter */}
           <div className="flex justify-between items-center mb-8 flex-wrap">
             <h3 className="text-xl font-bold text-gray-800 hidden sm:block">
               Set Goal
@@ -69,67 +128,110 @@ const AiTrack = () => {
                   Gain
                 </button>
               </div>
-              {/* Conditional Dropdown */}
-              {goal === "loose" && (
-                <div className="relative">
-                  <select
-                    value={looseGoal}
-                    onChange={(e) => setLooseGoal(e.target.value)}
-                    className="appearance-none bg-white border border-gray-300 text-gray-700 py-2 pl-3 pr-8 rounded-full leading-tight focus:outline-none focus:bg-white focus:border-purple-500 shadow"
-                  >
-                    <option value="1kg">1kg / month</option>
-                    <option value="2kg">2kg / month</option>
-                    <option value="3kg">3kg / month</option>
-                    <option value="4kg">4kg / month</option>
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8 items-start">
-            {/* Left Side: Meal Items */}
             <div className="w-full lg:w-2/3">
               <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6">
                 Smarter Calorie TRACKING Starts Here
               </h2>
-              <div className="space-y-4">
+
+              <div className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  value={mealDescription}
+                  onChange={(e) => setMealDescription(e.target.value)}
+                  placeholder="e.g., 2 chapatis with a bowl of dal"
+                  className="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+                <button
+                  onClick={handleTextSubmit}
+                  disabled={isLoading || !mealDescription.trim()}
+                  className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 disabled:opacity-50 transition"
+                >
+                  Analyze
+                </button>
+              </div>
+
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+              />
+
+              {/* --- NEW TABULAR RESULTS DISPLAY --- */}
+              <div className="space-y-4 mt-6">
                 {mealItems.map((item, index) => (
                   <div
                     key={index}
-                    className="flex justify-between items-center bg-white/50 p-3 sm:p-4 rounded-lg shadow"
+                    className="bg-white/80 p-5 rounded-2xl shadow-md border border-purple-200"
                   >
-                    <span className="font-semibold text-gray-700">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4 truncate text-center">
                       {item.name}
-                    </span>
-                    <div className="flex items-center gap-4">
-                      <FaPaperclip className="text-gray-600 cursor-pointer hover:text-purple-600" />
-                      <FaCamera className="text-gray-600 cursor-pointer hover:text-purple-600" />
-                      <span className="font-bold text-gray-800">
-                        {item.calories}
+                    </h3>
+                    <div className="space-y-3 px-2">
+                      <div className="flex justify-between items-center text-lg">
+                        <span className="text-gray-600">Protein</span>
+                        <span className="font-bold text-gray-800">
+                          {item.protein}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-lg">
+                        <span className="text-gray-600">Carbs</span>
+                        <span className="font-bold text-gray-800">
+                          {item.carbs}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-lg">
+                        <span className="text-gray-600">Fat</span>
+                        <span className="font-bold text-gray-800">
+                          {item.fat}
+                        </span>
+                      </div>
+                    </div>
+                    <hr className="my-4 border-gray-300" />
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-xs text-gray-500">
+                        Total Calories
                       </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-3xl font-bold text-purple-700">
+                          {item.calories}
+                        </span>
+                        <span className="text-2xl" role="img" aria-label="fire">
+                          🔥
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
+                {isLoading && (
+                  <div className="flex justify-center items-center bg-white/50 p-4 rounded-lg shadow">
+                    <p className="text-gray-600">Analyzing your meal...</p>
+                  </div>
+                )}
+                {error && (
+                  <div className="flex justify-center items-center bg-red-100 p-4 rounded-lg shadow">
+                    <p className="text-red-600">{error}</p>
+                  </div>
+                )}
               </div>
+
               <div className="mt-8 text-center">
-                <button className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
-                  <IoMdAdd size={24} />
-                  <span>ADD MORE</span>
+                <button
+                  onClick={handleIconClick}
+                  disabled={isLoading}
+                  className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  <FaCamera />
+                  <span>Analyze Meal from Image</span>
                 </button>
               </div>
             </div>
 
-            {/* Right Side: Quote */}
             <div className="w-full lg:w-1/3 flex justify-center mt-8 lg:mt-0">
               <div className="bg-pink-100 p-6 rounded-2xl shadow-md text-center max-w-xs">
                 <h4 className="font-bold text-lg text-pink-800 mb-2">Quote</h4>
