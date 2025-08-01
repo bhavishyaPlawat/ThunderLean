@@ -1,19 +1,42 @@
 # ThunderLean: AI-Powered Fitness & Calorie Tracker
 
-ThunderLean is a modern web application designed to simplify fitness tracking. It leverages AI to provide smart insights into your meals and helps you manage your caloric intake and expenditure effortlessly.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bhavishyaplawat/thunderlean/main/flash.png" alt="ThunderLean Logo" width="150"/>
+</p>
+
+<h3 align="center">
+  Your intelligent partner for a healthier lifestyle.
+</h3>
+
+<p align="center">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/bhavishyaplawat/thunderlean/main.yml?style=for-the-badge">
+  <img alt="GitHub" src="https://img.shields.io/github/license/bhavishyaplawat/thunderlean?style=for-the-badge">
+  <img alt="GitHub issues" src="https://img.shields.io/github/issues/bhavishyaplawat/thunderlean?style=for-the-badge">
+  <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/bhavishyaplawat/thunderlean?style=for-the-badge">
+</p>
+
+ThunderLean is a revolutionary web application that redefines your fitness journey. By harnessing the power of Artificial Intelligence, we provide you with smart, personalized insights into your meals, helping you to effortlessly manage your caloric intake and expenditure. Our goal is to make fitness tracking intuitive, accessible, and highly effective for everyone.
 
 ## ✨ Features
 
-Our application is packed with features to help you on your fitness journey:
+Our application is packed with a suite of features designed to support you every step of the way on your fitness journey:
 
-* **AI Calorie Tracker**: Simply describe your meal, and our Gemini-powered AI will estimate its nutritional content (calories, protein, carbs, and fat).
-* **TDEE Calculator**: Calculate your Total Daily Energy Expenditure (TDEE) to understand your maintenance, weight loss, and weight gain calorie targets.
-* **Interactive Dashboard**: A comprehensive dashboard to visualize your daily nutrition, track your progress over time with an interactive calendar, and see your goal progress at a glance.
-* **Personalized Tips**: Get tailored advice to achieve your fitness goals, whether it's weight loss, weight gain, or muscle building.
+* **🤖 AI Calorie Tracker**: Simply describe your meal or snap a picture, and our Gemini-powered AI will provide an estimate of its nutritional content, including calories, protein, carbs, and fat.
+* **🧮 TDEE Calculator**: Determine your Total Daily Energy Expenditure (TDEE) to understand your body's needs. Get tailored calorie targets for maintaining, losing, or gaining weight.
+* **📊 Interactive Dashboard**: A beautifully designed dashboard to visualize your daily nutrition, track your progress with an interactive calendar, and monitor your goals at a glance.
+* **💡 Personalized Tips**: Receive customized advice to help you achieve your specific fitness goals, whether it's weight loss, weight gain, or muscle building.
+
+## 🚀 Live Demo
+
+<p align="center">
+  <a href="https://thunderlean.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/View_Live_Demo-8C4DCF?style=for-the-badge" alt="Live Demo"/>
+  </a>
+</p>
 
 ## 🛠️ Tech Stack
 
-This project is a monorepo containing both the frontend and backend applications.
+This project is a monorepo that includes both the frontend and backend applications, built with a modern and robust technology stack:
 
 ### Frontend (Client-Side)
 
@@ -30,10 +53,11 @@ This project is a monorepo containing both the frontend and backend applications
 * **Environment Variables**: [dotenv](https://www.npmjs.com/package/dotenv)
 * **API Communication**: [Axios](https://axios-http.com/) for requests to the Gemini API
 * **Middleware**: [CORS](https://www.npmjs.com/package/cors), [Helmet](https://helmetjs.github.io/)
+* **Image Upload**: [Multer](https://github.com/expressjs/multer)
 
-## 🚀 Getting Started
+## 🎯 Getting Started
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy of ThunderLean up and running, please follow these simple steps.
 
 ### Prerequisites
 
@@ -44,7 +68,7 @@ To get a local copy up and running, follow these simple steps.
 
 1.  **Clone the repository:**
     ```sh
-    git clone https://github.com/your-username/thunderlean.git
+    git clone [https://github.com/bhavishyaplawat/thunderlean.git](https://github.com/bhavishyaplawat/thunderlean.git)
     cd thunderlean
     ```
 
@@ -81,14 +105,25 @@ To get a local copy up and running, follow these simple steps.
         ```sh
         npm run dev
         ```
-        The application will be available at `http://localhost:5173` (or another port if 5173 is busy).
+        The application will be available at `http://localhost:5173`.
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are the lifeblood of the open-source community and are **greatly appreciated**. Your contributions will help make ThunderLean an even better tool for everyone.
 
-Please see `CONTRIBUTING.md` for details on our code of conduct and the process for submitting pull requests to us.
+Please see our `CONTRIBUTING.md` file for details on our code of conduct and the process for submitting pull requests to us.
 
 ## 📄 License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more information.
+
+## 🙏 Acknowledgments
+
+* A big thank you to all the open-source libraries and tools that made this project possible.
+* Inspiration and motivation from the fitness and tech communities.
+
+---
+
+<p align="center">
+  Made with ❤️ by the ThunderLean Team
+</p>
