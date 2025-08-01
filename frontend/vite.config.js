@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
-// https://vite.dev/config/
 
 export default defineConfig({
   plugins: [
@@ -10,10 +9,12 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      injectRegister: "auto",
-      workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"], // Caches all important assets
-      },
+      // Explicitly include assets in the public directory to be cached
+      includeAssets: [
+        "assets/favicon.png",
+        "assets/icon-192x192.png",
+        "assets/icon-512x512.png",
+      ],
       manifest: {
         name: "ThunderLean",
         short_name: "ThunderLean",
@@ -32,6 +33,21 @@ export default defineConfig({
             src: "assets/icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
+          },
+        ],
+      },
+      workbox: {
+        // This ensures all built assets (JS, CSS, etc.) are pre-cached
+        globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+        // This is the new, crucial part.
+        // It sets up a caching strategy for navigation requests (loading pages).
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages-cache",
+            },
           },
         ],
       },
