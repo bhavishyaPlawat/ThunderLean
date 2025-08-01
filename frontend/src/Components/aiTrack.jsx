@@ -23,7 +23,7 @@ const AiTrack = () => {
     setError(null);
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/ai/analyze-meal",
+        "https://thunderlean-backend.onrender.com/api/ai/analyze-meal",
         formData,
         {
           headers: {
