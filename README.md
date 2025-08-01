@@ -9,10 +9,10 @@
 </h3>
 
 <p align="center">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/bhavishyaplawat/thunderlean/main.yml?style=for-the-badge">
-  <img alt="GitHub" src="https://img.shields.io/github/license/bhavishyaplawat/thunderlean?style=for-the-badge">
+<!--   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/bhavishyaplawat/thunderlean/main.yml?style=for-the-badge"> -->
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/bhavishyaplawat/thunderlean?style=for-the-badge">
   <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/bhavishyaplawat/thunderlean?style=for-the-badge">
+  
 </p>
 
 ThunderLean is a revolutionary web application that redefines your fitness journey. By harnessing the power of Artificial Intelligence, we provide you with smart, personalized insights into your meals, helping you to effortlessly manage your caloric intake and expenditure. Our goal is to make fitness tracking intuitive, accessible, and highly effective for everyone.
