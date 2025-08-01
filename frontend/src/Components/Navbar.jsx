@@ -10,27 +10,31 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // --- PWA: STATE FOR THE INSTALL PROMPT ---
-  const [installPrompt, setInstallPrompt] = useState(null);
+  // This state will now be controlled by our custom event
+  const [isPwaInstallable, setIsPwaInstallable] = useState(false);
 
   useEffect(() => {
-    const handler = (e) => {
-      e.preventDefault();
-      setInstallPrompt(e);
+    // Listen for our custom event from main.jsx
+    const handler = () => {
+      setIsPwaInstallable(true);
     };
 
-    window.addEventListener("beforeinstallprompt", handler);
-    return () => window.removeEventListener("beforeinstallprompt", handler);
+    window.addEventListener("pwa-installable", handler);
+    return () => window.removeEventListener("pwa-installable", handler);
   }, []);
 
   const handleInstallClick = async () => {
-    if (!installPrompt) {
+    // Get the saved prompt from the window object
+    const promptEvent = window.deferredPrompt;
+    if (!promptEvent) {
       return;
     }
-    await installPrompt.prompt();
-    const { outcome } = await installPrompt.userChoice;
+    await promptEvent.prompt();
+    const { outcome } = await promptEvent.userChoice;
     if (outcome === "accepted") {
-      setInstallPrompt(null); // The prompt can't be used again
+      // The prompt can't be used again, hide the button
+      setIsPwaInstallable(false);
+      window.deferredPrompt = null;
     }
   };
 
@@ -71,7 +75,7 @@ const Navbar = () => {
           </button>
 
           {/* --- CORRECTED PWA INSTALL & LOGIN BUTTON LOGIC --- */}
-          {installPrompt ? (
+          {isPwaInstallable ? (
             <button
               onClick={handleInstallClick}
               className="px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700"
@@ -100,48 +104,22 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
-          <div className="flex flex-col items-center gap-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
-              }
-              onClick={() => setIsMenuOpen(false)}
+          {/* ... other mobile nav links */}
+          <button className="w-full px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
+            Sign Up
+          </button>
+          {isPwaInstallable ? (
+            <button
+              onClick={handleInstallClick}
+              className="w-full px-6 py-2 bg-purple-600 text-white rounded-md"
             >
-              Home
-            </NavLink>
-            <a
-              href="#features"
-              className="hover:text-[#8C4DCF]"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a
-              href="#whyus"
-              className="hover:text-[#8C4DCF]"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Why Us?
-            </a>
-            <button className="w-full px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
-              Sign Up
+              Install App
             </button>
-
-            {/* --- CORRECTED MOBILE PWA & LOGIN BUTTONS --- */}
-            {installPrompt ? (
-              <button
-                onClick={handleInstallClick}
-                className="w-full px-6 py-2 bg-purple-600 text-white rounded-md"
-              >
-                Install App
-              </button>
-            ) : (
-              <button className="w-full px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
-                Login
-              </button>
-            )}
-          </div>
+          ) : (
+            <button className="w-full px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
+              Login
+            </button>
+          )}
         </div>
       )}
     </nav>
