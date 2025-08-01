@@ -25,7 +25,7 @@ const Hero = () => {
       {/* Image Container */}
       <div className="absolute bottom-0 right-0 left-0 md:left-auto md:w-1/2 flex justify-center items-end pointer-events-none">
         <img
-          src="src/assets/92b1abfd1bf20f53a8f801764609dfb4aa64d3a2.png"
+          src="/assets/92b1abfd1bf20f53a8f801764609dfb4aa64d3a2.png"
           alt="Woman checking fitness tracker"
           className="h-auto w-full max-w-[250px] sm:max-w-[320px] md:max-w-sm lg:max-w-md pointer-events-auto"
           loading="lazy"
