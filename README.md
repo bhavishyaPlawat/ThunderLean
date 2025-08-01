@@ -29,7 +29,7 @@ Our application is packed with a suite of features designed to support you every
 ## 🚀 Live Demo
 
 <p align="center">
-  <a href="https://thunderlean.vercel.app/" target="_blank">
+  <a href="https://thunder-lean.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/View_Live_Demo-8C4DCF?style=for-the-badge" alt="Live Demo"/>
   </a>
 </p>
