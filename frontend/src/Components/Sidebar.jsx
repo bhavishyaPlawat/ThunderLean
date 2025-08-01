@@ -129,7 +129,7 @@ const Sidebar = ({ activePage }) => {
 
   return (
     <>
-      <div className="md:hidden p-4 moteeb">
+      <div className="md:hidden p-4">
         <button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
         </button>
