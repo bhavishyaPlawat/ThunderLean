@@ -1,0 +1,35 @@
+{
+  "name": "ThunderLean",
+  "short_name": "ThunderLean",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#E3E7F0",
+  "theme_color": "#8C4DCF",
+  "description": "Your intelligent partner for a healthier lifestyle.",
+  "icons": [
+    {
+      "src": "/assets/icon1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot1.png",
+      "type": "image/png",
+      "sizes": "1080x1920",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/assets/screenshot2.png",
+      "type": "image/png",
+      "sizes": "1920x1080",
+      "form_factor": "wide"
+    }
+  ]
+}
