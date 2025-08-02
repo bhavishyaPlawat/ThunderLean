@@ -7,7 +7,8 @@
     },
     {
       "src": "frontend/package.json",
-      "use": "@vercel/vite"
+      "use": "@vercel/vite",
+      "root": "frontend"
     }
   ],
   "rewrites": [
@@ -17,7 +18,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/frontend"
+      "destination": "/frontend/dist/index.html"
     }
   ]
 }
