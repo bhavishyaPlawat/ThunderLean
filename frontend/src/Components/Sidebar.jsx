@@ -170,6 +170,13 @@ const Sidebar = ({ activePage }) => {
           })}
         </nav>
       </aside>
+      {isOpen && (
+        <AiOutlineClose
+          size={24}
+          className="absolute top-[25px] right-4"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </>
   );
 };
