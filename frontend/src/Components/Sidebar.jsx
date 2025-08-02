@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { BsList, BsChevronLeft } from 'react-icons/bs';
 
 // --- ICON COMPONENTS ---
 const LogoIcon = ({ onGoHome, className }) => (
@@ -8,6 +10,7 @@ const LogoIcon = ({ onGoHome, className }) => (
     className={`flex items-center space-x-2 cursor-pointer ${className}`}
     onClick={onGoHome}
   >
+
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6 text-blue-500"
@@ -23,7 +26,7 @@ const LogoIcon = ({ onGoHome, className }) => (
       />
     </svg>
     <span className="font-bold text-xl text-black select-none">
-      THUNDERLEAN
+      THUNDERLEAN 
     </span>
   </div>
 );
@@ -110,7 +113,7 @@ const Sidebar = ({ activePage }) => {
 
   const navItems = [
     { slug: "dashboard", icon: DashboardIcon, label: "Dashboard" },
-    { slug: "tdee-calculator", icon: CalculatorIcon, label: "TDEE Calculator" },
+    { slug: "tdee-calculator", icon: CalculatorIcon, label: "TDEE Calculator " },
     { slug: "ai-track", icon: AiTrackIcon, label: "AI Track" },
     { slug: "get-tip", icon: TipIcon, label: "Get free Tip" },
   ];
@@ -144,6 +147,11 @@ const Sidebar = ({ activePage }) => {
           background: "linear-gradient(90deg, #879AE3 0%, #C5D5F2 100%)",
         }}
       >
+
+         <button onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <BsChevronLeft  size={24} />  : <AiOutlineMenu size={24} />}
+        </button>
+        <br/>
         <LogoIcon onGoHome={handleGoHome} className="mb-12" />
         <nav className="space-y-4">
           {navItems.map(({ slug, icon: Icon, label }) => {
@@ -170,6 +178,7 @@ const Sidebar = ({ activePage }) => {
           })}
         </nav>
       </aside>
+       
     </>
   );
 };
