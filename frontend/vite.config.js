@@ -12,8 +12,8 @@ export default defineConfig({
       // Explicitly include assets in the public directory to be cached
       includeAssets: [
         "assets/favicon.png",
-        "assets/icon-192x192.png",
-        "assets/icon-512x512.png",
+        "assets/icon1.png",
+        "assets/icon2.png",
       ],
       manifest: {
         name: "ThunderLean",
@@ -25,12 +25,12 @@ export default defineConfig({
         start_url: ".",
         icons: [
           {
-            src: "assets/icon-192x192.png",
+            src: "assets/icon1.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "assets/icon-512x512.png",
+            src: "assets/icon2.png",
             sizes: "512x512",
             type: "image/png",
           },
