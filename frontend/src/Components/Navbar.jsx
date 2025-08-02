@@ -9,22 +9,17 @@ import { useNavigate, NavLink } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // This state will now be controlled by our custom event
   const [isPwaInstallable, setIsPwaInstallable] = useState(false);
 
   useEffect(() => {
-    // Listen for our custom event from main.jsx
     const handler = () => {
       setIsPwaInstallable(true);
     };
-
     window.addEventListener("pwa-installable", handler);
     return () => window.removeEventListener("pwa-installable", handler);
   }, []);
 
   const handleInstallClick = async () => {
-    // Get the saved prompt from the window object
     const promptEvent = window.deferredPrompt;
     if (!promptEvent) {
       return;
@@ -32,10 +27,14 @@ const Navbar = () => {
     await promptEvent.prompt();
     const { outcome } = await promptEvent.userChoice;
     if (outcome === "accepted") {
-      // The prompt can't be used again, hide the button
       setIsPwaInstallable(false);
       window.deferredPrompt = null;
     }
+  };
+
+  // Function to close the menu, useful for mobile navigation
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -73,8 +72,6 @@ const Navbar = () => {
           <button className="px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
             Sign Up
           </button>
-
-          {/* --- CORRECTED PWA INSTALL & LOGIN BUTTON LOGIC --- */}
           {isPwaInstallable ? (
             <button
               onClick={handleInstallClick}
@@ -83,7 +80,7 @@ const Navbar = () => {
               Install App
             </button>
           ) : (
-            <button className="px-6 py-2 bg-white text-[#2C2C2C] rounded-md">
+            <button className="px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
               Login
             </button>
           )}
@@ -101,25 +98,54 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* --- CORRECTED & COMPLETE Mobile Menu --- */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 bg-white rounded-lg shadow-lg p-4">
-          {/* ... other mobile nav links */}
-          <button className="w-full px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
-            Sign Up
-          </button>
-          {isPwaInstallable ? (
-            <button
-              onClick={handleInstallClick}
-              className="w-full px-6 py-2 bg-purple-600 text-white rounded-md"
+          <div className="flex flex-col items-center gap-4">
+            {/* All Nav links are now correctly inside the mobile menu */}
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+              }
+              onClick={closeMobileMenu}
             >
-              Install App
+              Home
+            </NavLink>
+            <a
+              href="#features"
+              className="hover:text-[#8C4DCF]"
+              onClick={closeMobileMenu}
+            >
+              Features
+            </a>
+            <a
+              href="#whyus"
+              className="hover:text-[#8C4DCF]"
+              onClick={closeMobileMenu}
+            >
+              Why Us?
+            </a>
+            {/* All buttons are now correctly inside the mobile menu */}
+            <button className="w-full px-6 py-2 bg-[#2C2C2C] text-white rounded-md">
+              Sign Up
             </button>
-          ) : (
-            <button className="w-full px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
-              Login
-            </button>
-          )}
+            {isPwaInstallable ? (
+              <button
+                onClick={() => {
+                  handleInstallClick();
+                  closeMobileMenu();
+                }}
+                className="w-full px-6 py-2 bg-purple-600 text-white rounded-md"
+              >
+                Install App
+              </button>
+            ) : (
+              <button className="w-full px-6 py-2 bg-white text-[#2C2C2C] rounded-md border">
+                Login
+              </button>
+            )}
+          </div>
         </div>
       )}
     </nav>
