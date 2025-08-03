@@ -80,27 +80,22 @@ const AiTrack = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 font-sans">
+    <div className="flex flex-col md:flex-row  min-h-screen bg-gray-100 font-sans">
       <Sidebar
         activePage="ai-track"
         isOpen={isSidebarOpen}
         setIsOpen={setIsSidebarOpen}
       />
 
-      <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-        <header className="flex items-center justify-between md:justify-center bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative">
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="md:hidden absolute left-4 text-gray-600"
-          >
-            <FaBars size={24} />
-          </button>
+      <main className="flex-1 p-4 sm:p-10 lg:p-10 overflow-y-auto">
+        <header className="flex items-center justify-between md:justify-center bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative ">
+          
           <h2 className="text-lg font-bold tracking-widest uppercase">
             AI Track
           </h2>
         </header>
 
-        <div className="bg-gradient-to-br from-indigo-100 to-purple-200 p-6 sm:p-8 rounded-3xl shadow-lg w-full max-w-4xl mx-auto">
+        <div className="bg-gradient-to-br from-indigo-100 to-purple-200 p-6 sm:p-9 rounded-3xl shadow-lg w-full max-w-4xl mx-auto">
           <div className="flex justify-between items-center mb-8 flex-wrap">
             <h3 className="text-xl font-bold text-gray-800 hidden sm:block">
               Set Goal
