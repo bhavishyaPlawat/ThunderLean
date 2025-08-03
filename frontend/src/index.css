@@ -2,18 +2,9 @@
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
 
-@font-face {
-  font-family: 'Bebas Neue';
-  src: url('/src/assets/fonts/BebasNeue.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Poppins';
-  src: url('/src/assets/fonts/Poppins-Regular.woff2') format('woff2');
-}
 @theme {
-  --font-heading: "Bebas Neue", "sans-serif"; 
-  --font-body: "Poppins", "sans-serif";
+  --font-heading: "Barlow", "sans-serif";
+  --font-body: "Barlow", "sans-serif";
 }
 
 /* ✅ Custom utility for reusable gradient */
