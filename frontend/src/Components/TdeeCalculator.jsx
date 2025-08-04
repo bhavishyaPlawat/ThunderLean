@@ -56,7 +56,7 @@ const TdeeCalculator = () => {
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
         {/* Header */}
-        <header className="bg-purple-200 text-pink-800 py-4 px-6 rounded-lg mb-8 text-center">
+        <header className="bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center">
           <h2 className="text-lg font-bold tracking-widest uppercase">
             TDEE Calculator
           </h2>

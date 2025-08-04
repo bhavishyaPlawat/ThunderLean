@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "locomotive-scroll/dist/locomotive-scroll.css";
+
+
+/* Inter font - Regular weight */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter font - Medium weight */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter font - Semi Bold weight */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter font - Bold weight */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter font - Light weight */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .bg-custom-gradient {
+    background-image: radial-gradient(
+      circle at 90% 100%,
+      #ffffff 0%,
+      #e5e8f5 40%,
+      #879AE3 100%
+    );
+  }
+  
+  /* Additional gradient utilities */
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Theme configuration */
+@theme {
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Custom spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  
+  /* Custom colors */
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+/* Heading styles with Inter font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Paragraph and text styles */
+p {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Button and form element styles */
+button, input, textarea, select {
+  font-family: var(--font-inter);
+}
+
+/* Link styles */
+a {
+  font-family: var(--font-inter);
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+a:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Selection styles */
+::selection {
+  background-color: #6366f1;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #6366f1;
+  color: white;
+}

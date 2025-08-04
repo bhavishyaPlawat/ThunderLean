@@ -11,10 +11,10 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[70vh] sm:min-h-[80vh] flex flex-col justify-center text-center md:text-left pb-56 md:pb-0">
         {/* Text Content */}
         <div className="w-full lg:ml-[8%] md:w-1/2">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#1A1A1A]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#1A1A1A] font-inter">
             Track Your <br /> Calories <br /> Smartly
           </h1>
-          <p className="text-gray-600 text-base sm:text-lg lg:text-xl font-medium mt-4">
+          <p className="font-inter text-gray-600 text-base sm:text-lg lg:text-xl font-medium mt-4 ">
             AI-powered insights for <br /> your fitness journey
           </p>
         </div>
