@@ -1,67 +1,69 @@
 const bcrypt = require("bcrypt");
 const otpGenerator = require("otp-generator");
+const jwt = require("jsonwebtoken"); // Import jsonwebtoken
 const User = require("../models/user");
 const { sendOtpEmail } = require("../services/emailService");
 
 const SALT_ROUNDS = 10;
 
+// Helper to create a user object without the password
+const toUserDTO = (user) => {
+  return {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+  };
+};
+
 exports.signup = async (req, res) => {
   try {
-    const { identifier, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!identifier || !password) {
+    if (!name || !email || !password) {
       return res
         .status(400)
-        .json({ message: "Email/phone and password are required." });
+        .json({ message: "Name, email, and password are required." });
     }
 
-    const existingUser = await User.findOne({
-      $or: [{ email: identifier }, { phone: identifier }],
-    });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
         .status(409)
-        .json({ message: "User with this email or phone already exists." });
+        .json({ message: "User with this email already exists." });
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-    const newUserPayload = { password: hashedPassword };
-    if (identifier.includes("@")) {
-      newUserPayload.email = identifier;
-    } else {
-      newUserPayload.phone = identifier;
-    }
-
-    const user = new User(newUserPayload);
+    const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    res
-      .status(201)
-      .json({ message: "User registered successfully!", userId: user._id });
+    // Create JWT
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h", // Token expires in 24 hours
+    });
+
+    res.status(201).json({
+      message: "User registered successfully!",
+      token,
+      user: toUserDTO(user),
+    });
   } catch (error) {
-    console.error(error);
-    if (error.code === 11000) {
-      return res
-        .status(409)
-        .json({ message: "User with this email or phone already exists." });
-    }
+    console.error("Signup Error:", error);
     res.status(500).json({ message: "Server error during sign up." });
   }
 };
 
 exports.login = async (req, res) => {
   try {
-    const { identifier, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!identifier || !password) {
+    if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Email/phone and password are required." });
+        .json({ message: "Email and password are required." });
     }
 
-    const user = await User.findOne({
-      $or: [{ email: identifier }, { phone: identifier }],
-    });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -71,13 +73,23 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials." });
     }
 
-    res.status(200).json({ message: "Login successful!", userId: user._id });
+    // Create JWT
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
+
+    res.status(200).json({
+      message: "Login successful!",
+      token,
+      user: toUserDTO(user),
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Login Error:", error);
     res.status(500).json({ message: "Server error during login." });
   }
 };
 
+// --- (forgotPassword and loginWithOtp functions remain the same) ---
 exports.forgotPassword = async (req, res) => {
   try {
     const { identifier } = req.body;
