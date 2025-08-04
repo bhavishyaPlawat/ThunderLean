@@ -6,11 +6,14 @@ const dotenv = require("dotenv");
 const tdeeRoutes = require("./routes/tdeeRoutes");
 const calorieRoutes = require("./routes/aiCalorieRoutes");
 const helmet = require("helmet");
+const authRoutes = require("./routes/authRoutes");
+const connectToDB = require("./db/db");
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+connectToDB();
 
 // Middleware
 app.use(helmet());
@@ -21,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/api/tdee", tdeeRoutes);
 app.use("/api/ai", calorieRoutes);
+app.use("/api/auth", authRoutes);
 
 // Health Check
 app.get("/", (req, res) => {
