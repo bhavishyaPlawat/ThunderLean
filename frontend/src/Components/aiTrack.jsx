@@ -88,9 +88,9 @@ const AiTrack = () => {
       />
 
       <main className="flex-1 p-4 sm:p-10 lg:p-10 overflow-y-auto">
-        <header className="flex items-center justify-between md:justify-center bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative ">
+        <header className="flex items-center justify-center  md:justify-center bg-purple-200 text-pink-800 py-4 px-6 rounded-lg mb-8 text-center relative ">
           
-          <h2 className="text-lg font-bold tracking-widest uppercase">
+          <h2 className="text-lg font-bold tracking-widest uppercase ">
             AI Track
           </h2>
         </header>

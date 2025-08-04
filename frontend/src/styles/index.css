@@ -1,22 +1,7 @@
 @import "tailwindcss";
 @import "locomotive-scroll/dist/locomotive-scroll.css";
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/src/assets/fonts/Gilroy-Regular.woff2') format('woff2'),
-       url('/src/assets/fonts/Gilroy-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/src/assets/fonts/Gilroy-Bold.woff2') format('woff2'),
-       url('/src/assets/fonts/Gilroy-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: bold;
-}
-
-/* ✅ Custom utility for reusable gradient */
+/* Custom utilities */
 @layer utilities {
   .bg-custom-gradient {
     background-image: radial-gradient(
@@ -26,21 +11,21 @@
       #879AE3 100%
     );
   }
+} /* ← Closing bracket was missing here */
+
+/* Global styles */
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .auth-container {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-} 
-
-
-
-
-
-
-
+}
