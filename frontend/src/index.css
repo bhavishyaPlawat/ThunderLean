@@ -32,7 +32,11 @@ html {
   scroll-behavior: smooth;
 }
 
-
+.auth-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+} 
 
 
 

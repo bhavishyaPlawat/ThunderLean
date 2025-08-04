@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const otpGenerator = require("otp-generator");
-const jwt = require("jsonwebtoken"); // Import jsonwebtoken
+const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { sendOtpEmail } = require("../services/emailService");
 
@@ -16,8 +16,13 @@ const toUserDTO = (user) => {
   };
 };
 
+/**
+ * Handles user registration.
+ * Expects 'name', 'email', and 'password' in the request body.
+ */
 exports.signup = async (req, res) => {
   try {
+    // **THE FIX IS HERE: Now correctly expects 'email' for signup**
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -39,7 +44,7 @@ exports.signup = async (req, res) => {
 
     // Create JWT
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "24h", // Token expires in 24 hours
+      expiresIn: "72h", // Token expires in 72 hours
     });
 
     res.status(201).json({
@@ -53,17 +58,23 @@ exports.signup = async (req, res) => {
   }
 };
 
+/**
+ * Handles user login.
+ * Expects 'identifier' (which can be email or phone) and 'password'.
+ */
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { identifier, password } = req.body;
 
-    if (!email || !password) {
+    if (!identifier || !password) {
       return res
         .status(400)
-        .json({ message: "Email and password are required." });
+        .json({ message: "Email/phone and password are required." });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      $or: [{ email: identifier }, { phone: identifier }],
+    });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
