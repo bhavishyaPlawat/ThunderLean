@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "locomotive-scroll/dist/locomotive-scroll.css";
+
+/* Custom utilities */
+@layer utilities {
+  .bg-custom-gradient {
+    background-image: radial-gradient(
+      circle at 90% 100%,
+      #ffffff 0%,
+      #e5e8f5 40%,
+      #879AE3 100%
+    );
+  }
+} /* ← Closing bracket was missing here */
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
