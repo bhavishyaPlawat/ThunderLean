@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "./sidebar"; // Adjust path as needed
+import Sidebar from "./Sidebar"; // Adjust path as needed
 import { Bar, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,

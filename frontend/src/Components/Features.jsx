@@ -35,7 +35,7 @@ const Features = () => {
         "Simple, fast, and tailored to your fitness goals.",
       ],
       imageUrl:
-        "src/assets/WhatsApp_Image_2025-07-27_at_14.37.47_210d55e7-removebg-preview.png",
+        "/assets/WhatsApp_Image_2025-07-27_at_14.37.47_210d55e7-removebg-preview.png",
       imageAlt: "TDEE Calculator",
     },
     {
@@ -45,7 +45,7 @@ const Features = () => {
         "Log food effortlessly, no manual calculations.",
         "Smart insights to keep your diet on track.",
       ],
-      imageUrl: "src/assets/ai_tracker.png",
+      imageUrl: "/assets/ai_tracker.png",
       imageAlt: "AI Calorie Tracker",
       reverse: true,
     },
@@ -56,7 +56,7 @@ const Features = () => {
         "Track calorie trends and fitness metrics.",
         "Actionable insights to optimize your goals.",
       ],
-      imageUrl: "src/assets/Detailed_Dashboard.png",
+      imageUrl: "/assets/Detailed_Dashboard.png",
       imageAlt: "Detailed Dashboard",
     },
     {
@@ -66,7 +66,7 @@ const Features = () => {
         "Tips for weight gain, loss, or muscle building.",
         "Expert guidance tailored to your needs.",
       ],
-      imageUrl: "src/assets/Get_tips.png",
+      imageUrl: "/assets/Get_tips.png",
       imageAlt: "Get Tips",
       reverse: true,
     },

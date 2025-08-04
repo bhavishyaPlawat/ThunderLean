@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-// CORRECT
-import Sidebar from "./sidebar";
+
+import Sidebar from "./Sidebar";
+
 import { RiLightbulbFlashLine, RiLoader4Line } from "react-icons/ri";
+import axios from "axios"; // Import axios for API calls
+import ReactMarkdown from "react-markdown";
 
 const GetTip = () => {
   const [userInput, setUserInput] = useState("");
   const [generatedTip, setGeneratedTip] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
 
   const quickGoals = [
     "How can I lose weight?",
@@ -15,21 +19,32 @@ const GetTip = () => {
     "Healthy breakfast ideas",
   ];
 
-  const handleGetTip = () => {
-    if (!userInput) {
+  // --- UPDATED API CALL LOGIC ---
+  const handleGetTip = async () => {
+    if (!userInput.trim()) {
       setGeneratedTip("Please enter a question or select a goal first.");
       return;
     }
     setIsLoading(true);
     setGeneratedTip(""); // Clear previous tip
 
-    // Simulate an API call
-    setTimeout(() => {
-      // In a real app, you would make a backend API call here with the userInput
-      const exampleTip = `For your goal: "${userInput}", here's a tip: Consistency is key. Aim for at least 150 minutes of moderate-intensity exercise per week, combined with a balanced diet rich in whole foods. Make sure to stay hydrated by drinking plenty of water throughout the day. Small, sustainable changes lead to the best long-term results.`;
-      setGeneratedTip(exampleTip);
+    try {
+      // Make a real API call to your backend
+      const response = await axios.post(
+        "https://thunderlean-backend.onrender.com/api/ai/get-tip",
+        {
+          prompt: userInput,
+        }
+      );
+      setGeneratedTip(response.data.tip);
+    } catch (error) {
+      setGeneratedTip(
+        "Sorry, I couldn't fetch a tip right now. Please try again."
+      );
+      console.error("Error fetching tip:", error);
+    } finally {
       setIsLoading(false);
-    }, 2000); // 2-second delay
+    }
   };
 
   const handleQuickGoalClick = (goal) => {
@@ -38,11 +53,35 @@ const GetTip = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 font-sans">
-      <Sidebar activePage="get-tip" />
+      <Sidebar
+        activePage="get-tip"
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+      />
 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-        <header className="bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center">
+        <header className="bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative">
+          {/* Hamburger icon for mobile */}
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className="md:hidden absolute left-4 text-gray-600"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
           <h2 className="text-lg font-bold tracking-widest uppercase">
             Get Personalized Tips
           </h2>
@@ -79,6 +118,12 @@ const GetTip = () => {
               onChange={(e) => setUserInput(e.target.value)}
               placeholder="For example: 'What are some good post-workout meals?'"
               className="w-full h-28 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
+              onKeyPress={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleGetTip();
+                }
+              }}
             />
           </div>
 
@@ -109,7 +154,9 @@ const GetTip = () => {
               <h4 className="text-lg font-semibold text-gray-800 mb-2">
                 Your Tip:
               </h4>
-              <p className="text-gray-700 leading-relaxed">{generatedTip}</p>
+              <div className="text-gray-700 leading-relaxed">
+                <ReactMarkdown>{generatedTip}</ReactMarkdown>
+              </div>
             </div>
           )}
         </div>
