@@ -7,7 +7,7 @@ import { BsList, BsChevronLeft } from 'react-icons/bs';
 // --- ICON COMPONENTS ---
 const LogoIcon = ({ onGoHome, className }) => (
   <div
-    className={`flex items-center space-x-2 cursor-pointer ${className}`}
+    className={`flex items-center space-x-2 cursor-pointer font-body ${className}`}
     onClick={onGoHome}
   >
 

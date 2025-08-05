@@ -3,8 +3,8 @@
 
 
 @theme {
-  --font-heading: "Barlow", "sans-serif";
-  --font-body: "Barlow", "sans-serif";
+  --font-heading: "Inter", "sans-serif";
+  --font-body: "Inter", "sans-serif";
 }
 
 /* ✅ Custom utility for reusable gradient */

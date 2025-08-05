@@ -80,7 +80,7 @@ const AiTrack = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row  min-h-screen bg-gray-100 font-sans">
+    <div className="flex flex-col md:flex-row  min-h-screen bg-gray-100 font-body">
       <Sidebar
         activePage="ai-track"
         isOpen={isSidebarOpen}
