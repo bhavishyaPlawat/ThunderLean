@@ -1,13 +1,44 @@
+
 import React from "react";
+import { motion } from "framer-motion";
 
 const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
   const flexDirection = reverse ? "md:flex-row-reverse" : "md:flex-row";
-  return (
 
-    <div
-      className={`flex flex-col ${flexDirection} items-center gap-8 lg:gap-16`}
-    >
-      <div className="md:w-1/2 bg-[#D9D9D9] rounded-2xl p-6 lg:p-8 text-center shadow-md">
+  const textVariants = {
+    hidden: {
+      opacity: 0,
+      x: reverse ? 80 : -80,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: {
+      opacity: 0,
+      x: reverse ? -80 : 80,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+    },
+  };
+
+  return (
+    <div className={`flex flex-col ${flexDirection} items-center gap-8 lg:gap-16`}>
+      {/* Text Box */}
+      <motion.div
+        className="md:w-1/2 bg-[#D9D9D9] rounded-2xl p-6 lg:p-8 text-center shadow-md"
+        variants={textVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4">
           {title}
         </h3>
@@ -16,14 +47,22 @@ const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
             <li key={index}>{item}</li>
           ))}
         </ul>
+      </motion.div>
 
-      </div>
-      <div className="md:w-1/2 flex justify-center p-4">
+      {/* Image Box */}
+      <motion.div
+        className="md:w-1/2 flex justify-center p-4"
+        variants={imageVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         <img src={imageUrl} alt={imageAlt} className="w-48 h-auto sm:w-56" />
-      </div>
+      </motion.div>
     </div>
   );
 };
+
 
 const Features = () => {
   const featureData = [
