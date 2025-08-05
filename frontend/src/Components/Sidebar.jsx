@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 // import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { BsList, BsChevronLeft } from 'react-icons/bs';
+import { BsList, BsChevronLeft } from "react-icons/bs";
 
 // --- ICON COMPONENTS ---
 const LogoIcon = ({ onGoHome, className }) => (
@@ -10,7 +10,6 @@ const LogoIcon = ({ onGoHome, className }) => (
     className={`flex items-center space-x-2 cursor-pointer font-body ${className}`}
     onClick={onGoHome}
   >
-
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-6 w-6 text-blue-500"
@@ -26,7 +25,7 @@ const LogoIcon = ({ onGoHome, className }) => (
       />
     </svg>
     <span className="font-bold text-xl text-black select-none">
-      THUNDERLEAN 
+      THUNDERLEAN
     </span>
   </div>
 );
@@ -113,7 +112,11 @@ const Sidebar = ({ activePage }) => {
 
   const navItems = [
     { slug: "dashboard", icon: DashboardIcon, label: "Dashboard" },
-    { slug: "tdee-calculator", icon: CalculatorIcon, label: "TDEE Calculator " },
+    {
+      slug: "tdee-calculator",
+      icon: CalculatorIcon,
+      label: "TDEE Calculator ",
+    },
     { slug: "ai-track", icon: AiTrackIcon, label: "AI Track" },
     { slug: "get-tip", icon: TipIcon, label: "Get free Tip" },
   ];
@@ -140,20 +143,19 @@ const Sidebar = ({ activePage }) => {
 
       {/* The classes here have been updated to fix the height and scrolling issue */}
       <aside
-        className={`w-64 h-screen p-6 flex-shrink-0 flex flex-col z-20 transition-transform duration-300 ease-in-out
+        className={`w-64 min-h-screen p-6 flex-shrink-0 flex flex-col z-20 transition-transform duration-300 ease-in-out
           fixed transform ${isOpen ? "translate-x-0" : "-translate-x-full"}
           md:sticky md:top-0 md:translate-x-0`}
         style={{
           background: "linear-gradient(90deg, #879AE3 0%, #C5D5F2 100%)",
         }}
       >
-
-     <div className="md:hidden ">
-  <button onClick={() => setIsOpen(false)}>
-    <BsChevronLeft size={24} />
-  </button>
-</div>
-        <br/>
+        <div className="md:hidden ">
+          <button onClick={() => setIsOpen(false)}>
+            <BsChevronLeft size={24} />
+          </button>
+        </div>
+        <br />
         <LogoIcon onGoHome={handleGoHome} className="mb-12" />
         <nav className="space-y-4">
           {navItems.map(({ slug, icon: Icon, label }) => {
@@ -181,13 +183,11 @@ const Sidebar = ({ activePage }) => {
         </nav>
       </aside>
       {isOpen && (
-  <div
-    className="fixed inset-0 bg-black opacity-50 z-10 md:hidden"
-    onClick={() => setIsOpen(false)}
-  />
-)}
-
-       
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-10 md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
     </>
   );
 };

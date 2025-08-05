@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import Sidebar from "./Sidebar";
+
 import { RiLightbulbFlashLine, RiLoader4Line } from "react-icons/ri";
 import axios from "axios"; // Import axios for API calls
 import ReactMarkdown from "react-markdown";
@@ -59,27 +61,9 @@ const GetTip = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-        <header className="bg-pink-200 text-gray-700 py-4 px-6 rounded-lg mb-8 text-center relative">
+        <header className="bg-purple-200 text-pink-800 py-4 px-6 rounded-lg mb-8 text-center relative">
           {/* Hamburger icon for mobile */}
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="md:hidden absolute left-4 text-gray-600"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </button>
+          
           <h2 className="text-lg font-bold tracking-widest uppercase">
             Get Personalized Tips
           </h2>
