@@ -42,7 +42,7 @@ const PageFooter = () => {
           </div>
 
           {footerLinks.map((section) => (
-            <div key={section.title} className="mb-6 sm:mb-0">
+            <div key={section.title} className="mb-6 hidden md:block">
               <h4 className="font-semibold text-lg tracking-wider mb-4">
                 {section.title}
               </h4>

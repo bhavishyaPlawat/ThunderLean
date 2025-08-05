@@ -101,7 +101,7 @@ const AiTrack = () => {
               Set Goal
             </h3>
             <div className="flex items-center space-x-2">
-              <div className="flex space-x-1 bg-purple-200 p-1 rounded-full">
+              {/* <div className="flex space-x-1 bg-purple-200 p-1 rounded-full">
                 <button
                   onClick={() => setGoal("loose")}
                   className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full text-sm font-semibold transition ${
@@ -122,7 +122,7 @@ const AiTrack = () => {
                 >
                   Gain
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -132,7 +132,7 @@ const AiTrack = () => {
                 Smarter Calorie TRACKING Starts Here
               </h2>
 
-              <div className="flex gap-2 mb-4">
+              <div className="flex flex-col md:flex-row gap-2 mb-4">
                 <input
                   type="text"
                   value={mealDescription}
@@ -143,7 +143,7 @@ const AiTrack = () => {
                 <button
                   onClick={handleTextSubmit}
                   disabled={isLoading || !mealDescription.trim()}
-                  className="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-md hover:bg-purple-700 disabled:opacity-50 transition"
+                  className="px-3 py-3 bg-purple-600 text-white  font-semibold rounded-lg shadow-md hover:bg-purple-700 disabled:opacity-50 transition"
                 >
                   Analyze
                 </button>
