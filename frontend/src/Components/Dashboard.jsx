@@ -73,7 +73,7 @@ const Calendar = ({ setSelectedDate }) => {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md border border-purple-200">
+    <div className="bg-white p-4 rounded-lg shadow-md border border-purple-200 font-body">
       <div className="flex justify-between items-center mb-4">
         <button onClick={() => changeMonth(-1)} className="text-lg font-bold">
           &lt;
@@ -129,7 +129,7 @@ const NutritionChart = ({ data }) => {
     scales: { y: { beginAtZero: true, max: 350 } },
   };
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
+    <div className="bg-white p-4 rounded-lg shadow-md font-body">
       <Bar data={chartData} options={options} />
     </div>
   );
@@ -188,7 +188,7 @@ const Dashboard = () => {
   }, [selectedDate]);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-slate-100 font-sans">
+    <div className="flex flex-col md:flex-row h-screen bg-slate-100 font-body">
       {/* Passing "dashboard" as the activePage prop */}
       <Sidebar activePage="dashboard" />
       <main className="flex-1 p-4 sm:p-8 overflow-y-auto">

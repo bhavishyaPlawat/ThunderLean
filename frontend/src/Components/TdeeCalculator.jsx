@@ -50,7 +50,7 @@ const TdeeCalculator = () => {
 
   return (
     // This container is now correctly set up to handle a sticky sidebar
-    <div className="flex flex-col md:flex-row md:items-start min-h-screen bg-gray-100">
+    <div className="flex flex-col md:flex-row md:items-start min-h-screen bg-gray-100 font-body">
       <Sidebar activePage="tdee-calculator" />
 
       {/* Main Content */}

@@ -8,10 +8,10 @@ const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
       className={`flex flex-col ${flexDirection} items-center gap-8 lg:gap-16`}
     >
       <div className="md:w-1/2 bg-[#D9D9D9] rounded-2xl p-6 lg:p-8 text-center shadow-md">
-        <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4 font-Gilroy">
+        <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4">
           {title}
         </h3>
-        <ul className="list-disc text-sm sm:text-base text-[#1A1A1A] font-medium font-Poppins text-left pl-5 space-y-2">
+        <ul className="list-disc text-sm sm:text-base text-[#1A1A1A] font-medium text-left pl-5 space-y-2">
           {items.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
@@ -76,7 +76,7 @@ const Features = () => {
   return (
     <div id="features" className="pb-16 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12 sm:mb-16">
-        <h2 className="text-4xl sm:text-5xl font-bold font-Gilroy text-black">
+        <h2 className="text-4xl sm:text-5xl font-bold text-black">
           Features
         </h2>
       </div>
