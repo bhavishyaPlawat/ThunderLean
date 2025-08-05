@@ -9,8 +9,13 @@
 </h3>
 
 <p align="center">
-<!--   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/bhavishyaplawat/thunderlean/main.yml?style=for-the-badge"> -->
-  <img alt="GitHub issues" src="https://img.shields.io/github/issues/bhavishyaplawat/thunderlean?style=for-the-badge">
+  <a href="https://github.com/bhavishyaplawat/thunderlean/stargazers" target="_blank">
+    <img src="https://img.shields.io/github/stars/bhavishyaplawat/thunderlean?style=for-the-badge&logo=github&color=8C4DCF&labelColor=1F2937" alt="Star the repository"/>
+  </a>
+</p>
+
+<p align="center">
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/bhavishyaplawat/thunderlean?style=for-the-badge">
   <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/bhavishyaplawat/thunderlean?style=for-the-badge">
   
 </p>
