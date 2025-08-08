@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
 
-    <div className="font-body overflow-x-hidden bg-[#E3E7F0]">
+    <div className="font-body overflow-x-hidden bg-purple-200">
       <Hero />
 
       {/* This section now controls the layout for the button and features below */}
