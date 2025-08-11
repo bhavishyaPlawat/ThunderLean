@@ -7,6 +7,7 @@ import {
 } from "react-icons/io5";
 
 import Sidebar from './Sidebar';
+import BottomNav from './BottomNav';
 import GetTip from './GetTip';
 
 const ActivityItem = ({ icon, title, description }) => (
@@ -31,7 +32,7 @@ const Home = () => {
       <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
 
-        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
           <div className="max-w-5xl mx-auto">
             <header className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold">Home</h1>
@@ -110,13 +111,13 @@ const Home = () => {
 
           <button
             onClick={() => setIsTipOpen(true)}
-            className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40"
+            className="fixed bottom-20 right-4 md:bottom-8 md:right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40"
           >
             <IoChatbubbleEllipsesOutline className="h-6 w-6" />
           </button>
         </main>
       </div>
-
+      <BottomNav />
       <GetTip isOpen={isTipOpen} onClose={() => setIsTipOpen(false)} />
       
       {isTipOpen && (

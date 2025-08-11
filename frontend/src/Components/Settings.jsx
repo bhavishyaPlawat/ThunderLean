@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import BottomNav from './BottomNav';
 import {
   IoPersonCircleOutline,
   IoRibbonOutline,
@@ -48,10 +49,11 @@ const Settings = () => {
   ];
 
   return (
+    <>
     <div className="flex h-screen bg-[#121212] overflow-hidden">
       <Sidebar activePage={activePage} />
 
-      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
+      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
         <div className="max-w-3xl mx-auto">
 
           <section className="flex flex-col items-center text-center mb-10">
@@ -102,6 +104,9 @@ const Settings = () => {
         </div>
       </main>
     </div>
+    <BottomNav />
+    </>
+    
   );
 };
 
