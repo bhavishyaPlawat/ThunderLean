@@ -1,7 +1,11 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import Sidebar from "./Sidebar";
+import GetTip from './GetTip';
+import BottomNav from './BottomNav';
+
 import {
   IoCloudUploadOutline,
   IoTextOutline,
@@ -12,6 +16,7 @@ import {
   IoRestaurantOutline,
   IoTrashOutline,
 } from "react-icons/io5";
+
 
 // --- Supabase Client Setup ---
 // IMPORTANT: Replace with your actual Supabase URL and Anon Key.
@@ -28,6 +33,7 @@ const AiAnalysisCard = ({
   imageUrl,
   onClick,
 }) => (
+
   <div className="bg-[#1E1E1E] rounded-xl p-6 flex items-center justify-between space-x-4">
     <div className="flex-1">
       <p className="text-xs font-bold text-green-500 mb-1">AI POWERED</p>
@@ -50,6 +56,7 @@ const AiAnalysisCard = ({
     </div>
   </div>
 );
+
 const MealCard = ({ id, name, calories, imageUrl, onDelete }) => (
   <div className="w-full bg-[#1E1E1E] rounded-xl p-4 flex items-center space-x-4 text-left">
     <div className="flex-shrink-0 w-14 h-14 bg-gray-700 rounded-lg flex items-center justify-center">
@@ -62,6 +69,7 @@ const MealCard = ({ id, name, calories, imageUrl, onDelete }) => (
       ) : (
         <IoRestaurantOutline className="text-green-400 h-7 w-7" />
       )}
+
     </div>
     <div className="flex-grow">
       <p className="font-bold text-white capitalize">{name}</p>
@@ -231,6 +239,7 @@ const ImageUploadModal = ({ isOpen, onClose, onSubmit, isLoading }) => {
 // --- Main FoodLog Component ---
 const FoodLog = () => {
   const location = useLocation();
+
   const activePage = location.pathname.split("/")[1] || "food-log";
 
   const [mealItems, setMealItems] = useState([]);
@@ -468,6 +477,7 @@ const FoodLog = () => {
         </button>
       </main>
     </div>
+
   );
 };
 

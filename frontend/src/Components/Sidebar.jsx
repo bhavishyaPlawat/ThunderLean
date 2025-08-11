@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react"
 import { useNavigate } from "react-router-dom";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { BsChevronLeft } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
 
 // --- ICON COMPONENTS ---
@@ -133,7 +131,6 @@ const SettingsIcon = ({ active }) => (
 
 const Sidebar = ({ activePage }) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { slug: "home", icon: HomeIcon, label: "Home" },
@@ -149,52 +146,49 @@ const Sidebar = ({ activePage }) => {
 
   const handleNavigate = (slug) => {
     navigate(`/${slug}`);
-
-    if (window.innerWidth < 768) {
-      setIsOpen(false);
-    }
   };
 
   return (
     <>
-      <div className="md:hidden p-4 fixed top-0 left-0 z-30">
-        <button onClick={() => setIsOpen(!isOpen)} className="text-gray-200">
-          {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
-        </button>
-      </div>
+      {/* Custom scrollbar styles */}
+      <style>{`
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .sidebar-nav-scroll::-webkit-scrollbar {
+          display: none;
+        }
 
-      <aside
-        className={`w-64 min-h-screen p-6 flex-shrink-0 flex flex-col z-20 transition-transform duration-300 ease-in-out bg-[#1E1E1E]
-          fixed transform ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          md:sticky md:top-0 md:translate-x-0`}
-      >
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(false)} className="text-gray-300">
-            <BsChevronLeft size={24} />
-          </button>
-        </div>
-        <LogoIcon onGoHome={handleGoHome} className="mb-12 mt-2 md:mt-0" />
-        
-        <nav className="flex flex-col flex-grow space-y-2">
-          {navItems.map(({ slug, icon: Icon, label }) => {
-            const isActive = slug === activePage;
-            return (
-              <button
-                key={slug}
-                onClick={() => handleNavigate(slug)}
-                className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition-colors duration-200 ${
-                  isActive
-                    ? "bg-green-600 text-white font-bold shadow-lg"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                }`}
-              >
-                <Icon active={isActive} />
-                <span className="font-semibold">{label}</span>
-              </button>
-            );
-          })}
-          {/* Settings button pushed to the bottom */}
-          <div className="mt-auto">
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .sidebar-nav-scroll {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+      `}</style>
+       <aside className="hidden md:flex w-64 h-screen p-6 flex-shrink-0 flex-col z-20 bg-[#1E1E1E] sticky top-0">
+       <LogoIcon onGoHome={handleGoHome} className="mb-8 mt-2" />
+        {/* Main navigation area */}
+        <div className="flex-grow flex flex-col overflow-hidden">
+          <nav className="flex-grow overflow-y-auto sidebar-nav-scroll pr-2 space-y-2">
+            {navItems.map(({ slug, icon: Icon, label }) => {
+              const isActive = slug === activePage;
+              return (
+                <button
+                  key={slug}
+                  onClick={() => handleNavigate(slug)}
+                  className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition-colors duration-200 ${
+                    isActive
+                      ? "bg-green-600 text-white font-bold shadow-lg"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                  }`}
+                >
+                  <Icon active={isActive} />
+                  <span className="font-semibold">{label}</span>
+                </button>
+              );
+            })}
+          </nav>
+          
+          {/* Settings button at the bottom */}
+          <div className="pt-4 mt-auto border-t border-gray-700/50">
              <button
                 onClick={() => handleNavigate('settings')}
                 className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition-colors duration-200 ${
@@ -207,16 +201,8 @@ const Sidebar = ({ activePage }) => {
                 <span className="font-semibold">Settings</span>
               </button>
           </div>
-        </nav>
-      </aside>
-
-      {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 z-10 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+        </div>
+      </aside>     
     </>
   );
 };
