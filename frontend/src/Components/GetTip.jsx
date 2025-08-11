@@ -9,7 +9,6 @@ const GetTip = ({ isOpen, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const chatEndRef = useRef(null);
 
-  // Auto-scroll to the latest message
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory]);
@@ -23,11 +22,10 @@ const GetTip = ({ isOpen, onClose }) => {
     setUserInput('');
 
     try {
-      // --- THIS IS THE FIX: Increased timeout to 60 seconds ---
       const response = await axios.post(
         'https://thunderlean-backend.onrender.com/api/ai/get-tip',
         { prompt: userInput },
-        { timeout: 60000 } // 60-second timeout to allow for slow server cold starts
+        { timeout: 60000 }
       );
       const aiMessage = { role: 'ai', content: response.data.tip };
       setChatHistory((prev) => [...prev, aiMessage]);
@@ -43,7 +41,6 @@ const GetTip = ({ isOpen, onClose }) => {
     }
   };
 
-  // Custom components to style Markdown output without a plugin
   const markdownComponents = {
     p: (props) => <p className="mb-2 last:mb-0" {...props} />,
     ul: (props) => <ul className="list-disc list-inside space-y-1 pl-2" {...props} />,
@@ -52,13 +49,11 @@ const GetTip = ({ isOpen, onClose }) => {
   };
 
   return (
-    // Main sliding panel container
     <div
       className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#181818] text-white shadow-2xl z-50 border-l border-gray-700/50 flex flex-col transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
-      {/* Header */}
       <header className="flex items-center justify-between p-4 border-b border-gray-700/50 flex-shrink-0">
         <div className="flex items-center space-x-2">
           <IoSparkles className="text-green-400" />
@@ -69,7 +64,6 @@ const GetTip = ({ isOpen, onClose }) => {
         </button>
       </header>
 
-      {/* Chat History */}
       <div className="flex-grow p-4 overflow-y-auto space-y-6">
         {chatHistory.length === 0 && (
           <div className="text-center text-gray-500 pt-10">
@@ -110,7 +104,6 @@ const GetTip = ({ isOpen, onClose }) => {
         <div ref={chatEndRef} />
       </div>
 
-      {/* Input Form */}
       <div className="p-4 border-t border-gray-700/50 flex-shrink-0">
         <div className="flex items-center space-x-2 bg-[#282828] border border-gray-600 rounded-lg px-2">
           <input

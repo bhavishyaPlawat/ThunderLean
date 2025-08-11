@@ -10,7 +10,6 @@ import {
   IoChatbubbleEllipsesOutline
 } from 'react-icons/io5';
 
-// --- Mock Data (Ready for Backend Integration) ---
 const initialPosts = [
   {
     id: 1,
@@ -44,15 +43,13 @@ const initialPosts = [
   },
 ];
 
-// --- Reusable Sub-components ---
-
 const CreatePostCard = ({ currentUserAvatar, onPost }) => {
   const [postContent, setPostContent] = useState('');
 
   const handlePost = () => {
     if (postContent.trim()) {
       onPost(postContent);
-      setPostContent(''); // Clear input after posting
+      setPostContent('');
     }
   };
 
@@ -122,23 +119,23 @@ const Community = () => {
 
   const handleCreatePost = (content) => {
     const newPost = {
-      id: Date.now(), // Temporary unique ID
-      author: 'Your Name', // Replace with actual logged-in user
-      avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D', // Replace with actual user avatar
+      id: Date.now(),
+      author: 'Your Name',
+      avatarUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D',
       timestamp: 'Just now',
       content: content,
       likes: 0,
       comments: 0,
       shares: 0,
     };
-    setPosts([newPost, ...posts]); // Add new post to the top of the list
+    setPosts([newPost, ...posts]);
   };
 
   return (
     <>
-      <div className="flex min-h-screen bg-[#121212]">
+      <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
-        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
           <div className="max-w-3xl mx-auto">
             <header className="mb-8">
               <h1 className="text-3xl font-bold">Community</h1>

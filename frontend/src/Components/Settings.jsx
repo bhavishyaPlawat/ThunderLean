@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import Sidebar from './Sidebar'; // Ensure this path is correct
+import Sidebar from './Sidebar';
 import {
   IoPersonCircleOutline,
   IoRibbonOutline,
@@ -9,16 +9,12 @@ import {
   IoChevronForward
 } from 'react-icons/io5';
 
-// --- Reusable Sub-components ---
-
-// Card for displaying a single achievement badge
 const AchievementBadge = ({ imageUrl, alt }) => (
   <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-gray-700">
     <img src={imageUrl} alt={alt} className="w-full h-full object-cover" />
   </div>
 );
 
-// List item for the "Manage" section
 const ManageListItem = ({ icon, title, description }) => (
   <button className="w-full flex items-center space-x-4 p-4 text-left hover:bg-gray-800 rounded-lg transition-colors">
     <div className="p-2 bg-gray-700 rounded-lg">
@@ -37,12 +33,11 @@ const Settings = () => {
   const location = useLocation();
   const activePage = location.pathname.split('/')[1] || 'settings';
 
-  // Mock data - ready to be replaced with data from user state or API
   const userData = {
     name: 'Sophia Carter',
     level: 3,
     joined: 2021,
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib-rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
+    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
   };
 
   const achievements = [
@@ -53,13 +48,12 @@ const Settings = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#121212]">
+    <div className="flex h-screen bg-[#121212] overflow-hidden">
       <Sidebar activePage={activePage} />
 
-      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
+      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
         <div className="max-w-3xl mx-auto">
 
-          {/* Profile Header Section */}
           <section className="flex flex-col items-center text-center mb-10">
             <div className="w-24 h-24 rounded-full mb-4 ring-4 ring-green-600 p-1">
               <img src={userData.avatarUrl} alt={userData.name} className="w-full h-full object-cover rounded-full" />
@@ -68,7 +62,6 @@ const Settings = () => {
             <p className="text-gray-400">Level {userData.level} &bull; Joined {userData.joined}</p>
           </section>
 
-          {/* Achievements Section */}
           <section className="mb-10">
             <h2 className="text-xl font-bold mb-4">Achievements</h2>
             <div className="bg-[#1E1E1E] p-5 rounded-xl flex justify-center space-x-4">
@@ -78,7 +71,6 @@ const Settings = () => {
             </div>
           </section>
 
-          {/* Manage Section */}
           <section className="mb-10">
             <h2 className="text-xl font-bold mb-4">Manage</h2>
             <div className="bg-[#1E1E1E] p-2 rounded-xl space-y-1">
@@ -100,7 +92,6 @@ const Settings = () => {
             </div>
           </section>
 
-          {/* Log Out Section */}
           <section className="text-center">
             <button className="flex items-center justify-center w-full max-w-xs mx-auto space-x-2 bg-gray-800 text-red-500 font-bold px-6 py-3 rounded-xl hover:bg-red-500 hover:text-white transition-colors">
               <IoLogOutOutline size={22} />

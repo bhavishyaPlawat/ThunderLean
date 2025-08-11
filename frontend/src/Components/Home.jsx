@@ -7,7 +7,7 @@ import {
 } from "react-icons/io5";
 
 import Sidebar from './Sidebar';
-import GetTip from './GetTip'; // Make sure this path is correct
+import GetTip from './GetTip';
 
 const ActivityItem = ({ icon, title, description }) => (
   <div className="flex items-center space-x-4">
@@ -24,18 +24,15 @@ const ActivityItem = ({ icon, title, description }) => (
 const Home = () => {
   const location = useLocation();
   const activePage = location.pathname.split('/')[1] || 'home';
-  
-  // --- THIS IS THE FIX: State to manage the modal's visibility ---
   const [isTipOpen, setIsTipOpen] = useState(false);
 
   return (
     <>
-      <div className="flex min-h-screen bg-[#121212]">
+      <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
 
-        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
           <div className="max-w-5xl mx-auto">
-            
             <header className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold">Home</h1>
               <div className="flex space-x-2">
@@ -111,7 +108,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* This button now opens the modal */}
           <button
             onClick={() => setIsTipOpen(true)}
             className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40"
@@ -121,10 +117,8 @@ const Home = () => {
         </main>
       </div>
 
-      {/* --- THIS IS THE FIX: Render the GetTip component as a pop-up --- */}
       <GetTip isOpen={isTipOpen} onClose={() => setIsTipOpen(false)} />
       
-      {/* Overlay for when the assistant is open on smaller screens */}
       {isTipOpen && (
         <div
           className="fixed inset-0 bg-black/40 z-40 md:hidden"

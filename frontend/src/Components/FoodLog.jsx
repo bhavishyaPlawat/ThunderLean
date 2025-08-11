@@ -12,7 +12,6 @@ import {
   IoChatbubbleEllipsesOutline
 } from 'react-icons/io5';
 
-// Reusable component for the top "AI Analysis" cards
 const AiAnalysisCard = ({ title, description, buttonText, buttonIcon, imageUrl }) => (
   <div className="bg-[#1E1E1E] rounded-xl p-6 flex items-center justify-between space-x-4">
     <div className="flex-1">
@@ -30,7 +29,6 @@ const AiAnalysisCard = ({ title, description, buttonText, buttonIcon, imageUrl }
   </div>
 );
 
-// Reusable component for the "Today's Meals" list items
 const MealCard = ({ icon, mealType, calories }) => (
   <button className="w-full bg-[#1E1E1E] rounded-xl p-4 flex items-center space-x-4 text-left hover:bg-gray-800 transition-colors">
     <div className="p-3 bg-gray-700 rounded-lg">
@@ -52,12 +50,11 @@ const FoodLog = () => {
 
   return (
     <>
-      <div className="flex min-h-screen bg-[#121212]">
+      <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
-        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
           <div className="max-w-5xl mx-auto">
 
-            {/* Header */}
             <header className="flex justify-between items-center mb-8">
               <h1 className="text-3xl font-bold">Food Log</h1>
               <button className="bg-green-600 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-green-700 transition-colors">
@@ -65,7 +62,6 @@ const FoodLog = () => {
               </button>
             </header>
 
-            {/* AI Food Analysis Section */}
             <section className="mb-10">
               <h2 className="text-xl font-bold mb-4">AI Food Analysis</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -86,7 +82,6 @@ const FoodLog = () => {
               </div>
             </section>
 
-            {/* Today's Meals Section */}
             <section>
               <h2 className="text-xl font-bold mb-4">Today's Meals</h2>
               <div className="space-y-3">

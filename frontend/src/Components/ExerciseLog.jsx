@@ -4,7 +4,6 @@ import Sidebar from './Sidebar';
 import GetTip from './GetTip';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 
-// Reusable component for the "Start a Workout" cards
 const WorkoutCard = ({ title, imageUrl }) => (
   <button className="text-center group">
     <div className="bg-[#1E1E1E] rounded-xl p-4 mb-2 overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
@@ -30,18 +29,16 @@ const ExerciseLog = () => {
 
   return (
     <>
-      <div className="flex min-h-screen bg-[#121212]">
+      <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
 
-        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto">
           <div className="max-w-5xl mx-auto">
 
-            {/* Header */}
             <header className="mb-8">
               <h1 className="text-3xl font-bold">Today's Activity</h1>
             </header>
 
-            {/* Calories Burned Card */}
             <section className="bg-[#1E1E1E] rounded-xl p-6 mb-10 flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-400 mb-1">Calories Burned</p>
@@ -53,7 +50,6 @@ const ExerciseLog = () => {
               </div>
             </section>
 
-            {/* Start a Workout Section */}
             <section>
               <h2 className="text-xl font-bold mb-4">Start a Workout</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-8">

@@ -13,9 +13,8 @@ import {
 } from "chart.js";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaTrophy, FaShoePrints, FaPencilAlt } from "react-icons/fa";
-import GetTip from "./GetTip"; // Import the GetTip component
+import GetTip from "./GetTip";
 
-// Registering Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -24,8 +23,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-// --- Reusable Sub-components ---
 
 const StatCard = ({ label, value, unit, valueColor = "text-white" }) => (
   <div className="bg-[#1E1E1E] p-5 rounded-xl">
@@ -113,15 +110,14 @@ const ExerciseChart = () => {
   );
 };
 
-// --- Main Dashboard Component ---
 const Dashboard = () => {
   const location = useLocation();
   const activePage = location.pathname.split("/")[1] || "dashboard";
-  const [isTipOpen, setIsTipOpen] = useState(false); // State for the pop-up
+  const [isTipOpen, setIsTipOpen] = useState(false);
 
   return (
     <>
-      <div className="flex min-h-screen bg-[#121212] font-sans">
+      <div className="flex h-screen bg-[#121212] font-sans overflow-hidden">
         <Sidebar activePage={activePage} />
         <main className="flex-1 p-6 text-white overflow-y-auto">
           <div className="max-w-7xl mx-auto">
