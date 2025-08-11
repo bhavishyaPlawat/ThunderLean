@@ -1,13 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-// Component Imports (with corrected naming)
-import LandingPage from "../Components/LandingPage"; // Renamed from Home
-import Home from "../Components/Home";             // This is now the main authenticated home
+// Component Imports
+import LandingPage from "../Components/LandingPage";
+import Home from "../Components/Home";
 import Dashboard from "../Components/Dashboard";
-import TdeeCalculator from "../Components/TdeeCalculator";
-import AiTrack from "../Components/AiTrack";         // Corrected casing from aiTrack
-import GetTip from "../Components/GetTip";
 import Auth from "../Components/Auth";
 import ProtectedRoute from "../Components/ProtectedRoute";
 import ForgotPassword from "../Components/ForgotPassword";
@@ -15,6 +12,7 @@ import FoodLog from "../Components/FoodLog";
 import ExerciseLog from "../Components/ExerciseLog";
 import Community from "../Components/Community";
 import Settings from "../Components/Settings";
+
 const Routing = () => {
   return (
     <Routes>
@@ -40,28 +38,11 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
-      
-      <Route
-        path="/tdee-calculator"
-        element={
-          <ProtectedRoute>
-            <TdeeCalculator />
-          </ProtectedRoute>
-        }
-      />
        <Route
         path="/food-log"
         element={
           <ProtectedRoute>
             <FoodLog />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/ai-track"
-        element={
-          <ProtectedRoute>
-            <AiTrack />
           </ProtectedRoute>
         }
       />

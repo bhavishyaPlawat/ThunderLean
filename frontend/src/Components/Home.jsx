@@ -109,7 +109,7 @@ const Home = () => {
         </div>
 
         {/* Floating Chat Button */}
-        <button className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
+        <button className="fixed bottom-8 right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
           <IoChatbubbleEllipsesOutline className="h-6 w-6" />
         </button>
       </main>
