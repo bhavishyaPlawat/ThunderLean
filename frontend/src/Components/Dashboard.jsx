@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Sidebar from "./Sidebar"; // Adjust path as needed
-import { Bar, Doughnut } from "react-chartjs-2";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,217 +10,189 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement,
 } from "chart.js";
 
+// --- CORRECTED ICON IMPORTS ---
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { FaTrophy, FaShoePrints, FaPencilAlt } from "react-icons/fa";
+
+// Registering Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
   BarElement,
   Title,
   Tooltip,
-  Legend,
-  ArcElement
+  Legend
 );
 
-// --- MOCK DATA ---
-const dailyNutritionData = {
-  "2025-08-05": { protein: 70, carbohydrate: 150, fat: 50, totalCalories: 250 },
-  "2025-08-16": { protein: 90, carbohydrate: 180, fat: 60, totalCalories: 280 },
-  "2025-08-17": { protein: 85, carbohydrate: 200, fat: 55, totalCalories: 300 },
-  "2025-08-24": {
-    protein: 100,
-    carbohydrate: 220,
-    fat: 70,
-    totalCalories: 320,
-  },
-};
+// --- Reusable Sub-components for the new design ---
 
-// --- Calendar Component ---
-const Calendar = ({ setSelectedDate }) => {
-  const [date, setDate] = useState(new Date(2025, 7, 17));
-  const [activeDay, setActiveDay] = useState(17);
+const StatCard = ({ label, value, unit, valueColor = "text-white" }) => (
+  <div className="bg-[#1E1E1E] p-5 rounded-xl">
+    <p className="text-sm text-gray-400">{label}</p>
+    <p className={`text-2xl font-bold ${valueColor}`}>
+      {value}
+      <span className="text-lg text-gray-400 ml-1">{unit}</span>
+    </p>
+  </div>
+);
 
-  const monthNames = [
-    ..."January February March April May June July August September October November December".split(
-      " "
-    ),
-  ];
-  const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+const AchievementCard = ({ icon, text }) => (
+  <div className="bg-[#1E1E1E] p-4 rounded-xl flex items-center space-x-4">
+    <div className="p-3 bg-gray-700 rounded-lg">{icon}</div>
+    <p className="font-semibold text-white">{text}</p>
+  </div>
+);
 
-  const firstDayOfMonth = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    1
-  ).getDay();
-  const daysInMonth = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-  ).getDate();
-
-  const changeMonth = (offset) => {
-    setDate(
-      (prev) => new Date(prev.getFullYear(), prev.getMonth() + offset, 1)
-    );
-    setActiveDay(null);
-  };
-
-  const handleDayClick = (day) => {
-    setActiveDay(day);
-    const newDate = new Date(date.getFullYear(), date.getMonth(), day);
-    const dateString = newDate.toISOString().split("T")[0];
-    setSelectedDate(dateString);
-  };
-
-  return (
-    <div className="bg-white p-4 rounded-lg shadow-md border border-purple-200 font-body">
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={() => changeMonth(-1)} className="text-lg font-bold">
-          &lt;
-        </button>
-        <h3 className="font-bold text-lg">
-          {monthNames[date.getMonth()]} {date.getFullYear()}
-        </h3>
-        <button onClick={() => changeMonth(1)} className="text-lg font-bold">
-          &gt;
-        </button>
-      </div>
-      <div className="grid grid-cols-7 gap-y-2 text-center text-sm text-gray-500">
-        {daysOfWeek.map((d, i) => (
-          <div key={`${d}-${i}`}>{d}</div>
-        ))}
-        {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-          <div key={`e-${i}`} />
-        ))}
-        {Array.from({ length: daysInMonth }).map((_, d) => (
-          <button
-            key={d + 1}
-            onClick={() => handleDayClick(d + 1)}
-            className={`w-8 h-8 rounded-full transition-colors ${
-              activeDay === d + 1
-                ? "bg-[#8C4DCF] text-white"
-                : "hover:bg-purple-100"
-            }`}
-          >
-            {d + 1}
-          </button>
-        ))}
-      </div>
+const MacroProgressBar = ({ name, current, goal, color }) => (
+  <div>
+    <div className="flex justify-between mb-1">
+      <p className="text-sm text-gray-300">{name}</p>
+      <p className="text-sm text-gray-400">
+        {current}g / {goal}g
+      </p>
     </div>
-  );
-};
+    <div className="w-full bg-gray-700 rounded-full h-2">
+      <div
+        className={`${color} h-2 rounded-full`}
+        style={{ width: `${(current / goal) * 100}%` }}
+      ></div>
+    </div>
+  </div>
+);
 
-// --- Nutrition Chart ---
-const NutritionChart = ({ data }) => {
-  const chartData = {
-    labels: ["Protein", "Carbohydrate", "Fat", "Total Calories"],
+const ExerciseChart = () => {
+  const data = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
       {
-        label: "in grams",
-        data: [data.protein, data.carbohydrate, data.fat, data.totalCalories],
-        backgroundColor: ["rgb(140, 77, 207)", "rgb(197, 166, 243)"],
+        label: "Minutes",
+        data: [30, 45, 60, 25, 70, 55, 40],
+        backgroundColor: "rgb(34, 197, 94, 0.5)",
+        borderColor: "rgb(34, 197, 94)",
         borderWidth: 1,
+        borderRadius: 5,
       },
     ],
   };
+
   const options = {
     responsive: true,
-    plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true, max: 350 } },
-  };
-  return (
-    <div className="bg-white p-4 rounded-lg shadow-md font-body">
-      <Bar data={chartData} options={options} />
-    </div>
-  );
-};
-
-// --- Goal Chart ---
-const GoalChart = () => {
-  const data = {
-    labels: ["Completed", "Remaining"],
-    datasets: [
-      {
-        data: [2, 8],
-        backgroundColor: ["rgb(140, 77, 207)", "rgb(197, 166, 243)"],
-        borderColor: ["#fff"],
-        borderWidth: 4,
-        circumference: 270,
-        rotation: 225,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
       },
-    ],
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: "rgba(255, 255, 255, 0.1)",
+        },
+        ticks: {
+          color: "#9CA3AF",
+        },
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: "#9CA3AF",
+        },
+      },
+    },
   };
-  const options = {
-    cutout: "80%",
-    plugins: { legend: { display: false }, tooltip: { enabled: false } },
-  };
+
   return (
-    <div className="relative w-48 h-48 sm:w-56 sm:h-56">
-      <Doughnut data={data} options={options} />
-      <div className="absolute inset-0 flex flex-col justify-center items-center">
-        <span className="font-bold text-xl text-gray-700">Lose</span>
-        <span className="font-bold text-2xl text-gray-800">10Kg</span>
-        <span className="text-gray-500 text-sm">more</span>
-      </div>
+    <div className="bg-[#1E1E1E] p-6 rounded-xl h-64">
+      <p className="font-bold mb-4">Weekly Exercise Summary</p>
+      <Bar options={options} data={data} />
     </div>
   );
 };
 
-// --- Main Dashboard ---
+// --- Main Dashboard Component ---
 const Dashboard = () => {
-  const [selectedDate, setSelectedDate] = useState("2025-08-17");
-  const [chartData, setChartData] = useState({
-    protein: 0,
-    carbohydrate: 0,
-    fat: 0,
-    totalCalories: 0,
-  });
-
-  useEffect(() => {
-    setChartData(
-      dailyNutritionData[selectedDate] || {
-        protein: 0,
-        carbohydrate: 0,
-        fat: 0,
-        totalCalories: 0,
-      }
-    );
-  }, [selectedDate]);
+  const location = useLocation();
+  const activePage = location.pathname.split("/")[1] || "dashboard";
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-slate-100 font-body">
-      {/* Passing "dashboard" as the activePage prop */}
-      <Sidebar activePage="dashboard" />
-      <main className="flex-1 p-4 sm:p-8 overflow-y-auto">
-        <div className="bg-purple-200 text-pink-800 font-bold py-3 px-6 rounded-lg mb-8 text-center text-xl">
-          DASHBOARD
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 space-y-8">
-            <Calendar setSelectedDate={setSelectedDate} />
-            <div className="bg-white p-6 rounded-lg shadow-md space-y-3 text-center border border-purple-200">
-              <p className="text-gray-600">
-                Streak:{" "}
-                <span className="font-bold text-orange-500">🔥 10 Days</span>
-              </p>
-              <p className="text-gray-600">
-                Goal: <span className="font-bold text-gray-800">Lose 12kg</span>
-              </p>
-              <p className="text-gray-600">
-                Completed:{" "}
-                <span className="font-bold text-green-500">Lost 2kg</span>
-              </p>
+    <div className="flex min-h-screen bg-[#121212] font-sans">
+      <Sidebar activePage={activePage} />
+      <main className="flex-1 p-6 text-white overflow-y-auto">
+        <div className="max-w-7xl mx-auto">
+          <header className="mb-6">
+            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <p className="text-gray-400">Today's Overview</p>
+          </header>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <StatCard label="Calories In" value="2,100" unit="kcal" />
+                <StatCard label="Calories Out" value="2,300" unit="kcal" />
+                <StatCard
+                  label="Net Calories"
+                  value="-200"
+                  unit="kcal"
+                  valueColor="text-green-500"
+                />
+              </div>
+
+              <div className="bg-[#1E1E1E] p-6 rounded-xl">
+                <h2 className="text-xl font-bold mb-4">Macronutrient Breakdown</h2>
+                <div className="space-y-4">
+                  <MacroProgressBar
+                    name="Protein"
+                    current={120}
+                    goal={200}
+                    color="bg-blue-500"
+                  />
+                  <MacroProgressBar
+                    name="Carbs"
+                    current={240}
+                    goal={300}
+                    color="bg-green-500"
+                  />
+                  <MacroProgressBar
+                    name="Fat"
+                    current={40}
+                    goal={100}
+                    color="bg-yellow-500"
+                  />
+                </div>
+              </div>
+
+              <ExerciseChart />
             </div>
-          </div>
-          <div className="lg:col-span-2 space-y-8">
-            <NutritionChart data={chartData} />
-            <div className="flex justify-center items-center">
-              <GoalChart />
+
+            <div className="lg:col-span-1 space-y-4">
+              <h2 className="text-xl font-bold">Achievements</h2>
+              <div className="space-y-3">
+                <AchievementCard
+                  icon={<FaTrophy className="text-yellow-400 h-6 w-6" />}
+                  text="First Week Completed"
+                />
+                <AchievementCard
+                  icon={<FaShoePrints className="text-blue-400 h-6 w-6 -rotate-90" />}
+                  text="10,000 Steps Reached"
+                />
+                <AchievementCard
+                  icon={<FaPencilAlt className="text-green-400 h-6 w-6" />}
+                  text="Consistent Logging"
+                />
+              </div>
             </div>
           </div>
         </div>
       </main>
+
+      <button className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
+        <IoChatbubbleEllipsesOutline className="h-6 w-6" />
+      </button>
     </div>
   );
 };
