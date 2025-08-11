@@ -1,148 +1,140 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import { IoClose, IoSparkles, IoSend, IoSyncOutline } from 'react-icons/io5';
+import ReactMarkdown from 'react-markdown';
+import axios from 'axios';
 
-import Sidebar from "./Sidebar";
-
-import { RiLightbulbFlashLine, RiLoader4Line } from "react-icons/ri";
-import axios from "axios"; // Import axios for API calls
-import ReactMarkdown from "react-markdown";
-
-const GetTip = () => {
-  const [userInput, setUserInput] = useState("");
-  const [generatedTip, setGeneratedTip] = useState("");
+const GetTip = ({ isOpen, onClose }) => {
+  const [userInput, setUserInput] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
+  const chatEndRef = useRef(null);
 
-  const quickGoals = [
-    "How can I lose weight?",
-    "Best way to build muscle",
-    "Tips for better sleep",
-    "Healthy breakfast ideas",
-  ];
+  // Auto-scroll to the latest message
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatHistory]);
 
-  // --- UPDATED API CALL LOGIC ---
   const handleGetTip = async () => {
-    if (!userInput.trim()) {
-      setGeneratedTip("Please enter a question or select a goal first.");
-      return;
-    }
+    if (!userInput.trim()) return;
+
+    const userMessage = { role: 'user', content: userInput };
+    setChatHistory((prev) => [...prev, userMessage]);
     setIsLoading(true);
-    setGeneratedTip(""); // Clear previous tip
+    setUserInput('');
 
     try {
-      // Make a real API call to your backend
+      // --- THIS IS THE FIX: Increased timeout to 60 seconds ---
       const response = await axios.post(
-        "https://thunderlean-backend.onrender.com/api/ai/get-tip",
-        {
-          prompt: userInput,
-        }
+        'https://thunderlean-backend.onrender.com/api/ai/get-tip',
+        { prompt: userInput },
+        { timeout: 60000 } // 60-second timeout to allow for slow server cold starts
       );
-      setGeneratedTip(response.data.tip);
+      const aiMessage = { role: 'ai', content: response.data.tip };
+      setChatHistory((prev) => [...prev, aiMessage]);
     } catch (error) {
-      setGeneratedTip(
-        "Sorry, I couldn't fetch a tip right now. Please try again."
-      );
-      console.error("Error fetching tip:", error);
+      const errorMessage = {
+        role: 'ai',
+        content: "Sorry, I couldn't fetch a tip right now. Please try again.",
+      };
+      setChatHistory((prev) => [...prev, errorMessage]);
+      console.error('Error fetching tip:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleQuickGoalClick = (goal) => {
-    setUserInput(goal);
+  // Custom components to style Markdown output without a plugin
+  const markdownComponents = {
+    p: (props) => <p className="mb-2 last:mb-0" {...props} />,
+    ul: (props) => <ul className="list-disc list-inside space-y-1 pl-2" {...props} />,
+    ol: (props) => <ol className="list-decimal list-inside space-y-1 pl-2" {...props} />,
+    li: (props) => <li className="text-gray-300" {...props} />,
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100 font-body">
-      <Sidebar
-        activePage="get-tip"
-        isOpen={isSidebarOpen}
-        setIsOpen={setIsSidebarOpen}
-      />
+    // Main sliding panel container
+    <div
+      className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#181818] text-white shadow-2xl z-50 border-l border-gray-700/50 flex flex-col transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}
+    >
+      {/* Header */}
+      <header className="flex items-center justify-between p-4 border-b border-gray-700/50 flex-shrink-0">
+        <div className="flex items-center space-x-2">
+          <IoSparkles className="text-green-400" />
+          <h2 className="text-lg font-semibold">AI Assistant</h2>
+        </div>
+        <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
+          <IoClose size={24} />
+        </button>
+      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 p-4 sm:p-6 lg:p-10 overflow-y-auto">
-        <header className="bg-purple-200 text-pink-800 py-4 px-6 rounded-lg mb-8 text-center relative">
-          {/* Hamburger icon for mobile */}
-          
-          <h2 className="text-lg font-bold tracking-widest uppercase">
-            Get Personalized Tips
-          </h2>
-        </header>
-
-        <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-4xl mx-auto">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-800">
-              Ask Anything, Get Smarter Advice
-            </h3>
-            <p className="text-gray-500 mt-2">
-              Tell us your goal or ask a question to receive a personalized tip
-              from our AI.
-            </p>
+      {/* Chat History */}
+      <div className="flex-grow p-4 overflow-y-auto space-y-6">
+        {chatHistory.length === 0 && (
+          <div className="text-center text-gray-500 pt-10">
+            <IoSparkles size={48} className="mx-auto mb-2 text-gray-600" />
+            <p>Ask anything about fitness or nutrition!</p>
           </div>
-
-          {/* Quick Goals */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6">
-            {quickGoals.map((goal, index) => (
-              <button
-                key={index}
-                onClick={() => handleQuickGoalClick(goal)}
-                className="bg-gray-200 text-gray-700 text-sm font-medium py-2 px-4 rounded-full hover:bg-purple-200 hover:text-purple-800 transition-colors"
-              >
-                {goal}
-              </button>
-            ))}
-          </div>
-
-          {/* Input Area */}
-          <div className="mb-4">
-            <textarea
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="For example: 'What are some good post-workout meals?'"
-              className="w-full h-28 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none transition"
-              onKeyPress={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  handleGetTip();
-                }
-              }}
-            />
-          </div>
-
-          {/* Action Button */}
-          <div className="text-center mb-6">
-            <button
-              onClick={handleGetTip}
-              disabled={isLoading}
-              className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+        )}
+        {chatHistory.map((message, index) => (
+          <div key={index} className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}>
+            {message.role === 'ai' && (
+              <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                <IoSparkles size={16} />
+              </div>
+            )}
+            <div
+              className={`max-w-xs md:max-w-sm px-4 py-2 rounded-2xl ${
+                message.role === 'user'
+                  ? 'bg-green-600 rounded-br-none'
+                  : 'bg-[#282828] rounded-bl-none'
+              }`}
             >
-              {isLoading ? (
-                <>
-                  <RiLoader4Line className="animate-spin h-6 w-6" />
-                  <span>Generating...</span>
-                </>
-              ) : (
-                <>
-                  <RiLightbulbFlashLine size={24} />
-                  <span>Get Tip</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Result Display */}
-          {generatedTip && (
-            <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">
-                Your Tip:
-              </h4>
-              <div className="text-gray-700 leading-relaxed">
-                <ReactMarkdown>{generatedTip}</ReactMarkdown>
+              <div className="text-gray-200 leading-relaxed">
+                <ReactMarkdown components={markdownComponents}>{message.content}</ReactMarkdown>
               </div>
             </div>
-          )}
+          </div>
+        ))}
+        {isLoading && (
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+              <IoSparkles size={16} />
+            </div>
+            <div className="max-w-xs md:max-w-sm px-4 py-3 rounded-2xl bg-[#282828] rounded-bl-none">
+              <IoSyncOutline className="animate-spin h-5 w-5 text-gray-400" />
+            </div>
+          </div>
+        )}
+        <div ref={chatEndRef} />
+      </div>
+
+      {/* Input Form */}
+      <div className="p-4 border-t border-gray-700/50 flex-shrink-0">
+        <div className="flex items-center space-x-2 bg-[#282828] border border-gray-600 rounded-lg px-2">
+          <input
+            type="text"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            placeholder="Ask AI Assistant..."
+            className="w-full bg-transparent p-2 text-white placeholder-gray-500 focus:outline-none"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleGetTip();
+              }
+            }}
+          />
+          <button
+            onClick={handleGetTip}
+            disabled={isLoading || !userInput.trim()}
+            className="p-2 rounded-md text-white bg-green-600 hover:bg-green-700 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+          >
+            <IoSend size={20} />
+          </button>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
