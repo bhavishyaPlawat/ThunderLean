@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
@@ -392,92 +391,94 @@ const FoodLog = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
-      <Sidebar activePage={activePage} />
-      <AnalysisModal
-        isOpen={isTextModalOpen}
-        onClose={() => setIsTextModalOpen(false)}
-        onSubmit={handleTextSubmit}
-        mealDescription={mealDescription}
-        setMealDescription={setMealDescription}
-        isLoading={isLoading}
-      />
-      <ImageUploadModal
-        isOpen={isUploadModalOpen}
-        onClose={() => setIsUploadModalOpen(false)}
-        onSubmit={handleImageSubmit}
-        isLoading={isLoading}
-      />
+    <> {/* Added React Fragment */}
+      <div className="flex h-screen bg-[#121212] font-sans overflow-hidden">
+        <Sidebar activePage={activePage} />
+        <AnalysisModal
+          isOpen={isTextModalOpen}
+          onClose={() => setIsTextModalOpen(false)}
+          onSubmit={handleTextSubmit}
+          mealDescription={mealDescription}
+          setMealDescription={setMealDescription}
+          isLoading={isLoading}
+        />
+        <ImageUploadModal
+          isOpen={isUploadModalOpen}
+          onClose={() => setIsUploadModalOpen(false)}
+          onSubmit={handleImageSubmit}
+          isLoading={isLoading}
+        />
 
-      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans">
-        <div className="max-w-5xl mx-auto">
-          <header className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">Food Log</h1>
-            <button className="bg-green-600 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-green-700 transition-colors">
-              + Add Manually
-            </button>
-          </header>
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
+          <div className="max-w-5xl mx-auto">
+            <header className="flex justify-between items-center mb-8">
+              <h1 className="text-3xl font-bold">Food Log</h1>
+              <button className="bg-green-600 text-white font-bold px-5 py-2.5 rounded-xl hover:bg-green-700 transition-colors">
+                + Add Manually
+              </button>
+            </header>
 
-          <section className="mb-10">
-            <h2 className="text-xl font-bold mb-4">AI Food Analysis</h2>
-            {analysisError && (
-              <div className="bg-red-900/50 text-red-300 p-4 rounded-lg mb-4">
-                {analysisError}
-              </div>
-            )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <AiAnalysisCard
-                title="Analyze Image"
-                description="Analyze your food by uploading an image."
-                buttonText="Upload"
-                buttonIcon={<IoCloudUploadOutline />}
-                imageUrl="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                onClick={() => setIsUploadModalOpen(true)}
-              />
-              <AiAnalysisCard
-                title="Describe Food"
-                description="Describe your meal to get nutritional info."
-                buttonText="Describe"
-                buttonIcon={<IoTextOutline />}
-                imageUrl="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                onClick={() => setIsTextModalOpen(true)}
-              />
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-bold mb-4">Today's Meals</h2>
-            <div className="space-y-3">
-              {isLoading && mealItems.length === 0 && (
-                <div className="text-center text-gray-400 p-4">Loading...</div>
-              )}
-              {fetchError && (
-                <div className="text-center text-red-400 p-4">{fetchError}</div>
-              )}
-              {!isLoading && !fetchError && mealItems.length === 0 && (
-                <div className="text-center text-gray-500 p-4">
-                  No meals logged yet. Use the AI tools above to start!
+            <section className="mb-10">
+              <h2 className="text-xl font-bold mb-4">AI Food Analysis</h2>
+              {analysisError && (
+                <div className="bg-red-900/50 text-red-300 p-4 rounded-lg mb-4">
+                  {analysisError}
                 </div>
               )}
-              {mealItems.map((item) => (
-                <MealCard
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  calories={item.calories}
-                  imageUrl={item.imageUrl}
-                  onDelete={handleDeleteLog}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <AiAnalysisCard
+                  title="Analyze Image"
+                  description="Analyze your food by uploading an image."
+                  buttonText="Upload"
+                  buttonIcon={<IoCloudUploadOutline />}
+                  imageUrl="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  onClick={() => setIsUploadModalOpen(true)}
                 />
-              ))}
-            </div>
-          </section>
-        </div>
-        <button className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
-          <IoChatbubbleEllipsesOutline className="h-6 w-6" />
-        </button>
-      </main>
-    </div>
+                <AiAnalysisCard
+                  title="Describe Food"
+                  description="Describe your meal to get nutritional info."
+                  buttonText="Describe"
+                  buttonIcon={<IoTextOutline />}
+                  imageUrl="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  onClick={() => setIsTextModalOpen(true)}
+                />
+              </div>
+            </section>
 
+            <section>
+              <h2 className="text-xl font-bold mb-4">Today's Meals</h2>
+              <div className="space-y-3">
+                {isLoading && mealItems.length === 0 && (
+                  <div className="text-center text-gray-400 p-4">Loading...</div>
+                )}
+                {fetchError && (
+                  <div className="text-center text-red-400 p-4">{fetchError}</div>
+                )}
+                {!isLoading && !fetchError && mealItems.length === 0 && (
+                  <div className="text-center text-gray-500 p-4">
+                    No meals logged yet. Use the AI tools above to start!
+                  </div>
+                )}
+                {mealItems.map((item) => (
+                  <MealCard
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    calories={item.calories}
+                    imageUrl={item.imageUrl}
+                    onDelete={handleDeleteLog}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+          <button className="fixed bottom-20 right-4 md:bottom-8 md:right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
+            <IoChatbubbleEllipsesOutline className="h-6 w-6" />
+          </button>
+        </main>
+      </div>
+      <BottomNav /> {/* Added this component */}
+    </> 
   );
 };
 
