@@ -1,91 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoSettingsOutline, IoPeopleOutline } from 'react-icons/io5';
-
-// Icon Components
-const HomeIcon = ({ active }) => (
-  <IoPeopleOutline className={`h-6 w-6 transition-colors ${
-       active ? "text-green-500" : "text-gray-400"
-     }`} />
-);
-
-const DashboardIcon = ({ active }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 transition-colors ${
-      active ? "text-green-500" : "text-gray-400"
-    }`}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-    />
-  </svg>
-);
-
-const FoodLogIcon = ({ active }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 transition-colors ${
-      active ? "text-green-500" : "text-gray-400"
-    }`}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-    />
-  </svg>
-);
-
-const ExerciseLogIcon = ({ active }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 transition-colors ${
-      active ? "text-green-500" : "text-gray-400"
-    }`}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M13 10a4 4 0 11-8 0 4 4 0 018 0zm-4 9a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zM3 10a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1zm14 0a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z"
-    />
-  </svg>
-);
-
-const CommunityIcon = ({ active }) => (
-    <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        className={`h-6 w-6 transition-colors ${
-            active ? "text-green-500" : "text-gray-400"
-        }`} 
-        fill="none" 
-        viewBox="0 0 24 24" 
-        stroke="currentColor" 
-        strokeWidth={2}
-    >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-1.78-4.125" />
-    </svg>
-);
-
-const SettingsIcon = ({ active }) => (
-    <IoSettingsOutline className={`h-6 w-6 transition-colors ${
-        active ? "text-green-500" : "text-gray-400"
-      }`} />
-);
+import {
+  IoHomeOutline,
+  IoGridOutline,
+  IoAdd,
+  IoSettingsOutline,
+  IoPeopleOutline,
+  IoClose,
+  IoFastFoodOutline,
+  IoBarbellOutline,
+  IoChevronForward,
+} from "react-icons/io5";
 
 const NavItem = ({ slug, label, icon: Icon, activePage, navigate }) => {
   const isActive = slug === activePage;
@@ -94,36 +19,122 @@ const NavItem = ({ slug, label, icon: Icon, activePage, navigate }) => {
       onClick={() => navigate(`/${slug}`)}
       className="flex flex-col items-center justify-center flex-1 space-y-1 focus:outline-none"
     >
-      <Icon active={isActive} />
-      <span className={`text-xs font-medium ${isActive ? "text-green-500" : "text-gray-400"}`}>
+      <Icon
+        className={`h-6 w-6 transition-colors ${
+          isActive ? "text-green-500" : "text-gray-400"
+        }`}
+      />
+      <span
+        className={`text-xs font-medium ${
+          isActive ? "text-green-500" : "text-gray-400"
+        }`}
+      >
         {label}
       </span>
     </button>
   );
 };
 
+const AddMealOption = ({ icon, title, onClick }) => (
+  <button
+    onClick={onClick}
+    className="w-full flex items-center space-x-4 p-4 text-left hover:bg-gray-800 rounded-lg transition-colors"
+  >
+    <div className="p-3 bg-gray-700 rounded-lg">{icon}</div>
+    <div className="flex-grow">
+      <p className="font-bold text-white">{title}</p>
+    </div>
+    <IoChevronForward className="text-gray-500 h-5 w-5" />
+  </button>
+);
+
 const BottomNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const activePage = location.pathname.split("/")[1] || "home";
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navItems = [
-    { slug: "home", icon: HomeIcon, label: "Home" },
-    { slug: "dashboard", icon: DashboardIcon, label: "Dashboard" },
-    { slug: "food-log", icon: FoodLogIcon, label: "Food Log" },
-    { slug: "exercise-log", icon: ExerciseLogIcon, label: "Exercise" },
-    { slug: "community", icon: CommunityIcon, label: "Community" },
-    { slug: "settings", icon: SettingsIcon, label: "Settings" },
+    { slug: "home", icon: IoHomeOutline, label: "Home" },
+    { slug: "dashboard", icon: IoGridOutline, label: "Dashboard" },
+    { slug: "community", icon: IoPeopleOutline, label: "Community" },
+    { slug: "settings", icon: IoSettingsOutline, label: "Settings" },
   ];
 
+  const handleAddClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+  
+  const handleNavigateAndClose = (path) => {
+    navigate(path);
+    handleModalClose();
+  }
+
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1E1E1E] border-t border-gray-700/50 z-30">
-      <div className="flex justify-around items-center h-16 px-2">
-        {navItems.map((item) => (
-          <NavItem key={item.slug} {...item} activePage={activePage} navigate={navigate} />
-        ))}
-      </div>
-    </nav>
+    <>
+      {/* Modal for Add Options */}
+      {isModalOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 z-40"
+            onClick={handleModalClose}
+          ></div>
+          <div className="fixed bottom-0 left-0 right-0 p-4 z-50">
+            <div className="bg-[#1E1E1E] rounded-2xl p-4">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-bold text-lg text-white">What would you like to track?</h3>
+                <button onClick={handleModalClose} className="p-2">
+                    <IoClose className="h-6 w-6 text-gray-400" />
+                </button>
+              </div>
+              <div className="space-y-2">
+                <AddMealOption
+                  icon={<IoFastFoodOutline className="text-green-400 h-6 w-6" />}
+                  title="Food"
+                  onClick={() => handleNavigateAndClose('/food-log')}
+                />
+                <AddMealOption
+                  icon={<IoBarbellOutline className="text-green-400 h-6 w-6" />}
+                  title="Exercise"
+                  onClick={() => handleNavigateAndClose('/exercise-log')}
+                />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Main Bottom Navigation Bar */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1E1E1E] border-t border-gray-700/50 z-30">
+        <div className="flex justify-around items-center h-16 px-2">
+          {/* Left Items */}
+          <div className="flex justify-around w-2/5">
+            <NavItem {...navItems[0]} activePage={activePage} navigate={navigate} />
+            <NavItem {...navItems[1]} activePage={activePage} navigate={navigate} />
+          </div>
+
+          {/* Center Add Button */}
+          <div className="w-1/5 flex justify-center">
+            <button
+              onClick={handleAddClick}
+              className="w-16 h-16 -mt-8 bg-green-600 rounded-full flex items-center justify-center text-white shadow-lg focus:outline-none"
+            >
+              <IoAdd size={32} />
+            </button>
+          </div>
+
+          {/* Right Items */}
+          <div className="flex justify-around w-2/5">
+            <NavItem {...navItems[2]} activePage={activePage} navigate={navigate} />
+            <NavItem {...navItems[3]} activePage={activePage} navigate={navigate} />
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 
