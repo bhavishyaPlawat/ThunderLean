@@ -1,7 +1,8 @@
+// frontend/src/Components/Auth.jsx
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { supabase } from "../supabaseClient"; // Import our new client
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,59 +11,40 @@ const Auth = () => {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = location.state?.from?.pathname || "/dashboard";
-  const API_URL = "https://thunderlean-backend.onrender.com"; // Your backend URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    const endpoint = isLogin ? "/api/auth/login" : "/api/auth/signup";
-
-    // **THE FIX IS HERE**
-    // We now ensure the 'identifier' field is used for both login.
-    const payload = isLogin ? { email, password } : { name, email, password };
-
     try {
-      const response = await fetch(`${API_URL}${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
+      let response;
+      if (isLogin) {
+        response = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+      } else {
+        response = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              // This 'data' will be used by our trigger to create a profile
+              full_name: name,
+            },
+          },
+        });
       }
-
-      // Store auth data from response
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("userData", JSON.stringify(data.user));
-
-      // Manually trigger storage event to update Navbar in the same tab
-      window.dispatchEvent(new Event("storage"));
-
-      // Redirect to the intended page
+      if (response.error) throw response.error;
       navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleForgotPassword = async () => {
-    if (!email) {
-      setError("Please enter your email before requesting a reset.");
-      return;
     }
   };
 
@@ -75,13 +57,12 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br  from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
-      <div className="w-full  max-w-md">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
         <div className="text-center flex justify-center items-center flex-col mb-8">
           <div className="flex items-center justify-center mb-4">
             <AiFillThunderbolt className="h-12 w-12 text-purple-600" />
-            <span className="ml-2 text-3xl font-bold  text-white">
+            <span className="ml-2 text-3xl font-bold text-white">
               ThunderLean
             </span>
           </div>
@@ -94,9 +75,7 @@ const Auth = () => {
               : "Start your fitness journey today"}
           </p>
         </div>
-
-        {/* Auth Form */}
-        <div className=" w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div>
@@ -108,12 +87,11 @@ const Auth = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required={!isLogin}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                   placeholder="Enter your full name"
                 />
               </div>
             )}
-
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Email Address
@@ -123,11 +101,10 @@ const Auth = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                 placeholder="Enter your email"
               />
             </div>
-
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Password
@@ -137,17 +114,15 @@ const Auth = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                 placeholder="Enter your password"
               />
             </div>
-
             {error && (
-              <div className="bg-red-50 text-red-500 p-3 rounded-lg text-sm">
+              <div className="bg-red-900 bg-opacity-50 text-red-300 p-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
-
             <button
               type="submit"
               disabled={isLoading}
@@ -156,12 +131,10 @@ const Auth = () => {
               {isLoading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
             </button>
           </form>
-
-          {/* Toggle Auth Mode */}
           <div className="mt-6 text-center">
             <button
               onClick={toggleAuthMode}
-              className="text-purple-600 hover:text-purple-800 font-medium transition-colors"
+              className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
             >
               {isLogin
                 ? "Don't have an account? Sign up"
@@ -177,8 +150,6 @@ const Auth = () => {
             </Link>
           </p>
         </div>
-
-        {/* Back to Home */}
       </div>
     </div>
   );
