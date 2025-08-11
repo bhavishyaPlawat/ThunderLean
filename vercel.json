@@ -14,6 +14,10 @@
     {
       "source": "/api/(.*)",
       "destination": "/backend/app.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
