@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { Bar } from "react-chartjs-2";
+import BottomNav from './BottomNav';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,12 +12,10 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
-// --- CORRECTED ICON IMPORTS ---
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaTrophy, FaShoePrints, FaPencilAlt } from "react-icons/fa";
+import GetTip from "./GetTip";
 
-// Registering Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -25,8 +24,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-// --- Reusable Sub-components for the new design ---
 
 const StatCard = ({ label, value, unit, valueColor = "text-white" }) => (
   <div className="bg-[#1E1E1E] p-5 rounded-xl">
@@ -114,86 +111,99 @@ const ExerciseChart = () => {
   );
 };
 
-// --- Main Dashboard Component ---
 const Dashboard = () => {
   const location = useLocation();
   const activePage = location.pathname.split("/")[1] || "dashboard";
+  const [isTipOpen, setIsTipOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-[#121212] font-sans">
-      <Sidebar activePage={activePage} />
-      <main className="flex-1 p-6 text-white overflow-y-auto">
-        <div className="max-w-7xl mx-auto">
-          <header className="mb-6">
-            <h1 className="text-3xl font-bold">Dashboard</h1>
-            <p className="text-gray-400">Today's Overview</p>
-          </header>
+    <>
+      <div className="flex h-screen bg-[#121212] font-sans overflow-hidden">
+        <Sidebar activePage={activePage} />
+        <main className="flex-1 p-6 text-white overflow-y-auto pb-20 md:pb-6">
+          <div className="max-w-7xl mx-auto">
+            <header className="mb-6">
+              <h1 className="text-3xl font-bold">Dashboard</h1>
+              <p className="text-gray-400">Today's Overview</p>
+            </header>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <StatCard label="Calories In" value="2,100" unit="kcal" />
-                <StatCard label="Calories Out" value="2,300" unit="kcal" />
-                <StatCard
-                  label="Net Calories"
-                  value="-200"
-                  unit="kcal"
-                  valueColor="text-green-500"
-                />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <StatCard label="Calories In" value="2,100" unit="kcal" />
+                  <StatCard label="Calories Out" value="2,300" unit="kcal" />
+                  <StatCard
+                    label="Net Calories"
+                    value="-200"
+                    unit="kcal"
+                    valueColor="text-green-500"
+                  />
+                </div>
+
+                <div className="bg-[#1E1E1E] p-6 rounded-xl">
+                  <h2 className="text-xl font-bold mb-4">Macronutrient Breakdown</h2>
+                  <div className="space-y-4">
+                    <MacroProgressBar
+                      name="Protein"
+                      current={120}
+                      goal={200}
+                      color="bg-blue-500"
+                    />
+                    <MacroProgressBar
+                      name="Carbs"
+                      current={240}
+                      goal={300}
+                      color="bg-green-500"
+                    />
+                    <MacroProgressBar
+                      name="Fat"
+                      current={40}
+                      goal={100}
+                      color="bg-yellow-500"
+                    />
+                  </div>
+                </div>
+
+                <ExerciseChart />
               </div>
 
-              <div className="bg-[#1E1E1E] p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-4">Macronutrient Breakdown</h2>
-                <div className="space-y-4">
-                  <MacroProgressBar
-                    name="Protein"
-                    current={120}
-                    goal={200}
-                    color="bg-blue-500"
+              <div className="lg:col-span-1 space-y-4">
+                <h2 className="text-xl font-bold">Achievements</h2>
+                <div className="space-y-3">
+                  <AchievementCard
+                    icon={<FaTrophy className="text-yellow-400 h-6 w-6" />}
+                    text="First Week Completed"
                   />
-                  <MacroProgressBar
-                    name="Carbs"
-                    current={240}
-                    goal={300}
-                    color="bg-green-500"
+                  <AchievementCard
+                    icon={<FaShoePrints className="text-blue-400 h-6 w-6 -rotate-90" />}
+                    text="10,000 Steps Reached"
                   />
-                  <MacroProgressBar
-                    name="Fat"
-                    current={40}
-                    goal={100}
-                    color="bg-yellow-500"
+                  <AchievementCard
+                    icon={<FaPencilAlt className="text-green-400 h-6 w-6" />}
+                    text="Consistent Logging"
                   />
                 </div>
               </div>
-
-              <ExerciseChart />
-            </div>
-
-            <div className="lg:col-span-1 space-y-4">
-              <h2 className="text-xl font-bold">Achievements</h2>
-              <div className="space-y-3">
-                <AchievementCard
-                  icon={<FaTrophy className="text-yellow-400 h-6 w-6" />}
-                  text="First Week Completed"
-                />
-                <AchievementCard
-                  icon={<FaShoePrints className="text-blue-400 h-6 w-6 -rotate-90" />}
-                  text="10,000 Steps Reached"
-                />
-                <AchievementCard
-                  icon={<FaPencilAlt className="text-green-400 h-6 w-6" />}
-                  text="Consistent Logging"
-                />
-              </div>
             </div>
           </div>
-        </div>
-      </main>
-
-      <button className="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110">
-        <IoChatbubbleEllipsesOutline className="h-6 w-6" />
-      </button>
-    </div>
+           <button
+            onClick={() => setIsTipOpen(true)}
+            className="fixed bottom-20 right-4 md:bottom-8 md:right-8 bg-green-500 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40"
+          >
+            <IoChatbubbleEllipsesOutline className="h-6 w-6" />
+          </button>
+        </main>
+      </div>
+      <BottomNav />
+      <GetTip isOpen={isTipOpen} onClose={() => setIsTipOpen(false)} />
+      
+      {isTipOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setIsTipOpen(false)}
+        />
+      )}
+    </>
   );
 };
 
