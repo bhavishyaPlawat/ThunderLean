@@ -1,7 +1,8 @@
+// frontend/src/Components/ForgotPassword.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { AiOutlineMail, AiFillThunderbolt } from "react-icons/ai";
+import { supabase } from "../supabaseClient"; // Import the Supabase client
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -16,17 +17,18 @@ const ForgotPassword = () => {
     setMessage("");
 
     try {
-      await axios.post(
-        "https://thunderlean-backend.onrender.com/api/auth/forgot-password",
-        { identifier: email }
-      );
+      // This single line handles sending the reset email
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`, // URL to your reset password page
+      });
+
+      if (error) throw error;
+
       setMessage(
         "If an account with that email exists, a password reset link has been sent."
       );
     } catch (err) {
-      setError(
-        err.response?.data?.message || "An error occurred. Please try again."
-      );
+      setError(err.message || "An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }

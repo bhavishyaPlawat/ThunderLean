@@ -12,6 +12,8 @@ import FoodLog from "../Components/FoodLog";
 import ExerciseLog from "../Components/ExerciseLog";
 import Community from "../Components/Community";
 import Settings from "../Components/Settings";
+import ResetPassword from "../Components/ResetPassword";
+import AiTrack from "../Components/aiTrack";
 
 const Routing = () => {
   return (
@@ -20,6 +22,8 @@ const Routing = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/ai-track" element={<AiTrack />} />
 
       {/* Protected Routes (for logged-in users) */}
       <Route
@@ -38,7 +42,7 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/food-log"
         element={
           <ProtectedRoute>
@@ -70,7 +74,6 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
-
     </Routes>
   );
 };

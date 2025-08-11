@@ -1,0 +1,13 @@
+# .gitignore
+
+# Node dependencies
+node_modules
+package-lock.json
+
+# Supabase temporary files and secrets
+supabase/.temp
+supabase/functions/*/.npmrc
+
+# Environment variables
+.env
+.env.local
