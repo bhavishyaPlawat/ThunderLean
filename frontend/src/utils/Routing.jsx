@@ -23,7 +23,6 @@ const Routing = () => {
       <Route path="/auth" element={<Auth />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/ai-track" element={<AiTrack />} />
 
       {/* Protected Routes (for logged-in users) */}
       <Route
