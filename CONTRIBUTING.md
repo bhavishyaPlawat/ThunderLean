@@ -1,70 +1,151 @@
-# Contributing to ThunderLean
+# Contributing to ProjectName
 
-First and foremost, thank you for your interest in contributing to ThunderLean! We're excited to build a community around this project, and every contribution, no matter how small, is highly valued.
+Thank you for your interest in contributing! We’re excited to have you on board.  
+With our backend shifting from a custom API to **Supabase**, this guide will help you contribute effectively.
 
-This document provides guidelines for contributing to the project. Please read it carefully to ensure a smooth and effective collaboration process.
+---
+
+## 📜 Table of Contents
+1. [Code of Conduct](#-code-of-conduct)
+2. [How to Contribute](#-how-to-contribute)
+3. [Setting Up the Project](#setting-up-the-project)
+4. [Branching Strategy](#-branching-strategy)
+5. [Coding Guidelines](#-coding-guidelines)
+6. [Commit Message Guidelines](#-commit-message-guidelines)
+7. [Testing](#-testing)
+8. [Pull Request Process](#-pull-request-process)
+9. [Backend Migration Notes (Supabase)](#-backend-migration-notes-supabase)
+10. [Community & Support](#-community--support)
+
+---
 
 ## 💬 Code of Conduct
+Please follow our [Code of Conduct](CODE_OF_CONDUCT.md) to maintain a respectful and welcoming environment for all contributors.
 
-We have adopted a Code of Conduct that we expect all contributors to adhere to. Please read the full text in our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file so that you can understand what actions will and will not be tolerated.
+---
 
-## 🤔 How to Contribute
+## 🚀 How to Contribute
+1. **Fork the repository** and create your branch from `main`.
+2. **Work on an issue** — either pick an existing one or create a new one with details.
+3. **Commit changes** following our commit message guidelines.
+4. **Push your branch** and submit a Pull Request (PR).
 
-There are many ways to contribute to the project. Here are a few ideas:
+---
 
-* **🐛 Reporting Bugs**: Find and report bugs to help us improve stability.
-* **💡 Suggesting Enhancements**: Propose new features or improvements to existing functionality.
-* **📝 Writing Documentation**: Help improve our README, guides, and inline code comments.
-* **💻 Writing Code**: Fix bugs, implement new features, or refactor the codebase.
-* **🎨 Improving UI/UX**: Suggest or implement design improvements to make the app more intuitive.
+## Setting Up the Project
 
-## 🐞 Bug Reports
+### 1. Clone the repository
+```bash
+git clone https://github.com/YourOrg/ProjectName.git
+cd ProjectName
+``` 
+### 2. Install dependencies
+Frontend:
 
-If you encounter a bug, please help us by submitting an issue to our [GitHub Issues page](https://github.com/your-username/thunderlean/issues).
+```bash
 
-A great bug report should include:
+cd frontend
+npm install
+Backend (Supabase setup):
+```
+```bash
 
-* **A clear and descriptive title**.
-* **A detailed description of the problem**. Explain the issue and what you expected to happen.
-* **Steps to reproduce the behavior**.
-* **Screenshots or screen recordings**, if applicable.
-* **Details about your environment**, such as the browser, operating system, and Node.js version.
+cd backend
+# Ensure you have Supabase CLI installed
+supabase start
+```
+3. Configure environment variables
+Create a .env file in both frontend and backend folders using .env.example as reference.
 
-## ✨ Feature Requests
+## 🌿 Branching Strategy
+We follow Git Flow:
 
-We love hearing new ideas! If you have a suggestion for a new feature or an enhancement, please open an issue and use the `enhancement` label.
+main → Stable production-ready branch.
 
-Please provide:
+develop → Active development branch.
 
-* **A clear and descriptive title**.
-* **A detailed description of the proposed feature**. Explain the problem it solves and how it would work.
-* **Mockups or wireframes**, if possible, to help visualize the feature.
+Feature branches → feature/feature-name
 
-## 🚀 Pull Request Process
+Bugfix branches → fix/bug-description
 
-Ready to contribute code? Here’s how to set up your development environment and submit a pull request.
+Release branches → release/version-number
 
-1.  **Fork the repository** on GitHub.
-2.  **Clone your fork** to your local machine:
-    ```sh
-    git clone [https://github.com/YOUR_USERNAME/thunderlean.git](https://github.com/YOUR_USERNAME/thunderlean.git)
-    cd thunderlean
-    ```
-3.  **Create a new branch** for your changes. Choose a descriptive branch name (e.g., `fix/login-bug` or `feature/add-dark-mode`).
-    ```sh
-    git checkout -b your-branch-name
-    ```
-4.  **Make your changes**. Write clean, readable, and commented code where necessary.
-    * Follow the existing code style.
-    * Run the linter to check for style issues in the `frontend` directory:
-        ```sh
-        # from the 'frontend' directory
-        npm run lint
-        ```
-5.  **Commit your changes** using a conventional commit message format. This helps us generate changelogs automatically.
-    * `feat`: A new feature.
-    * `fix`: A bug fix.
-    * `docs`: Documentation only changes.
-    * `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc).
-    * `refactor`: A code change that neither fixes a bug nor adds a feature.
-    * `chore`: Changes
+## 🖋 Coding Guidelines
+Use ESLint and Prettier for formatting.
+
+Follow component-driven development for frontend.
+
+Use async/await instead of .then() for promises.
+
+Write meaningful function and variable names.
+
+## 📝 Commit Message Guidelines
+Follow the format:
+
+php-template
+```
+<type>(scope): <short summary>
+```
+Types:
+
+feat — New feature
+
+fix — Bug fix
+
+docs — Documentation changes
+
+style — Code style changes
+
+refactor — Code restructuring without functional change
+
+test — Adding/Updating tests
+
+chore — Maintenance tasks
+
+Example:
+```
+pgsql
+feat(auth): add login with Supabase
+```
+## 🧪 Testing
+All new features must include unit and/or integration tests.
+
+Run tests before pushing:
+```
+bash
+npm run test
+```
+## 🔄 Pull Request Process
+Ensure your branch is up-to-date with develop.
+
+Write clear PR titles and descriptions.
+
+Request reviews from relevant team members.
+
+All checks must pass before merging.
+
+Squash commits if possible to keep history clean.
+
+## 🗄 Backend Migration Notes (Supabase)
+We are migrating from a custom API to Supabase.
+
+New contributions should:
+
+Use Supabase client SDK for database interactions.
+
+Avoid writing direct SQL queries unless necessary.
+
+Follow Supabase authentication and Row Level Security (RLS) guidelines.
+
+Any old API references should be replaced with Supabase equivalents.
+
+## 🤝 Community & Support
+Join our Slack/Discord for discussions.
+
+Tag @maintainers for urgent queries.
+
+Refer to the Wiki for in-depth documentation.
+
+## Happy Coding! 🚀
+Your contributions make this project better.
+
