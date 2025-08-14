@@ -1,3 +1,4 @@
+// frontend/src/utils/Routing.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -14,6 +15,7 @@ import Community from "../Components/Community";
 import Settings from "../Components/Settings";
 import ResetPassword from "../Components/ResetPassword";
 import AiTrack from "../Components/aiTrack";
+import ProfileSetup from "../Components/ProfileSetup/ProfileSetup"; // Import the new component
 
 const Routing = () => {
   return (
@@ -25,6 +27,14 @@ const Routing = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
 
       {/* Protected Routes (for logged-in users) */}
+      <Route
+        path="/profile-setup"
+        element={
+          <ProtectedRoute>
+            <ProfileSetup />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/home"
         element={
