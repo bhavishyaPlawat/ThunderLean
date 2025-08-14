@@ -6,7 +6,6 @@ import BottomNav from "./BottomNav";
 import { supabase } from "../supabaseClient";
 import {
   IoPersonCircleOutline,
-  IoRibbonOutline,
   IoLogOutOutline,
   IoChevronForward,
   IoSaveOutline,
@@ -14,6 +13,9 @@ import {
 } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import Popup from "./popup";
+import AvatarModal from "./AvatarModal"; // Import the new modal
+
+// --- INTERNAL MODAL COMPONENTS ---
 
 const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
@@ -162,6 +164,8 @@ const ManageListItem = ({ icon, title, description, onClick }) => (
   </button>
 );
 
+// --- MAIN SETTINGS COMPONENT ---
+
 const Settings = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -169,32 +173,33 @@ const Settings = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      setLoading(true);
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+  const fetchProfile = async () => {
+    setLoading(true);
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-      if (user) {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
+    if (user) {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
 
-        if (error) {
-          console.error("Error fetching profile:", error);
-        } else {
-          setProfile(data);
-        }
+      if (error) {
+        console.error("Error fetching profile:", error);
+      } else {
+        setProfile(data);
       }
-      setLoading(false);
-    };
+    }
+    setLoading(false);
+  };
 
+  useEffect(() => {
     fetchProfile();
   }, []);
 
@@ -249,6 +254,7 @@ const Settings = () => {
           />
         )}
       </AnimatePresence>
+
       <ProfileModal
         isOpen={isProfileModalOpen}
         onClose={() => setIsProfileModalOpen(false)}
@@ -256,13 +262,23 @@ const Settings = () => {
         setProfile={setProfile}
         handleUpdate={handleUpdate}
       />
+
+      <AvatarModal
+        isOpen={isAvatarModalOpen}
+        onClose={() => setIsAvatarModalOpen(false)}
+        onAvatarUpdate={fetchProfile}
+      />
+
       <div className="flex h-screen bg-[#121212] overflow-hidden">
         <Sidebar activePage={activePage} />
 
         <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
           <div className="max-w-3xl mx-auto">
             <section className="flex flex-col items-center text-center mb-10">
-              <div className="w-24 h-24 rounded-full mb-4 ring-4 ring-green-600 p-1">
+              <button
+                onClick={() => setIsAvatarModalOpen(true)}
+                className="w-24 h-24 rounded-full mb-4 ring-4 ring-purple-600 p-1 group relative"
+              >
                 <img
                   src={
                     profile?.avatar_url ||
@@ -271,7 +287,10 @@ const Settings = () => {
                   alt={profile?.full_name}
                   className="w-full h-full object-cover rounded-full"
                 />
-              </div>
+                <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="text-xs font-bold">Edit</p>
+                </div>
+              </button>
               <h1 className="text-2xl font-bold text-white">
                 {profile?.full_name || "User"}
               </h1>
@@ -304,12 +323,6 @@ const Settings = () => {
                   description="View and edit your profile details"
                   onClick={() => setIsProfileModalOpen(true)}
                 />
-                {/* <ManageListItem
-                  icon={<IoRibbonOutline className="text-green-400 h-6 w-6" />}
-                  title="Goals"
-                  description="Set and track your fitness goals"
-                  onClick={() => navigate("/profile-setup")} // You can create a dedicated goal editing page later
-                /> */}
               </div>
             </section>
 
