@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import EditPostModal from "./EditPostModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import CommentModal from "./CommentModal"; // Make sure this component is created
 import {
   IoHeartOutline,
   IoHeart,
@@ -11,7 +12,7 @@ import {
   IoEllipsisHorizontal,
 } from "react-icons/io5";
 
-// --- UTILITY FUNCTIONS (NO CHANGES) ---
+// --- UTILITY FUNCTIONS ---
 const timeAgo = (date) => {
   if (!date) return "";
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
@@ -51,15 +52,13 @@ const PostContent = ({ text }) => {
 // --- END UTILITY FUNCTIONS ---
 
 const PostCard = ({ post, currentUser, onPostDeleted, onPostUpdated }) => {
-  // THIS IS THE MOST IMPORTANT LINE FOR DEBUGGING
-  console.log("Data received by PostCard:", post);
-
   const [isLiked, setIsLiked] = useState(false);
-  // Safely access post.likes, default to empty array if it's missing
   const [likeCount, setLikeCount] = useState(post.likes?.length || 0);
+  const [commentCount, setCommentCount] = useState(post.comments?.length || 0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
 
   useEffect(() => {
     if (
@@ -143,6 +142,14 @@ const PostCard = ({ post, currentUser, onPostDeleted, onPostUpdated }) => {
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleDelete}
       />
+      <CommentModal
+        isOpen={isCommentModalOpen}
+        onClose={() => setIsCommentModalOpen(false)}
+        postId={post.id}
+        currentUser={currentUser}
+        onCommentPosted={() => setCommentCount((prev) => prev + 1)}
+      />
+
       <div className="bg-[#1E1E1E] p-5 rounded-xl border border-gray-800">
         <div className="flex items-start space-x-4">
           <img
@@ -214,11 +221,12 @@ const PostCard = ({ post, currentUser, onPostDeleted, onPostUpdated }) => {
                 {isLiked ? <IoHeart size={20} /> : <IoHeartOutline size={20} />}
                 <span className="text-sm font-semibold">{likeCount}</span>
               </button>
-              <button className="flex items-center space-x-1.5 hover:text-blue-500 transition-colors duration-200">
+              <button
+                onClick={() => setIsCommentModalOpen(true)}
+                className="flex items-center space-x-1.5 hover:text-blue-500 transition-colors duration-200"
+              >
                 <IoChatbubbleOutline size={20} />
-                <span className="text-sm font-semibold">
-                  {post.comments?.length || 0}
-                </span>
+                <span className="text-sm font-semibold">{commentCount}</span>
               </button>
               <button
                 onClick={handleShare}
