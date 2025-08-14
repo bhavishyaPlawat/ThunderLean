@@ -1,7 +1,8 @@
 // frontend/src/Components/Auth.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
+import { FaGoogle } from "react-icons/fa"; // Import Google icon
 import { supabase } from "../supabaseClient";
 
 const Auth = () => {
@@ -13,7 +14,39 @@ const Auth = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/home";
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_IN" && session) {
+        // Check if the user has a profile
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("id")
+          .eq("id", session.user.id)
+          .single();
+
+        if (error && error.code !== "PGRST116") {
+          // PGRST116 means no rows found
+          console.error("Error checking profile:", error);
+        }
+
+        if (profile) {
+          // If profile exists, user is returning
+          navigate("/home");
+        } else {
+          // If no profile, it's a new user
+          navigate("/profile-setup");
+        }
+      }
+    });
+
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,12 +73,27 @@ const Auth = () => {
         });
         if (error) throw error;
         if (data.user) {
-          navigate("/profile-setup"); // Redirect to profile setup
+          navigate("/profile-setup");
         }
       }
     } catch (err) {
       setError(err.message);
     } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // New function for Google Sign-In
+  const signInWithGoogle = async () => {
+    setIsLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // Redirect back to the app
+      },
+    });
+    if (error) {
+      setError(error.message);
       setIsLoading(false);
     }
   };
@@ -133,6 +181,34 @@ const Auth = () => {
               {isLoading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
             </button>
           </form>
+
+          {/* Divider */}
+          <div className="relative my-6">
+            <div
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-gray-600" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-[#1f1f1f] rounded-full px-2 text-gray-400">
+                OR
+              </span>
+            </div>
+          </div>
+
+          {/* Google Sign-In Button */}
+          <div>
+            <button
+              onClick={signInWithGoogle}
+              disabled={isLoading}
+              className="w-full flex justify-center items-center py-3 px-4 bg-white/90 text-gray-800 font-semibold rounded-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50"
+            >
+              <FaGoogle className="mr-3" />
+              {isLogin ? "Sign in with Google" : "Sign up with Google"}
+            </button>
+          </div>
+
           <div className="mt-6 text-center">
             <button
               onClick={toggleAuthMode}
