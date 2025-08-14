@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { supabase } from "../supabaseClient"; // Import our new client
+import { supabase } from "../supabaseClient";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -21,26 +21,28 @@ const Auth = () => {
     setError("");
 
     try {
-      let response;
       if (isLogin) {
-        response = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
+        if (error) throw error;
+        navigate(from, { replace: true });
       } else {
-        response = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
-              // This 'data' will be used by our trigger to create a profile
               full_name: name,
             },
           },
         });
+        if (error) throw error;
+        if (data.user) {
+          navigate("/profile-setup"); // Redirect to profile setup
+        }
       }
-      if (response.error) throw response.error;
-      navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {

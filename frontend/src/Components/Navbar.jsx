@@ -4,45 +4,38 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
 } from "react-icons/ai";
-import { useNavigate, NavLink, useLocation } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { supabase } from "../supabaseClient"; // Import Supabase client
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPwaInstallable, setIsPwaInstallable] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const checkAuthStatus = () => {
-      const token = localStorage.getItem("authToken");
-      const user = localStorage.getItem("userData");
+    // Check initial session
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session);
+    };
+    getSession();
 
-      if (token && user) {
-        setIsLoggedIn(true);
-        if (
-          location.pathname !== "/dashboard" &&
-          location.pathname !== "/auth" &&
-          !location.pathname.startsWith("/dashboard") &&
-          !location.pathname.startsWith("/tdee-calculator") &&
-          !location.pathname.startsWith("/ai-track") &&
-          !location.pathname.startsWith("/get-tip")
-        ) {
-          navigate("/dashboard");
-        }
-      } else {
-        setIsLoggedIn(false);
+    // Listen for auth state changes (login, logout)
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setIsLoggedIn(!!session);
       }
-    };
+    );
 
-    checkAuthStatus();
-    window.addEventListener("storage", checkAuthStatus);
-
+    // Cleanup listener on component unmount
     return () => {
-      window.removeEventListener("storage", checkAuthStatus);
+      authListener.subscription.unsubscribe();
     };
-  }, [location.pathname, navigate]);
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {
@@ -113,19 +106,13 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const handleGetStartedClick = () => {
-    if (isLoggedIn) {
-      navigate("/dashboard");
-    } else {
-      navigate("/auth");
-    }
+  const handleSignInClick = () => {
+    navigate("/auth");
     closeMobileMenu();
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    localStorage.removeItem("userData");
-    setIsLoggedIn(false);
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     navigate("/");
     closeMobileMenu();
   };
@@ -138,8 +125,8 @@ const Navbar = () => {
       scale: 0.95,
       transition: {
         duration: 0.2,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     visible: {
       opacity: 1,
@@ -149,8 +136,8 @@ const Navbar = () => {
         duration: 0.3,
         ease: "easeOut",
         staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
+        delayChildren: 0.1,
+      },
     },
     exit: {
       opacity: 0,
@@ -160,9 +147,9 @@ const Navbar = () => {
         duration: 0.2,
         ease: "easeInOut",
         staggerChildren: 0.05,
-        staggerDirection: -1
-      }
-    }
+        staggerDirection: -1,
+      },
+    },
   };
 
   const menuItemVariants = {
@@ -170,24 +157,24 @@ const Navbar = () => {
       opacity: 0,
       x: -20,
       transition: {
-        duration: 0.2
-      }
+        duration: 0.2,
+      },
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.3,
-        ease: "easeOut"
-      }
+        ease: "easeOut",
+      },
     },
     exit: {
       opacity: 0,
       x: -20,
       transition: {
-        duration: 0.15
-      }
-    }
+        duration: 0.15,
+      },
+    },
   };
 
   const hamburgerVariants = {
@@ -195,16 +182,16 @@ const Navbar = () => {
       rotate: 180,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     closed: {
       rotate: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
@@ -231,14 +218,14 @@ const Navbar = () => {
           >
             Home
           </NavLink>
-          <a 
-            href="#features" 
+          <a
+            href="/#features"
             className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
           >
             Features
           </a>
-          <a 
-            href="#whyus" 
+          <a
+            href="/#whyus"
             className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
           >
             Why Us?
@@ -248,7 +235,9 @@ const Navbar = () => {
               to="/dashboard"
               className={({ isActive }) =>
                 `relative transition-colors duration-300 ${
-                  isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+                  isActive
+                    ? "text-[#8C4DCF]"
+                    : "text-black hover:text-[#8C4DCF]"
                 } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
                   isActive ? "after:w-full" : ""
                 }`
@@ -262,26 +251,18 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           {!isLoggedIn ? (
             <button
-              onClick={handleGetStartedClick}
+              onClick={handleSignInClick}
               className="px-6 py-2 bg-[#2C2C2C] text-white rounded-md hover:bg-[#3C3C3C] transition-colors"
             >
-              Get Started
+              Sign In
             </button>
           ) : (
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => navigate("/dashboard")}
-                className="px-6 py-2 bg-[#8C4DCF] text-white rounded-md hover:bg-[#7C3CBF] transition-colors"
-              >
-                Dashboard
-              </button>
-              <button
-                onClick={handleLogout}
-                className="px-6 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              onClick={handleLogout}
+              className="px-6 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
+            >
+              Logout
+            </button>
           )}
 
           {isPwaInstallable && (
@@ -302,7 +283,7 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden">
-          <motion.button 
+          <motion.button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             variants={hamburgerVariants}
             animate={isMenuOpen ? "open" : "closed"}
@@ -316,8 +297,8 @@ const Navbar = () => {
           </motion.button>
         </div>
       </div>
-      
-      <AnimatePresence >
+
+      <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             className="mx-4 absolute left-0 right-0 z-[100] md:hidden mt-4 bg-white/50 backdrop-blur-sm border border-black/10 rounded-lg shadow-xl overflow-hidden"
@@ -326,7 +307,7 @@ const Navbar = () => {
             animate="visible"
             exit="exit"
           >
-            <motion.div 
+            <motion.div
               className="flex flex-col items-center gap-4 p-6"
               variants={mobileMenuVariants}
             >
@@ -335,7 +316,9 @@ const Navbar = () => {
                   to="/"
                   className={({ isActive }) =>
                     `relative transition-colors duration-300 ${
-                      isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+                      isActive
+                        ? "text-[#8C4DCF]"
+                        : "text-black hover:text-[#8C4DCF]"
                     } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
                       isActive ? "after:w-full" : ""
                     }`
@@ -348,7 +331,7 @@ const Navbar = () => {
 
               <motion.div variants={menuItemVariants}>
                 <a
-                  href="#features"
+                  href="/#features"
                   className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
                   onClick={closeMobileMenu}
                 >
@@ -358,7 +341,7 @@ const Navbar = () => {
 
               <motion.div variants={menuItemVariants}>
                 <a
-                  href="#whyus"
+                  href="/#whyus"
                   className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
                   onClick={closeMobileMenu}
                 >
@@ -372,7 +355,9 @@ const Navbar = () => {
                     to="/dashboard"
                     className={({ isActive }) =>
                       `relative transition-colors duration-300 ${
-                        isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+                        isActive
+                          ? "text-[#8C4DCF]"
+                          : "text-black hover:text-[#8C4DCF]"
                       } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
                         isActive ? "after:w-full" : ""
                       }`
@@ -387,17 +372,17 @@ const Navbar = () => {
               {!isLoggedIn ? (
                 <motion.div variants={menuItemVariants} className="w-full mt-2">
                   <motion.button
-                    onClick={handleGetStartedClick}
+                    onClick={handleSignInClick}
                     className="w-full px-6 py-3 bg-[#2C2C2C] text-white rounded-md hover:bg-[#3C3C3C] transition-colors font-medium"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Get Started
+                    Sign In
                   </motion.button>
                 </motion.div>
               ) : (
-                <motion.div 
-                  variants={menuItemVariants} 
+                <motion.div
+                  variants={menuItemVariants}
                   className="w-full flex flex-col gap-3 mt-2"
                 >
                   <motion.button

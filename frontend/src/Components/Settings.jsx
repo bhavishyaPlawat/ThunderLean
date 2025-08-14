@@ -1,26 +1,159 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import BottomNav from './BottomNav';
+// frontend/src/Components/Settings.jsx
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import BottomNav from "./BottomNav";
+import { supabase } from "../supabaseClient";
 import {
   IoPersonCircleOutline,
   IoRibbonOutline,
-  IoPhonePortraitOutline,
   IoLogOutOutline,
-  IoChevronForward
-} from 'react-icons/io5';
+  IoChevronForward,
+  IoSaveOutline,
+  IoClose,
+} from "react-icons/io5";
+import { motion, AnimatePresence } from "framer-motion";
+import Popup from "./popup";
 
-const AchievementBadge = ({ imageUrl, alt }) => (
-  <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-gray-700">
-    <img src={imageUrl} alt={alt} className="w-full h-full object-cover" />
-  </div>
-);
+const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
+  if (!isOpen) return null;
 
-const ManageListItem = ({ icon, title, description }) => (
-  <button className="w-full flex items-center space-x-4 p-4 text-left hover:bg-gray-800 rounded-lg transition-colors">
-    <div className="p-2 bg-gray-700 rounded-lg">
-      {icon}
+  return (
+    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+      <div className="bg-[#1E1E1E] rounded-2xl p-8 max-w-sm w-full relative">
+        <h2 className="text-xl text-white font-bold text-center mb-4">
+          Confirm Log Out
+        </h2>
+        <p className="text-center text-gray-400 mb-6">
+          Are you sure you want to log out?
+        </p>
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={onClose}
+            className="px-6 py-2 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-600 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+          >
+            Log Out
+          </button>
+        </div>
+      </div>
     </div>
+  );
+};
+
+const ProfileModal = ({
+  isOpen,
+  onClose,
+  profile,
+  setProfile,
+  handleUpdate,
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+      >
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          className="bg-[#1E1E1E] rounded-2xl p-6 max-w-md w-full relative"
+        >
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-gray-400 hover:text-white"
+          >
+            <IoClose size={24} />
+          </button>
+          <h2 className="text-2xl font-bold mb-6 text-white text-center">
+            Edit Profile
+          </h2>
+          <form onSubmit={handleUpdate} className="space-y-4">
+            <div>
+              <label className="text-sm text-white">Name</label>
+              <input
+                type="text"
+                value={profile?.full_name || ""}
+                onChange={(e) =>
+                  setProfile({ ...profile, full_name: e.target.value })
+                }
+                className="w-full p-2 text-white bg-gray-800 rounded mt-1"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-gray-400">Age</label>
+              <input
+                type="number"
+                value={profile?.age || ""}
+                onChange={(e) =>
+                  setProfile({ ...profile, age: e.target.value })
+                }
+                className="w-full p-2 text-white bg-gray-800 rounded mt-1"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-gray-400">Height (cm)</label>
+              <input
+                type="number"
+                value={profile?.height || ""}
+                onChange={(e) =>
+                  setProfile({ ...profile, height: e.target.value })
+                }
+                className="w-full p-2 text-white bg-gray-800 rounded mt-1"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-gray-400">Weight (kg)</label>
+              <input
+                type="number"
+                value={profile?.weight || ""}
+                onChange={(e) =>
+                  setProfile({ ...profile, weight: e.target.value })
+                }
+                className="w-full p-2 text-white bg-gray-800 rounded mt-1"
+              />
+            </div>
+            <div>
+              <label className="text-sm text-gray-400">Gender</label>
+              <input
+                type="text"
+                value={profile?.gender || ""}
+                onChange={(e) =>
+                  setProfile({ ...profile, gender: e.target.value })
+                }
+                className="w-full p-2 text-white bg-gray-800 rounded mt-1"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center space-x-2 bg-green-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-700 transition-colors"
+            >
+              <IoSaveOutline size={22} />
+              <span>Save Changes</span>
+            </button>
+          </form>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+};
+
+const ManageListItem = ({ icon, title, description, onClick }) => (
+  <button
+    onClick={onClick}
+    className="w-full flex items-center space-x-4 p-4 text-left hover:bg-gray-800 rounded-lg transition-colors"
+  >
+    <div className="p-2 bg-gray-700 rounded-lg">{icon}</div>
     <div className="flex-grow">
       <p className="font-bold text-white">{title}</p>
       <p className="text-sm text-gray-400">{description}</p>
@@ -29,84 +162,176 @@ const ManageListItem = ({ icon, title, description }) => (
   </button>
 );
 
-
 const Settings = () => {
   const location = useLocation();
-  const activePage = location.pathname.split('/')[1] || 'settings';
+  const navigate = useNavigate();
+  const activePage = location.pathname.split("/")[1] || "settings";
+  const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [popup, setPopup] = useState({ show: false, message: "", type: "" });
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const userData = {
-    name: 'Sophia Carter',
-    level: 3,
-    joined: 2021,
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fHww',
+  useEffect(() => {
+    const fetchProfile = async () => {
+      setLoading(true);
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+        if (error) {
+          console.error("Error fetching profile:", error);
+        } else {
+          setProfile(data);
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchProfile();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate("/auth");
   };
 
-  const achievements = [
-    { id: 1, alt: '10k Steps Badge', imageUrl: 'https://i.imgur.com/L12wV3t.png' },
-    { id: 2, alt: 'Marathon Finisher Badge', imageUrl: 'https://i.imgur.com/gAm7y4c.png' },
-    { id: 3, alt: 'Healthy Eater Badge', imageUrl: 'https://i.imgur.com/u59sU8G.png' },
-    { id: 4, alt: 'Consistent Logger Badge', imageUrl: 'https://i.imgur.com/qgW6n3U.png' },
-  ];
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const { error } = await supabase
+        .from("profiles")
+        .update(profile)
+        .eq("id", user.id);
+      if (error) {
+        setPopup({
+          show: true,
+          message: "Error updating profile.",
+          type: "error",
+        });
+      } else {
+        setPopup({
+          show: true,
+          message: "Profile updated successfully.",
+          type: "success",
+        });
+        setIsProfileModalOpen(false);
+      }
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex h-screen bg-[#121212] items-center justify-center">
+        <p className="text-white">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
-    <div className="flex h-screen bg-[#121212] overflow-hidden">
-      <Sidebar activePage={activePage} />
+      <AnimatePresence>
+        {popup.show && (
+          <Popup
+            message={popup.message}
+            type={popup.type}
+            onClose={() => setPopup({ ...popup, show: false })}
+          />
+        )}
+      </AnimatePresence>
+      <ProfileModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        profile={profile}
+        setProfile={setProfile}
+        handleUpdate={handleUpdate}
+      />
+      <div className="flex h-screen bg-[#121212] overflow-hidden">
+        <Sidebar activePage={activePage} />
 
-      <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
-        <div className="max-w-3xl mx-auto">
+        <main className="flex-grow p-6 md:p-8 bg-[#121212] text-white font-sans overflow-y-auto pb-20 md:pb-6">
+          <div className="max-w-3xl mx-auto">
+            <section className="flex flex-col items-center text-center mb-10">
+              <div className="w-24 h-24 rounded-full mb-4 ring-4 ring-green-600 p-1">
+                <img
+                  src={
+                    profile?.avatar_url ||
+                    "https://api.dicebear.com/8.x/adventurer/svg?seed=default"
+                  }
+                  alt={profile?.full_name}
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-white">
+                {profile?.full_name || "User"}
+              </h1>
+            </section>
 
-          <section className="flex flex-col items-center text-center mb-10">
-            <div className="w-24 h-24 rounded-full mb-4 ring-4 ring-green-600 p-1">
-              <img src={userData.avatarUrl} alt={userData.name} className="w-full h-full object-cover rounded-full" />
-            </div>
-            <h1 className="text-2xl font-bold text-white">{userData.name}</h1>
-            <p className="text-gray-400">Level {userData.level} &bull; Joined {userData.joined}</p>
-          </section>
+            {profile?.goal?.type && (
+              <section className="mb-10">
+                <h2 className="text-xl font-bold mb-4">Your Goal</h2>
+                <div className="bg-[#1E1E1E] p-6 rounded-xl text-center">
+                  <p className="text-lg text-green-400 font-bold">
+                    {profile.goal.type}
+                  </p>
+                  {profile.goal.amount && profile.goal.timeframe && (
+                    <p className="text-gray-300">
+                      {profile.goal.amount} kg in {profile.goal.timeframe} weeks
+                    </p>
+                  )}
+                </div>
+              </section>
+            )}
 
-          <section className="mb-10">
-            <h2 className="text-xl font-bold mb-4">Achievements</h2>
-            <div className="bg-[#1E1E1E] p-5 rounded-xl flex justify-center space-x-4">
-              {achievements.map(badge => (
-                <AchievementBadge key={badge.id} imageUrl={badge.imageUrl} alt={badge.alt} />
-              ))}
-            </div>
-          </section>
+            <section className="mb-10">
+              <h2 className="text-xl font-bold mb-4">Manage</h2>
+              <div className="bg-[#1E1E1E] p-2 rounded-xl space-y-1">
+                <ManageListItem
+                  icon={
+                    <IoPersonCircleOutline className="text-green-400 h-6 w-6" />
+                  }
+                  title="Profile"
+                  description="View and edit your profile details"
+                  onClick={() => setIsProfileModalOpen(true)}
+                />
+                {/* <ManageListItem
+                  icon={<IoRibbonOutline className="text-green-400 h-6 w-6" />}
+                  title="Goals"
+                  description="Set and track your fitness goals"
+                  onClick={() => navigate("/profile-setup")} // You can create a dedicated goal editing page later
+                /> */}
+              </div>
+            </section>
 
-          <section className="mb-10">
-            <h2 className="text-xl font-bold mb-4">Manage</h2>
-            <div className="bg-[#1E1E1E] p-2 rounded-xl space-y-1">
-              <ManageListItem
-                icon={<IoPersonCircleOutline className="text-green-400 h-6 w-6" />}
-                title="Profile"
-                description="View and edit your profile details"
-              />
-              <ManageListItem
-                icon={<IoRibbonOutline className="text-green-400 h-6 w-6" />}
-                title="Goals"
-                description="Set and track your fitness goals"
-              />
-              <ManageListItem
-                icon={<IoPhonePortraitOutline className="text-green-400 h-6 w-6" />}
-                title="Devices"
-                description="Connect and manage your devices"
-              />
-            </div>
-          </section>
-
-          <section className="text-center">
-            <button className="flex items-center justify-center w-full max-w-xs mx-auto space-x-2 bg-gray-800 text-red-500 font-bold px-6 py-3 rounded-xl hover:bg-red-500 hover:text-white transition-colors">
-              <IoLogOutOutline size={22} />
-              <span>Log Out</span>
-            </button>
-          </section>
-
-        </div>
-      </main>
-    </div>
-    <BottomNav />
+            <section className="text-center">
+              <button
+                onClick={() => setIsLogoutModalOpen(true)}
+                className="flex items-center justify-center w-full max-w-xs mx-auto space-x-2 bg-gray-800  text-red-500 font-bold px-6 py-3 rounded-xl hover:bg-red-500 hover:text-white transition-colors"
+              >
+                <IoLogOutOutline size={22} />
+                <span>Log Out</span>
+              </button>
+            </section>
+          </div>
+        </main>
+      </div>
+      <BottomNav />
+      <LogoutConfirmationModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogout}
+      />
     </>
-    
   );
 };
 
