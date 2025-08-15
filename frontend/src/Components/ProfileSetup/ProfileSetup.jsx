@@ -40,7 +40,7 @@ const ProfileSetup = () => {
       if (error) {
         console.error("Error updating profile:", error);
       } else {
-        navigate("/dashboard");
+        navigate("/home");
       }
     }
   };
