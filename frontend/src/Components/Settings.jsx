@@ -10,12 +10,15 @@ import {
   IoChevronForward,
   IoSaveOutline,
   IoClose,
+  // Import Strava Icon
 } from "react-icons/io5";
+import { SiStrava } from "react-icons/si";
+
 import { motion, AnimatePresence } from "framer-motion";
 import Popup from "./popup";
-import AvatarModal from "./AvatarModal"; // Import the new modal
+import AvatarModal from "./AvatarModal";
 
-// --- INTERNAL MODAL COMPONENTS ---
+// --- INTERNAL MODAL COMPONENTS (No changes here) ---
 
 const LogoutConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
   if (!isOpen) return null;
@@ -81,6 +84,7 @@ const ProfileModal = ({
             Edit Profile
           </h2>
           <form onSubmit={handleUpdate} className="space-y-4">
+            {/* Form inputs remain the same */}
             <div>
               <label className="text-sm text-white">Name</label>
               <input
@@ -177,6 +181,53 @@ const Settings = () => {
   const [popup, setPopup] = useState({ show: false, message: "", type: "" });
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
+  // --- START: STRAVA INTEGRATION ---
+  useEffect(() => {
+    const handleStravaCallback = async (code) => {
+      try {
+        const { data, error } = await supabase.functions.invoke(
+          "strava-callback",
+          {
+            body: { code },
+          }
+        );
+
+        if (error) throw error;
+
+        setPopup({ show: true, message: data.message, type: "success" });
+        // Clean the URL by removing the code and scope parameters
+        navigate("/settings", { replace: true });
+      } catch (err) {
+        setPopup({
+          show: true,
+          message: err.message || "Failed to connect Strava.",
+          type: "error",
+        });
+        navigate("/settings", { replace: true });
+      }
+    };
+
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get("code");
+
+    // If a 'code' is present in the URL, it's a callback from Strava
+    if (code) {
+      handleStravaCallback(code);
+    }
+  }, [location, navigate]);
+
+  const handleConnectStrava = () => {
+    // IMPORTANT: Make sure you add VITE_STRAVA_CLIENT_ID to your .env file
+    const stravaClientId = import.meta.env.VITE_STRAVA_CLIENT_ID;
+    const redirectUri = window.location.origin + "/settings";
+    const scope = "read,activity:read_all";
+
+    const stravaAuthUrl = `https://www.strava.com/oauth/authorize?client_id=${stravaClientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&approval_prompt=force`;
+
+    window.location.href = stravaAuthUrl;
+  };
+  // --- END: STRAVA INTEGRATION ---
+
   const fetchProfile = async () => {
     setLoading(true);
     const {
@@ -218,6 +269,7 @@ const Settings = () => {
         .from("profiles")
         .update(profile)
         .eq("id", user.id);
+
       if (error) {
         setPopup({
           show: true,
@@ -323,6 +375,22 @@ const Settings = () => {
                   description="View and edit your profile details"
                   onClick={() => setIsProfileModalOpen(true)}
                 />
+                {/* --- START: STRAVA BUTTON RENDER --- */}
+                <ManageListItem
+                  icon={<SiStrava className="text-orange-500 h-6 w-6" />}
+                  title={
+                    profile?.strava_access_token
+                      ? "Strava Connected"
+                      : "Connect to Strava"
+                  }
+                  description={
+                    profile?.strava_access_token
+                      ? "Your activities will sync automatically"
+                      : "Sync your workout activities"
+                  }
+                  onClick={handleConnectStrava}
+                />
+                {/* --- END: STRAVA BUTTON RENDER --- */}
               </div>
             </section>
 
