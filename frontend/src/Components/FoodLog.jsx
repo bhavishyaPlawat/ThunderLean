@@ -621,11 +621,13 @@ const FoodLog = () => {
   };
 
   return (
+
     <>
       <div className="flex h-screen bg-[#121212] font-sans overflow-hidden">
         <Sidebar activePage={activePage} />
 
         {/* Existing Modals */}
+
         <AnalysisModal
           isOpen={isTextModalOpen}
           onClose={() => setIsTextModalOpen(false)}
@@ -640,6 +642,7 @@ const FoodLog = () => {
           onSubmit={handleImageSubmit}
           isLoading={isLoading}
         />
+
 
         {/* NEW: Nutrition Modal */}
         <NutritionModal
@@ -678,7 +681,9 @@ const FoodLog = () => {
                   {analysisError}
                 </div>
               )}
+
               <div className="grid  grid-cols-1 md:grid-cols-2 gap-6">
+
                 <AiAnalysisCard
                   title="Analyze Image"
                   description="Analyze your food by uploading an image."
@@ -702,6 +707,7 @@ const FoodLog = () => {
               <h2 className="text-xl font-bold mb-4">Today's Meals</h2>
               <div className="space-y-3">
                 {isLoading && mealItems.length === 0 && (
+
                   <div className="text-center text-gray-400 p-4">
                     Loading...
                   </div>
@@ -710,6 +716,7 @@ const FoodLog = () => {
                   <div className="text-center text-red-400 p-4">
                     {fetchError}
                   </div>
+
                 )}
                 {!isLoading && !fetchError && mealItems.length === 0 && (
                   <div className="text-center text-gray-500 p-4">
@@ -719,9 +726,11 @@ const FoodLog = () => {
                 {mealItems.map((item) => (
                   <MealCard
                     key={item.id}
+
                     meal={item}
                     onDelete={handleDeleteRequest}
                     onViewDetails={handleViewDetails}
+
                   />
                 ))}
               </div>
@@ -732,8 +741,10 @@ const FoodLog = () => {
           </button>
         </main>
       </div>
+
       <BottomNav />
     </>
+
   );
 };
 
