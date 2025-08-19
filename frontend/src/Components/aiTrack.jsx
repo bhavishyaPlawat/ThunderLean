@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Sidebar from "./Sidebar";
 import { FaCamera, FaBars } from "react-icons/fa";
 import axios from "axios";
+import { supabase } from "../supabaseClient";
 
 const AiTrack = () => {
   const [goal, setGoal] = useState("loose");
@@ -22,17 +23,14 @@ const AiTrack = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.post(
-        "https://thunderlean-backend.onrender.com/api/ai/analyze-meal",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // Invoke the Edge Function instead of using axios
+      const { data, error } = await supabase.functions.invoke("analyze-meal", {
+        body: formData,
+      });
 
-      const resultText = response.data.result;
+      if (error) throw error;
+
+      const resultText = data.result;
       const parsedResult = JSON.parse(resultText);
 
       const newMeal = {
@@ -43,10 +41,25 @@ const AiTrack = () => {
         fat: parsedResult.fat || "N/A",
       };
 
+      // Also, let's save this log to our new database!
+      const { data: user_data } = await supabase.auth.getUser();
+      if (user_data.user) {
+        await supabase.from("food_logs").insert([
+          {
+            user_id: user_data.user.id,
+            food_name: newMeal.name,
+            calories: parseInt(newMeal.calories) || 0,
+            protein: parseInt(newMeal.protein) || 0,
+            carbs: parseInt(newMeal.carbs) || 0,
+            fat: parseInt(newMeal.fat) || 0,
+          },
+        ]);
+      }
+
       setMealItems((prevItems) => [...prevItems, newMeal]);
       setMealDescription("");
     } catch (err) {
-      setError("Failed to analyze meal. Please try again.");
+      setError(err.message || "Failed to analyze meal. Please try again.");
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -89,7 +102,6 @@ const AiTrack = () => {
 
       <main className="flex-1 p-4 sm:p-10 lg:p-10 overflow-y-auto">
         <header className="flex items-center justify-center  md:justify-center bg-purple-200 text-pink-800 py-4 px-6 rounded-lg mb-8 text-center relative ">
-          
           <h2 className="text-lg font-bold tracking-widest uppercase ">
             AI Track
           </h2>

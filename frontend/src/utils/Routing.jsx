@@ -1,19 +1,48 @@
+// frontend/src/utils/Routing.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
+// Component Imports
+import LandingPage from "../Components/LandingPage";
 import Home from "../Components/Home";
 import Dashboard from "../Components/Dashboard";
-import TdeeCalculator from "../Components/TdeeCalculator";
-import AiTrack from "../Components/aiTrack";
-import GetTip from "../Components/GetTip";
 import Auth from "../Components/Auth";
 import ProtectedRoute from "../Components/ProtectedRoute";
 import ForgotPassword from "../Components/ForgotPassword";
+import FoodLog from "../Components/FoodLog";
+import ExerciseLog from "../Components/ExerciseLog";
+import Community from "../Components/Community";
+import Settings from "../Components/Settings";
+import ResetPassword from "../Components/ResetPassword";
+import AiTrack from "../Components/aiTrack";
+import ProfileSetup from "../Components/ProfileSetup/ProfileSetup"; // Import the new component
 
 const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {/* Public Routes */}
+      <Route path="/" element={<LandingPage />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      {/* Protected Routes (for logged-in users) */}
+      <Route
+        path="/profile-setup"
+        element={
+          <ProtectedRoute>
+            <ProfileSetup />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/dashboard"
         element={
@@ -22,28 +51,35 @@ const Routing = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/forgot-password" element={<ForgotPassword />} />;
       <Route
-        path="/tdee-calculator"
+        path="/food-log"
         element={
           <ProtectedRoute>
-            <TdeeCalculator />
+            <FoodLog />
           </ProtectedRoute>
         }
       />
       <Route
-        path="/ai-track"
+        path="/exercise-log"
         element={
           <ProtectedRoute>
-            <AiTrack />
+            <ExerciseLog />
           </ProtectedRoute>
         }
       />
       <Route
-        path="/get-tip"
+        path="/community"
         element={
           <ProtectedRoute>
-            <GetTip />
+            <Community />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
           </ProtectedRoute>
         }
       />

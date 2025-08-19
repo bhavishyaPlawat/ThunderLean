@@ -1,40 +1,60 @@
-import React, { useState } from "react";
+import React from "react"
 import { useNavigate } from "react-router-dom";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-// import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { BsList, BsChevronLeft } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
 
 // --- ICON COMPONENTS ---
+
 const LogoIcon = ({ onGoHome, className }) => (
   <div
-    className={`flex items-center space-x-2 cursor-pointer font-body ${className}`}
+    className={`flex items-center space-x-3 cursor-pointer font-sans ${className}`}
     onClick={onGoHome}
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-blue-500"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13 10V3L4 14h7v7l9-11h-7z"
-      />
-    </svg>
-    <span className="font-bold text-xl text-black select-none">
+    <div className="bg-green-600 p-1 rounded-md">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6 text-white"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M13 10V3L4 14h7v7l9-11h-7z"
+        />
+      </svg>
+    </div>
+    <span className="font-bold text-xl text-white select-none">
       THUNDERLEAN
     </span>
   </div>
+);
+
+const HomeIcon = ({ active }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={`h-6 w-6 transition-colors ${
+      active ? "text-white" : "text-gray-400"
+    }`}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+    />
+  </svg>
 );
 
 const DashboardIcon = ({ active }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={`h-6 w-6 transition-colors ${
-      active ? "text-pink-600" : "text-gray-600"
+      active ? "text-white" : "text-gray-400"
     }`}
     fill="none"
     viewBox="0 0 24 24"
@@ -49,11 +69,11 @@ const DashboardIcon = ({ active }) => (
   </svg>
 );
 
-const CalculatorIcon = ({ active }) => (
+const FoodLogIcon = ({ active }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={`h-6 w-6 transition-colors ${
-      active ? "text-pink-600" : "text-gray-600"
+      active ? "text-white" : "text-gray-400"
     }`}
     fill="none"
     viewBox="0 0 24 24"
@@ -63,16 +83,16 @@ const CalculatorIcon = ({ active }) => (
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 14h.01M9 11h.01M12 11h.01M15 11h.01M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"
+      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
     />
   </svg>
 );
 
-const AiTrackIcon = ({ active }) => (
+const ExerciseLogIcon = ({ active }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={`h-6 w-6 transition-colors ${
-      active ? "text-pink-600" : "text-gray-600"
+      active ? "text-white" : "text-gray-400"
     }`}
     fill="none"
     viewBox="0 0 24 24"
@@ -82,112 +102,107 @@ const AiTrackIcon = ({ active }) => (
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+      d="M13 10a4 4 0 11-8 0 4 4 0 018 0zm-4 9a1 1 0 01-1-1v-1a1 1 0 112 0v1a1 1 0 01-1 1zM3 10a1 1 0 011-1h2a1 1 0 110 2H4a1 1 0 01-1-1zm14 0a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z"
     />
   </svg>
 );
 
-const TipIcon = ({ active }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-6 transition-colors ${
-      active ? "text-pink-600" : "text-gray-600"
-    }`}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-    />
-  </svg>
+const CommunityIcon = ({ active }) => (
+    <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        className={`h-6 w-6 transition-colors ${
+            active ? "text-white" : "text-gray-400"
+        }`} 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor" 
+        strokeWidth={2}
+    >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-1.78-4.125" />
+    </svg>
 );
+
+const SettingsIcon = ({ active }) => (
+    <IoSettingsOutline className={`h-6 w-6 transition-colors ${
+        active ? "text-white" : "text-gray-400"
+      }`} />
+)
+
 
 const Sidebar = ({ activePage }) => {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
+    { slug: "home", icon: HomeIcon, label: "Home" },
     { slug: "dashboard", icon: DashboardIcon, label: "Dashboard" },
-    {
-      slug: "tdee-calculator",
-      icon: CalculatorIcon,
-      label: "TDEE Calculator ",
-    },
-    { slug: "ai-track", icon: AiTrackIcon, label: "AI Track" },
-    { slug: "get-tip", icon: TipIcon, label: "Get free Tip" },
+    { slug: "food-log", icon: FoodLogIcon, label: "Food Log" },
+    { slug: "exercise-log", icon: ExerciseLogIcon, label: "Exercise Log" },
+    { slug: "community", icon: CommunityIcon, label: "Community" },
   ];
 
   const handleGoHome = () => {
-    navigate("/");
+    navigate("/home");
   };
 
   const handleNavigate = (slug) => {
     navigate(`/${slug}`);
-
-    if (window.innerWidth < 768) {
-      setIsOpen(false);
-    }
   };
 
   return (
     <>
-      <div className="md:hidden p-4">
-        <button onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineMenu size={24} />}
-        </button>
-      </div>
+      {/* Custom scrollbar styles */}
+      <style>{`
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .sidebar-nav-scroll::-webkit-scrollbar {
+          display: none;
+        }
 
-      {/* The classes here have been updated to fix the height and scrolling issue */}
-      <aside
-        className={`w-64 min-h-screen p-6 flex-shrink-0 flex flex-col z-20 transition-transform duration-300 ease-in-out
-          fixed transform ${isOpen ? "translate-x-0" : "-translate-x-full"}
-          md:sticky md:top-0 md:translate-x-0`}
-        style={{
-          background: "linear-gradient(90deg, #879AE3 0%, #C5D5F2 100%)",
-        }}
-      >
-        <div className="md:hidden ">
-          <button onClick={() => setIsOpen(false)}>
-            <BsChevronLeft size={24} />
-          </button>
-        </div>
-        <br />
-        <LogoIcon onGoHome={handleGoHome} className="mb-12" />
-        <nav className="space-y-4">
-          {navItems.map(({ slug, icon: Icon, label }) => {
-            const isActive = slug === activePage;
-            const activeBgColor =
-              slug === "tdee-calculator" ? "bg-pink-200" : "bg-purple-200";
-            const activeTextColor =
-              slug === "tdee-calculator" ? "text-gray-900" : "text-pink-800";
-
-            return (
-              <button
-                key={slug}
-                onClick={() => handleNavigate(slug)}
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .sidebar-nav-scroll {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+      `}</style>
+       <aside className="hidden md:flex w-64 h-screen p-6 flex-shrink-0 flex-col z-20 bg-[#1E1E1E] sticky top-0">
+       <LogoIcon onGoHome={handleGoHome} className="mb-8 mt-2" />
+        {/* Main navigation area */}
+        <div className="flex-grow flex flex-col overflow-hidden">
+          <nav className="flex-grow overflow-y-auto sidebar-nav-scroll pr-2 space-y-2">
+            {navItems.map(({ slug, icon: Icon, label }) => {
+              const isActive = slug === activePage;
+              return (
+                <button
+                  key={slug}
+                  onClick={() => handleNavigate(slug)}
+                  className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition-colors duration-200 ${
+                    isActive
+                      ? "bg-green-600 text-white font-bold shadow-lg"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                  }`}
+                >
+                  <Icon active={isActive} />
+                  <span className="font-semibold">{label}</span>
+                </button>
+              );
+            })}
+          </nav>
+          
+          {/* Settings button at the bottom */}
+          <div className="pt-4 mt-auto border-t border-gray-700/50">
+             <button
+                onClick={() => handleNavigate('settings')}
                 className={`flex items-center space-x-4 px-4 py-3 rounded-lg w-full text-left transition-colors duration-200 ${
-                  isActive
-                    ? `${activeBgColor} ${activeTextColor} font-bold shadow-inner`
-                    : "hover:bg-white/20 text-black"
+                  activePage === 'settings'
+                    ? "bg-green-600 text-white font-bold shadow-lg"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
                 }`}
               >
-                <Icon active={isActive} />
-                <span className="font-semibold">{label}</span>
+                <SettingsIcon active={activePage === 'settings'} />
+                <span className="font-semibold">Settings</span>
               </button>
-            );
-          })}
-        </nav>
-      </aside>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 z-10 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+          </div>
+        </div>
+      </aside>     
     </>
   );
 };

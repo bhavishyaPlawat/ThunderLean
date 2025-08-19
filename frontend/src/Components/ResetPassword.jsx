@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+// frontend/src/Components/ResetPassword.jsx
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineLock, AiFillThunderbolt } from "react-icons/ai";
+import { supabase } from "../supabaseClient";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -9,8 +10,16 @@ const ResetPassword = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { token } = useParams();
   const navigate = useNavigate();
+
+  // Supabase sends the token in the URL fragment, so we listen for the session
+  useEffect(() => {
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        // The user is in the password recovery flow
+      }
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,19 +32,16 @@ const ResetPassword = () => {
     setMessage("");
 
     try {
-      await axios.post(
-        `https://thunderlean-backend.onrender.com/api/auth/reset-password/${token}`,
-        { password }
-      );
+      // This function updates the user's password
+      const { error } = await supabase.auth.updateUser({ password });
+      if (error) throw error;
+
       setMessage(
         "Your password has been reset successfully! You can now sign in."
       );
       setTimeout(() => navigate("/auth"), 3000);
     } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          "Invalid or expired token. Please try again."
-      );
+      setError(err.message || "Invalid or expired token. Please try again.");
     } finally {
       setLoading(false);
     }

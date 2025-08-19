@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+// frontend/src/Components/Auth.jsx
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa"; // Import Google icon
+import { supabase } from "../supabaseClient";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,48 +12,70 @@ const Auth = () => {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/home";
 
-  const from = location.state?.from?.pathname || "/dashboard";
-  const API_URL = "https://thunderlean-backend.onrender.com"; // Your backend URL
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "SIGNED_IN" && session) {
+        // Check if the user has a profile
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("id")
+          .eq("id", session.user.id)
+          .single();
+
+        if (error && error.code !== "PGRST116") {
+          // PGRST116 means no rows found
+          console.error("Error checking profile:", error);
+        }
+
+        if (profile) {
+          // If profile exists, user is returning
+          navigate("/home");
+        } else {
+          // If no profile, it's a new user
+          navigate("/profile-setup");
+        }
+      }
+    });
+
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    const endpoint = isLogin ? "/api/auth/login" : "/api/auth/signup";
-
-    // **THE FIX IS HERE**
-    // We now ensure the 'identifier' field is used for both login.
-    const payload = isLogin ? { email, password } : { name, email, password };
-
     try {
-      const response = await fetch(`${API_URL}${endpoint}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Something went wrong");
+      if (isLogin) {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+        if (error) throw error;
+        navigate(from, { replace: true });
+      } else {
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name,
+            },
+          },
+        });
+        if (error) throw error;
+        if (data.user) {
+          navigate("/profile-setup");
+        }
       }
-
-      // Store auth data from response
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("userData", JSON.stringify(data.user));
-
-      // Manually trigger storage event to update Navbar in the same tab
-      window.dispatchEvent(new Event("storage"));
-
-      // Redirect to the intended page
-      navigate(from, { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -59,10 +83,18 @@ const Auth = () => {
     }
   };
 
-  const handleForgotPassword = async () => {
-    if (!email) {
-      setError("Please enter your email before requesting a reset.");
-      return;
+  // New function for Google Sign-In
+  const signInWithGoogle = async () => {
+    setIsLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // Redirect back to the app
+      },
+    });
+    if (error) {
+      setError(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -75,13 +107,12 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br  from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
-      <div className="w-full  max-w-md">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
         <div className="text-center flex justify-center items-center flex-col mb-8">
           <div className="flex items-center justify-center mb-4">
             <AiFillThunderbolt className="h-12 w-12 text-purple-600" />
-            <span className="ml-2 text-3xl font-bold  text-white">
+            <span className="ml-2 text-3xl font-bold text-white">
               ThunderLean
             </span>
           </div>
@@ -94,9 +125,7 @@ const Auth = () => {
               : "Start your fitness journey today"}
           </p>
         </div>
-
-        {/* Auth Form */}
-        <div className=" w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div>
@@ -108,12 +137,11 @@ const Auth = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required={!isLogin}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                  className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                   placeholder="Enter your full name"
                 />
               </div>
             )}
-
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Email Address
@@ -123,11 +151,10 @@ const Auth = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                 placeholder="Enter your email"
               />
             </div>
-
             <div>
               <label className="block text-sm font-medium text-white mb-2">
                 Password
@@ -137,17 +164,15 @@ const Auth = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
+                className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
                 placeholder="Enter your password"
               />
             </div>
-
             {error && (
-              <div className="bg-red-50 text-red-500 p-3 rounded-lg text-sm">
+              <div className="bg-red-900 bg-opacity-50 text-red-300 p-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
-
             <button
               type="submit"
               disabled={isLoading}
@@ -157,11 +182,37 @@ const Auth = () => {
             </button>
           </form>
 
-          {/* Toggle Auth Mode */}
+          {/* Divider */}
+          <div className="relative my-6">
+            <div
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-gray-600" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-[#1f1f1f] rounded-full px-2 text-gray-400">
+                OR
+              </span>
+            </div>
+          </div>
+
+          {/* Google Sign-In Button */}
+          <div>
+            <button
+              onClick={signInWithGoogle}
+              disabled={isLoading}
+              className="w-full flex justify-center items-center py-3 px-4 bg-white/90 text-gray-800 font-semibold rounded-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-200 disabled:opacity-50"
+            >
+              <FaGoogle className="mr-3" />
+              {isLogin ? "Sign in with Google" : "Sign up with Google"}
+            </button>
+          </div>
+
           <div className="mt-6 text-center">
             <button
               onClick={toggleAuthMode}
-              className="text-purple-600 hover:text-purple-800 font-medium transition-colors"
+              className="text-purple-400 hover:text-purple-300 font-medium transition-colors"
             >
               {isLogin
                 ? "Don't have an account? Sign up"
@@ -177,8 +228,6 @@ const Auth = () => {
             </Link>
           </p>
         </div>
-
-        {/* Back to Home */}
       </div>
     </div>
   );
