@@ -293,19 +293,25 @@ const AnalysisModal = ({
         >
           <IoClose size={24} />
         </button>
-        <h2 className="text-2xl font-bold mb-4">Describe Your Meal</h2>
+ 
+        <h2 className="text-2xl font-bold mb-4 text-white">Describe Your Meal</h2>
+
         <form onSubmit={onSubmit}>
           <textarea
             value={mealDescription}
             onChange={(e) => setMealDescription(e.target.value)}
             placeholder="e.g., A bowl of oatmeal with blueberries and almonds"
             rows={4}
-            className="w-full p-3 bg-[#282828] border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
+
+            className="w-full p-3 bg-[#282828] border-2 border-white border-dashed rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
+
           />
           <button
             type="submit"
             disabled={isLoading || !mealDescription.trim()}
-            className="w-full px-4 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 disabled:opacity-50 transition flex items-center justify-center gap-2"
+
+            className="w-full px-4 py-3 bg-green-600 text-white/100 font-semibold rounded-lg shadow-md hover:bg-green-700 disabled:opacity-50 transition flex items-center justify-center gap-2"
+
           >
             {isLoading ? (
               <IoSyncOutline className="animate-spin" />
@@ -361,7 +367,10 @@ const ImageUploadModal = ({ isOpen, onClose, onSubmit, isLoading }) => {
   return (
     <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
       <div className="bg-[#1E1E1E] rounded-2xl p-6 sm:p-8 max-w-md w-full relative">
-        <h2 className="text-xl font-bold text-center mb-4">Upload Your Meal</h2>
+
+        <h2 className="text-xl font-bold text-center mb-4 text-white">Upload Your Meal</h2>
+
+
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-white"
@@ -370,7 +379,9 @@ const ImageUploadModal = ({ isOpen, onClose, onSubmit, isLoading }) => {
         </button>
         <div
           onClick={() => fileInputRef.current.click()}
-          className="w-full h-48 bg-[#282828] border-2 border-dashed border-gray-600 rounded-xl flex items-center justify-center cursor-pointer mb-6"
+
+          className="w-full h-48 bg-[#282828] border-2 border-dashed border-white rounded-xl flex items-center justify-center cursor-pointer mb-6"
+
         >
           {previewUrl ? (
             <img
