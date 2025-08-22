@@ -60,7 +60,8 @@ const Auth = () => {
           password,
         });
         if (error) throw error;
-        navigate(from, { replace: true });
+        // THE FIX IS HERE: Redirection is now handled by onAuthStateChange
+        // navigate(from, { replace: true }); // This line is removed
       } else {
         const { data, error } = await supabase.auth.signUp({
           email,
