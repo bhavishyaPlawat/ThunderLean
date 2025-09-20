@@ -3,9 +3,8 @@ import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const PageFooter = () => {
   const socialLinks = [
-    { icon: <FaTwitter />, href: "#" },
-    { icon: <FaGithub />, href: "#" },
-    { icon: <FaLinkedin />, href: "#" },
+    { icon: <FaGithub />, href: "https://github.com/bhavishyaPlawat/ThunderLean" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/bhavishya-plawat-165184303/" },
   ];
 
   const footerLinks = [
