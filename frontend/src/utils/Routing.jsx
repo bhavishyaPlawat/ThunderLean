@@ -1,89 +1,57 @@
-// frontend/src/utils/Routing.jsx
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-
-// Component Imports
-import LandingPage from "../Components/LandingPage";
-import Home from "../Components/Home";
-import Dashboard from "../Components/Dashboard";
-import Auth from "../Components/Auth";
 import ProtectedRoute from "../Components/ProtectedRoute";
-import ForgotPassword from "../Components/ForgotPassword";
-import FoodLog from "../Components/FoodLog";
-import ExerciseLog from "../Components/ExerciseLog";
-import Community from "../Components/Community";
-import Settings from "../Components/Settings";
-import ResetPassword from "../Components/ResetPassword";
-import AiTrack from "../Components/aiTrack";
-import ProfileSetup from "../Components/ProfileSetup/ProfileSetup"; // Import the new component
+
+// Lazy load components
+const LandingPage = lazy(() => import("../Components/LandingPage"));
+const Home = lazy(() => import("../Components/Home"));
+const Dashboard = lazy(() => import("../Components/Dashboard"));
+const Auth = lazy(() => import("../Components/Auth"));
+const ForgotPassword = lazy(() => import("../Components/ForgotPassword"));
+const FoodLog = lazy(() => import("../Components/FoodLog"));
+const ExerciseLog = lazy(() => import("../Components/ExerciseLog"));
+const Community = lazy(() => import("../Components/Community"));
+const Settings = lazy(() => import("../Components/Settings"));
+const ResetPassword = lazy(() => import("../Components/ResetPassword"));
+const ProfileSetup = lazy(() => import("../Components/ProfileSetup/ProfileSetup"));
+
+const publicRoutes = [
+  { path: "/", element: LandingPage },
+  { path: "/auth", element: Auth },
+  { path: "/forgot-password", element: ForgotPassword },
+  { path: "/reset-password", element: ResetPassword },
+];
+
+const protectedRoutes = [
+  { path: "/profile-setup", element: ProfileSetup },
+  { path: "/home", element: Home },
+  { path: "/dashboard", element: Dashboard },
+  { path: "/food-log", element: FoodLog },
+  { path: "/exercise-log", element: ExerciseLog },
+  { path: "/community", element: Community },
+  { path: "/settings", element: Settings },
+];
 
 const Routing = () => {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/auth" element={<Auth />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-
-      {/* Protected Routes (for logged-in users) */}
-      <Route
-        path="/profile-setup"
-        element={
-          <ProtectedRoute>
-            <ProfileSetup />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/home"
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/food-log"
-        element={
-          <ProtectedRoute>
-            <FoodLog />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/exercise-log"
-        element={
-          <ProtectedRoute>
-            <ExerciseLog />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/community"
-        element={
-          <ProtectedRoute>
-            <Community />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        {publicRoutes.map(({ path, element: Element }) => (
+          <Route key={path} path={path} element={<Element />} />
+        ))}
+        {protectedRoutes.map(({ path, element: Element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <ProtectedRoute>
+                <Element />
+              </ProtectedRoute>
+            }
+          />
+        ))}
+      </Routes>
+    </Suspense>
   );
 };
 
