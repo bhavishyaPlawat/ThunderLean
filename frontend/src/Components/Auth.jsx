@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa"; // Import Google icon
+import { IoClose } from "react-icons/io5";
 import { supabase } from "../supabaseClient";
 
 const Auth = () => {
@@ -125,7 +126,14 @@ const Auth = () => {
               : "Start your fitness journey today"}
           </p>
         </div>
-        <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
+        <div className="relative w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-8 text-white">
+          <button
+            onClick={() => navigate("/")}
+            aria-label="Close"
+            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200"
+          >
+            <IoClose size={24} />
+          </button>
           <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div>
