@@ -157,28 +157,28 @@ const AboutUs = () => {
 
   const teamMembers = [
     {
-      name: "Sofia",
+      name: "Name",
       role: "Founder & CEO",
       image: "",
       description: "Passionate about revolutionizing fitness through AI technology.",
       gradient: "from-purple-500 to-blue-600"
     },
     {
-      name: "Nina",
+      name: "Name",
       role: "Head of AI Development",
       image: "",
       description: "Expert in machine learning and nutritional science.",
       gradient: "from-blue-500 to-purple-600"
     },
     {
-      name: "Vaibhav",
+      name: "Name",
       role: "Head of Product",
       image: "",
       description: "Former professional athlete with 10+ years in fitness tech.",
       gradient: "from-purple-600 to-pink-500"
     },
     {
-      name: "Harry",
+      name: "Name",
       role: "Nutritionist & Advisor",
       image: "",
       description: "Certified nutritionist with expertise in personalized meal planning.",
