@@ -230,15 +230,15 @@ const Navbar = () => {
               }`
             }
           >
-            About Us
+            Why Us?
           </NavLink>
 
-          <a
-            href="/#whyus"
+          {/* <a
+            href="/about"
             className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
           >
             Why Us?
-          </a>
+          </a> */}
           {isLoggedIn && (
             <NavLink
               to="/dashboard"
@@ -356,19 +356,19 @@ const Navbar = () => {
                   }
                   onClick={closeMobileMenu}
                 >
-                  Home
+                  Why Us
                 </NavLink>
               </motion.div>
 
-              <motion.div variants={menuItemVariants}>
+              {/* <motion.div variants={menuItemVariants}>
                 <a
-                  href="/#whyus"
+                  href="/about"
                   className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
                   onClick={closeMobileMenu}
                 >
                   Why Us?
                 </a>
-              </motion.div>
+              </motion.div> */}
 
               {isLoggedIn && (
                 <motion.div variants={menuItemVariants}>
