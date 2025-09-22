@@ -28,7 +28,7 @@ const CTASection = forwardRef(({ visible }, ref) => {
             <span className="group-hover:animate-bounce inline-block">🚀</span> Start Now
           </button>
           <button className="group border-2 border-white px-8 py-4 rounded-full font-bold text-lg bg-white text-purple-600 transform hover:scale-110 transition-all duration-300 cursor-pointer hover:shadow-2xl">
-            <span className="group-hover:animate-bounce inline-block">📚</span> Learn More
+            <span className="group-hover:animate-bounce inline-block">📞</span> Contact Us
           </button>
         </div>
       </div>
