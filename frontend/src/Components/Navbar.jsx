@@ -209,10 +209,8 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `relative transition-colors duration-300 ${
-                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
-              } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                isActive ? "after:w-full" : ""
+              `relative transition-colors duration-300 ${isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+              } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
               }`
             }
           >
@@ -224,6 +222,17 @@ const Navbar = () => {
           >
             Features
           </a>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `relative transition-colors duration-300 ${isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
+              } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
+              }`
+            }
+          >
+            About Us
+          </NavLink>
+
           <a
             href="/#whyus"
             className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
@@ -234,12 +243,10 @@ const Navbar = () => {
             <NavLink
               to="/dashboard"
               className={({ isActive }) =>
-                `relative transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#8C4DCF]"
-                    : "text-black hover:text-[#8C4DCF]"
-                } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                  isActive ? "after:w-full" : ""
+                `relative transition-colors duration-300 ${isActive
+                  ? "text-[#8C4DCF]"
+                  : "text-black hover:text-[#8C4DCF]"
+                } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
                 }`
               }
             >
@@ -313,19 +320,17 @@ const Navbar = () => {
             >
               <motion.div variants={menuItemVariants}>
                 <NavLink
-                  to="/"
+                  to="/about"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-300 ${
-                      isActive
-                        ? "text-[#8C4DCF]"
-                        : "text-black hover:text-[#8C4DCF]"
-                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                      isActive ? "after:w-full" : ""
+                    `relative transition-colors duration-300 ${isActive
+                      ? "text-[#8C4DCF]"
+                      : "text-black hover:text-[#8C4DCF]"
+                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
                     }`
                   }
                   onClick={closeMobileMenu}
                 >
-                  Home
+                  About Us
                 </NavLink>
               </motion.div>
 
@@ -337,6 +342,22 @@ const Navbar = () => {
                 >
                   Features
                 </a>
+              </motion.div>
+
+              <motion.div variants={menuItemVariants}>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `relative transition-colors duration-300 ${isActive
+                      ? "text-[#8C4DCF]"
+                      : "text-black hover:text-[#8C4DCF]"
+                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
+                    }`
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Home
+                </NavLink>
               </motion.div>
 
               <motion.div variants={menuItemVariants}>
@@ -354,12 +375,10 @@ const Navbar = () => {
                   <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
-                      `relative transition-colors duration-300 ${
-                        isActive
-                          ? "text-[#8C4DCF]"
-                          : "text-black hover:text-[#8C4DCF]"
-                      } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                        isActive ? "after:w-full" : ""
+                      `relative transition-colors duration-300 ${isActive
+                        ? "text-[#8C4DCF]"
+                        : "text-black hover:text-[#8C4DCF]"
+                      } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
                       }`
                     }
                     onClick={closeMobileMenu}

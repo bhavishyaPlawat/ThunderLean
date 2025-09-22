@@ -61,14 +61,16 @@ const PageFooter = () => {
           ))}
         </div>
 
-        {/* Reduced top margin for the copyright section on mobile (`mt-8`) */}
-        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500 md:mt-12">
-          <p>
-            &copy; {new Date().getFullYear()} Thunderlean. All rights reserved.
-          </p>
-        </div>
+
+
+      {/* Reduced top margin for the copyright section on mobile (`mt-8`) */}
+      <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500 md:mt-12">
+        <p>
+          &copy; {new Date().getFullYear()} Thunderlean. All rights reserved.
+        </p>
       </div>
-    </footer>
+    </div>
+    </footer >
   );
 };
 
