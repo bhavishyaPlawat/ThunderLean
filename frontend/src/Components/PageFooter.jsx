@@ -8,18 +8,32 @@ const PageFooter = () => {
   ];
 
   const footerLinks = [
-    { title: "Product", links: ["Features", "Pricing", "Updates"] },
-    { title: "Company", links: ["About", "Contact Us", "Careers"] },
-    { title: "Legal", links: ["Privacy Policy", "Terms of Service"] },
+    { title: "Product", links: [
+      { name: "Features", href: "/#features" },
+      { name: "Pricing", href: "#" },
+      { name: "Updates", href: "#" }
+    ]},
+    { title: "Company", links: [
+      { name: "About", href: "/#whyus" },
+      { name: "Contact Us", href: "#" },
+      { name: "Careers", href: "#" }
+    ]},
+    { title: "Support", links: [
+      { name: "FAQs", href: "/faqs" },
+      { name: "Help Center", href: "#" },
+      { name: "Community", href: "/community" }
+    ]},
+    { title: "Legal", links: [
+      { name: "Privacy Policy", href: "#" },
+      { name: "Terms of Service", href: "#" }
+    ]},
   ];
 
   return (
     <footer id="whyus" className="bg-[#1F2937] text-white pt-12 pb-8 md:pt-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* The grid now adapts better to tablets (`sm:grid-cols-2`).
-          The main brand section (`sm:col-span-2`) spans the full width on tablets for better balance.
-        */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-1 mb-6 md:mb-0">
             <h1 className="text-2xl font-bold tracking-wide text-white">
               Thunderlean
@@ -33,6 +47,8 @@ const PageFooter = () => {
                   key={index}
                   href={social.href}
                   className="text-gray-400 hover:text-white transition-colors text-2xl"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {social.icon}
                 </a>
@@ -40,25 +56,47 @@ const PageFooter = () => {
             </div>
           </div>
 
+          {/* Footer Links - Now visible on mobile */}
           {footerLinks.map((section) => (
-            <div key={section.title} className="mb-6 hidden md:block">
-              <h4 className="font-semibold text-lg tracking-wider mb-4">
+            <div key={section.title} className="mb-6">
+              <h4 className="font-semibold text-lg tracking-wider mb-4 text-white">
                 {section.title}
               </h4>
               <ul className="space-y-2 text-sm">
                 {section.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <a
-                      href="#"
-                      className="text-gray-400 hover:text-white transition-colors"
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors block py-1"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+        </div>
+
+        {/* Mobile Quick Links */}
+        <div className="md:hidden mt-8 pt-6 border-t border-gray-700">
+          <h4 className="font-semibold text-lg tracking-wider mb-4 text-white text-center">
+            Quick Navigation
+          </h4>
+          <div className="grid grid-cols-2 gap-4 text-center">
+            <a href="/" className="text-gray-400 hover:text-white transition-colors py-2">
+              Home
+            </a>
+            <a href="/#features" className="text-gray-400 hover:text-white transition-colors py-2">
+              Features
+            </a>
+            <a href="/faqs" className="text-gray-400 hover:text-white transition-colors py-2">
+              FAQs
+            </a>
+            <a href="/#whyus" className="text-gray-400 hover:text-white transition-colors py-2">
+              About
+            </a>
+          </div>
         </div>
 
         {/* Reduced top margin for the copyright section on mobile (`mt-8`) */}

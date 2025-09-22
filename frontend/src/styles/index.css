@@ -33,3 +33,10 @@ html {
   background-size: cover;
   background-position: center;
 }
+
+.faq-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://img.freepik.com/free-psd/3d-rendering-questions-background_23-2151455632.jpg?semt=ais_incoming&w=740&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
