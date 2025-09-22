@@ -1,0 +1,53 @@
+1. Data Quality Improvements
+
+Add a unique identifier: A Meal_ID or Row_ID column for easier referencing.
+
+Standardize units:
+
+Calories in kcal (currently fine).
+
+Sodium → keep as mg, but maybe add a converted column in % of daily RDA.
+
+Protein/Fat/Carbs → already in grams (good).
+
+Serving size: Include Serving_Size (e.g., 1 cup, 100g, 2 pieces) to make comparisons fair.
+
+Meal tags: Add tags like “Veg/Non-Veg”, “Processed/Whole”, “Dairy”, “Fruit”.
+
+2. Additional Nutritional Attributes
+
+If your food dataset supports it, add columns like:
+
+Cholesterol (mg)
+
+Saturated Fat (g) vs. Unsaturated Fat (g)
+
+Potassium (mg)
+
+Calcium (mg)
+
+Vitamin C, A, D (mg or IU)
+
+These help make your dashboard feel more “advanced” and allow deeper analysis.
+
+3. Contextual Metadata
+
+Day Type: Workday/Weekend (so you can compare patterns).
+
+Meal Timing (numeric): Convert Breakfast/Lunch/Dinner into time ranges (e.g., 8:30, 13:00). Helps in time-series visualizations.
+
+User Info: If personalized, add User_ID, Gender, Age, Weight, Height → useful for calculating daily recommended intake.
+
+4. Analytical Enhancements
+
+% Daily Value Columns: Auto-compute each nutrient as a % of recommended daily intake (RDA). For example:
+
+Calories (2000 kcal baseline)
+
+Protein (50 g)
+
+Fat (70 g)
+
+Sodium (2300 mg)
+
+Meal totals per day: Add pre-aggregated daily totals in a summary table (good for trend charts).

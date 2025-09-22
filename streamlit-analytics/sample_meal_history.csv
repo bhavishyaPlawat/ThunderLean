@@ -1,0 +1,17 @@
+Date,Meal_Time,Food,Calories,Protein (g),Fat (g),Carbs (g),Fiber (g),Sugar (g),Sodium (mg),Cholesterol (mg),Saturated Fat (g),Potassium (mg),Calcium (mg),Category,Meal_Type,Day_Type
+2024-05-20,Breakfast,Oatmeal (Cooked),300,10,6,54,8,2,10,0,1,200,39,Grain,Breakfast,Workday
+2024-05-20,Breakfast,Milk (Whole),150,8,8,12,0,12,100,4,5,300,289,Dairy,Breakfast,Workday
+2024-05-20,Breakfast,Banana,105,1.3,0.4,27,3,14,1,0,0,400,0,Fruit,Breakfast,Workday
+2024-05-20,Lunch,Chicken Curry,500,40,30,10,4,4,1000,100,8,400,25,Protein,Lunch,Workday
+2024-05-20,Lunch,Cooked Rice (White),410,8,1,90,2,0.2,4,0,0,100,1,Grain,Lunch,Workday
+2024-05-20,Lunch,Chapati (Whole Wheat),240,7,8,40,6,1,240,0,3,150,28,Grain,Lunch,Workday
+2024-05-20,Snacks,Mixed Nuts,180,5,15,5,3,2,1,0,2,200,1,Snack,Snack,Workday
+2024-05-20,Dinner,Grilled Fish,400,44,24,0,0,0,140,75,4,500,50,Seafood,Dinner,Workday
+2024-05-20,Dinner,Salad (Veg Mix),80,3,2,15,5,6,200,0,0,300,30,Vegetable,Dinner,Workday
+2024-05-21,Breakfast,Idli (Steamed Rice Cake),300,8,2,66,2,1,240,0,1,100,0,Grain,Breakfast,Weekend
+2024-05-21,Breakfast,Sambar,150,8,5,20,8,2,320,0,0,200,80,Legume,Breakfast,Weekend
+2024-05-21,Lunch,Vegetable Pulao,440,10,12,70,6,8,700,0,3,200,40,Grain,Lunch,Weekend
+2024-05-21,Snacks,Apple,95,0.5,0.3,25,4,19,2,0,0,200,10,Fruit,Snack,Weekend
+2024-05-21,Snacks,Peanut Butter,95,4,8,3,1,1,60,0,2,100,20,Snack,Snack,Weekend
+2024-05-21,Dinner,Palak Paneer,320,18,22,10,5,4,600,40,8,300,200,Protein,Dinner,Weekend
+2024-05-21,Dinner,Chapati (Whole Wheat),120,3.5,4,20,3,0.5,120,0,2,100,20,Grain,Dinner,Weekend
