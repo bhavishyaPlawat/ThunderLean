@@ -44,11 +44,11 @@ streamlit-analytics/
 ---
 
 ## 📸 Screenshots
-![Dashboard Screenshot 1](screenshots/dashboard1.png)
-![Dashboard Screenshot 2](screenshots/dashboard2.png)
-![Dashboard Screenshot 3](screenshots/dashboard3.png)
-![Dashboard Screenshot 4](screenshots/dashboard4.png)
-![Dashboard Screenshot 5](screenshots/dashboard5.png)
+![Dashboard Screenshot 1](streamlit-analytics/screenshots/dashboard1.png)
+![Dashboard Screenshot 2](streamlit-analytics/screenshots/dashboard2.png)
+![Dashboard Screenshot 3](streamlit-analytics/screenshots/dashboard3.png)
+![Dashboard Screenshot 4](streamlit-analytics/screenshots/dashboard4.png)
+![Dashboard Screenshot 5](streamlit-analytics/screenshots/dashboard5.png)
 
 ---
 
@@ -64,3 +64,4 @@ If you find this project helpful, feel free to:
 - Submit issues or pull requests.
 
 - Suggest improvements or report bugs.
+
