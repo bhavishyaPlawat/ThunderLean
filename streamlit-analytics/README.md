@@ -24,6 +24,49 @@ The Streamlit Analytics Dashboard allows users to:
 - **Git & GitHub** – version control and collaboration
 
 ---
+# ⚡ Streamlit Analytics Dashboard – Execution Guide
+
+This guide explains how to run and test **Streamlit Analytics Dashboard** contribution for ThunderLean (Phase 4).  
+
+---
+
+## 🖥️ Steps to Run the Project
+
+### Clone the Repository
+```bash
+git clone https://github.com/vandita-yadav/ThunderLean.git
+cd ThunderLean
+```
+
+### Checkout my branch
+```bash
+git checkout feature/streamlit-dashboard
+```
+### Navigate into my folder
+```bash
+cd streamlit-analytics
+```
+### (Optional) Create & Activate Virtual Environment
+```bash
+# For Windows
+python -m venv venv
+venv\Scripts\activate
+
+# For Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Run the Streamlit App
+```bash
+streamlit run app.py
+```
+---
 
 ## 🗂 Folder Structure
 ```
@@ -63,3 +106,4 @@ If you find this project helpful, feel free to:
 - Fork the repository.
 - Submit issues or pull requests.
 - Suggest improvements or report bugs.
+
