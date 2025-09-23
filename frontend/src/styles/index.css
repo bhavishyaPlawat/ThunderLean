@@ -1,23 +1,22 @@
 @import "tailwindcss";
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
-/* Custom utilities */
-@layer utilities {
-  .bg-custom-gradient {
-    background-image: radial-gradient(
-      circle at 90% 100%,
-      #ffffff 0%,
-      #e5e8f5 40%,
-      #879AE3 100%
-    );
-  }
-} /* ← Closing bracket was missing here */
 
 @theme {
   --font-heading: "Inter", "sans-serif";
   --font-body: "Inter", "sans-serif";
 }
-/* Global styles */
+
+/* ✅ Custom utility for reusable gradient */
+@layer utilities {
+  .bg-custom-gradient {
+    background-image: radial-gradient(circle at 90% 100%,
+        #ffffff 0%,
+        #e5e8f5 40%,
+        #879AE3 100%);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -32,11 +31,4 @@ html {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-}
-
-.faq-container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://img.freepik.com/free-psd/3d-rendering-questions-background_23-2151455632.jpg?semt=ais_incoming&w=740&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }

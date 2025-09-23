@@ -1,7 +1,29 @@
-import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import React , { useState, useEffect }from "react";
+import { FaTwitter, FaGithub, FaLinkedin,FaArrowUp } from "react-icons/fa";
 
 const PageFooter = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show button when user scrolls down
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  // Scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   const socialLinks = [
     { icon: <FaGithub />, href: "https://github.com/bhavishyaPlawat/ThunderLean" },
     { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/bhavishya-plawat-165184303/" },
@@ -105,6 +127,16 @@ const PageFooter = () => {
           </p>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors"
+        >
+          <FaArrowUp />
+        </button>
+      )}
     </footer>
   );
 };

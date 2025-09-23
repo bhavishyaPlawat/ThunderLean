@@ -1,12 +1,14 @@
+
 import React, { useState, useEffect } from "react";
 import {
   AiFillThunderbolt,
   AiOutlineMenu,
   AiOutlineClose,
 } from "react-icons/ai";
+import { RiMenu3Fill } from "react-icons/ri";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { supabase } from "../supabaseClient"; // Import Supabase client
+import { supabase } from "../supabaseClient";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -15,7 +17,6 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Check initial session
     const getSession = async () => {
       const {
         data: { session },
@@ -24,14 +25,12 @@ const Navbar = () => {
     };
     getSession();
 
-    // Listen for auth state changes (login, logout)
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setIsLoggedIn(!!session);
       }
     );
 
-    // Cleanup listener on component unmount
     return () => {
       authListener.subscription.unsubscribe();
     };
@@ -44,430 +43,227 @@ const Navbar = () => {
       setIsPwaInstallable(true);
     };
 
-    const customHandler = () => {
-      setIsPwaInstallable(true);
-    };
-
-    const installedHandler = () => {
-      setIsPwaInstallable(false);
-    };
-
-    const alreadyInstalledHandler = () => {
-      setIsPwaInstallable(false);
-    };
-
     window.addEventListener("beforeinstallprompt", handler);
-    window.addEventListener("pwa-installable", customHandler);
-    window.addEventListener("pwa-installed", installedHandler);
-    window.addEventListener("pwa-already-installed", alreadyInstalledHandler);
-
-    if (
-      window.matchMedia &&
-      window.matchMedia("(display-mode: standalone)").matches
-    ) {
-      setIsPwaInstallable(false);
-    }
-
     return () => {
       window.removeEventListener("beforeinstallprompt", handler);
-      window.removeEventListener("pwa-installable", customHandler);
-      window.removeEventListener("pwa-installed", installedHandler);
-      window.removeEventListener(
-        "pwa-already-installed",
-        alreadyInstalledHandler
-      );
     };
   }, []);
 
   const handleInstallClick = async () => {
     const promptEvent = window.deferredPrompt;
-    if (!promptEvent) {
-      console.log("No install prompt available");
-      return;
-    }
+    if (!promptEvent) return;
 
     try {
       await promptEvent.prompt();
       const { outcome } = await promptEvent.userChoice;
-
       if (outcome === "accepted") {
         setIsPwaInstallable(false);
         window.deferredPrompt = null;
-        console.log("PWA installed successfully");
-      } else {
-        console.log("PWA installation declined");
       }
     } catch (error) {
       console.error("Error installing PWA:", error);
     }
   };
 
-  const closeMobileMenu = () => {
-    setIsMenuOpen(false);
-  };
-
   const handleSignInClick = () => {
     navigate("/auth");
-    closeMobileMenu();
+    setIsMenuOpen(false);
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/");
-    closeMobileMenu();
+    setIsMenuOpen(false);
   };
 
-  // Animation variants
+  // Animations
   const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      y: -20,
-      scale: 0.95,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-      },
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      scale: 0.95,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
-    },
-  };
-
-  const menuItemVariants = {
-    hidden: {
-      opacity: 0,
-      x: -20,
-      transition: {
-        duration: 0.2,
-      },
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-    exit: {
-      opacity: 0,
-      x: -20,
-      transition: {
-        duration: 0.15,
-      },
-    },
-  };
-
-  const hamburgerVariants = {
-    open: {
-      rotate: 180,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-    closed: {
-      rotate: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
+    hidden: { opacity: 0, y: -20, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: -20, scale: 0.95 },
   };
 
   return (
-    <nav className="relative px-4 sm:px-6 lg:px-8 py-4">
-      <div className="flex justify-between items-center">
-        <div
-          onClick={() => navigate("/")}
-          className="flex items-center hover:cursor-pointer"
-        >
-          <AiFillThunderbolt className="h-8 w-8 text-purple-600" />
-          <span className="ml-2 text-xl font-bold uppercase">ThunderLean</span>
-        </div>
-
-        <div className="hidden md:flex items-center font-bold gap-8">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `relative transition-colors duration-300 ${
-                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
-              } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                isActive ? "after:w-full" : ""
-              }`
-            }
-          >
-            Home
-          </NavLink>
-          <a
-            href="/#features"
-            className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
-          >
-            Features
-          </a>
-          <NavLink
-            to="/faqs"
-            className={({ isActive }) =>
-              `relative transition-colors duration-300 ${
-                isActive ? "text-[#8C4DCF]" : "text-black hover:text-[#8C4DCF]"
-              } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                isActive ? "after:w-full" : ""
-              }`
-            }
-          >
-            FAQs
-          </NavLink>
-          <a
-            href="/#whyus"
-            className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
-          >
-            Why Us?
-          </a>
-          {isLoggedIn && (
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                `relative transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#8C4DCF]"
-                    : "text-black hover:text-[#8C4DCF]"
-                } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                  isActive ? "after:w-full" : ""
-                }`
-              }
+    <header className="fixed top-0  z-50 w-full ">
+      <nav className="relative mx-auto max-w-7xl  lg:px-8 py-4">
+        {/* Glassmorphism container */}
+        <div className="relative w-full backdrop-blur-xl bg-white/70 dark:bg-indigo-900/50 border border-gray-200/30 dark:border-gray-700/30 rounded-full px-4 py-3 shadow-md">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <div
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2 hover:cursor-pointer"
             >
-              Dashboard
-            </NavLink>
-          )}
-        </div>
+              <AiFillThunderbolt className="h-8 w-8 text-purple-600" />
+              <span className="ml-2 text-xl font-bold uppercase">
+                ThunderLean
+              </span>
+            </div>
 
-        <div className="hidden md:flex items-center gap-4">
-          {!isLoggedIn ? (
-            <button
-              onClick={handleSignInClick}
-              className="px-6 py-2 bg-[#2C2C2C] text-white rounded-md hover:bg-[#3C3C3C] transition-colors"
-            >
-              Sign In
-            </button>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="px-6 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors"
-            >
-              Logout
-            </button>
-          )}
-
-          {isPwaInstallable && (
-            <button
-              onClick={handleInstallClick}
-              className="px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              Install App
-            </button>
-          )}
-        </div>
-
-        <div className="md:hidden">
-          <motion.button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            variants={hamburgerVariants}
-            animate={isMenuOpen ? "open" : "closed"}
-            whileTap={{ scale: 0.95 }}
-          >
-            {isMenuOpen ? (
-              <AiOutlineClose size={24} />
-            ) : (
-              <AiOutlineMenu size={24} />
-            )}
-          </motion.button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            className="mx-4 absolute left-0 right-0 z-[100] md:hidden mt-4 bg-white/50 backdrop-blur-sm border border-black/10 rounded-lg shadow-xl overflow-hidden"
-            variants={mobileMenuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <motion.div
-              className="flex flex-col items-center gap-4 p-6"
-              variants={mobileMenuVariants}
-            >
-              <motion.div variants={menuItemVariants}>
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-8 font-semibold">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
+              >
+                Home
+              </NavLink>
+              <a
+                href="/#features"
+                className="relative text-gray-800 dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                Features
+              </a>
+              <a
+                href="/#whyus"
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                Why Us?
+              </a>
+              <a
+                href="/faqs"
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                FAQs
+              </a>
+              <a
+                href="/#contact"
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                Contact
+              </a>
+              {isLoggedIn && (
                 <NavLink
-                  to="/"
+                  to="/dashboard"
                   className={({ isActive }) =>
-                    `relative transition-colors duration-300 ${
+                    `transition relative ${
                       isActive
-                        ? "text-[#8C4DCF]"
-                        : "text-black hover:text-[#8C4DCF]"
-                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                      isActive ? "after:w-full" : ""
-                    }`
+                        ? "text-purple-600 after:w-full"
+                        : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
                   }
-                  onClick={closeMobileMenu}
                 >
+                  Dashboard
+                </NavLink>
+              )}
+            </div>
+
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-4">
+              {!isLoggedIn ? (
+                <button
+                  onClick={handleSignInClick}
+                  className="px-6 py-2 bg-[#7333b8] cursor-pointer text-white rounded-full hover:bg-[#6527a8] transition-transform transform hover:scale-105 duration-300"
+                >
+                  Sign In
+                </button>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="px-6 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition"
+                >
+                  Logout
+                </button>
+              )}
+              {isPwaInstallable && (
+                <button
+                  onClick={handleInstallClick}
+                  className="px-6 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"
+                >
+                  Install App
+                </button>
+              )}
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? (
+                  <AiOutlineClose size={24} />
+                ) : (
+                  // <AiOutlineMenu size={24} />
+                  <RiMenu3Fill size={24} />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="mt-3  md:hidden  backdrop-blur-xl bg-white/100 dark:bg-indigo-900/50 border border-indigo-200/30 dark:border-gray-700/30  rounded-2xl p-6 shadow-lg"
+              variants={mobileMenuVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="flex flex-col gap-4">
+                <NavLink to="/" onClick={() => setIsMenuOpen(false)}
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
                   Home
                 </NavLink>
-              </motion.div>
-
-              <motion.div variants={menuItemVariants}>
-                <a
-                  href="/#features"
-                  className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
-                  onClick={closeMobileMenu}
-                >
+                <a href="/#features" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
                   Features
                 </a>
-              </motion.div>
-
-              <motion.div variants={menuItemVariants}>
-                <NavLink
-                  to="/faqs"
-                  className={({ isActive }) =>
-                    `relative transition-colors duration-300 ${
-                      isActive
-                        ? "text-[#8C4DCF]"
-                        : "text-black hover:text-[#8C4DCF]"
-                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                      isActive ? "after:w-full" : ""
-                    }`
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  FAQs
-                </NavLink>
-              </motion.div>
-
-              <motion.div variants={menuItemVariants}>
-                <a
-                  href="/#whyus"
-                  className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
-                  onClick={closeMobileMenu}
-                >
+                <a href="/#whyus" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
                   Why Us?
                 </a>
-              </motion.div>
-
-              {isLoggedIn && (
-                <motion.div variants={menuItemVariants}>
+                <a href="/faqs" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                  FAQs
+                </a>
+                <a href="/#contact" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                  Contact
+                </a>
+                {isLoggedIn && (
                   <NavLink
                     to="/dashboard"
-                    className={({ isActive }) =>
-                      `relative transition-colors duration-300 ${
-                        isActive
-                          ? "text-[#8C4DCF]"
-                          : "text-black hover:text-[#8C4DCF]"
-                      } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${
-                        isActive ? "after:w-full" : ""
-                      }`
-                    }
-                    onClick={closeMobileMenu}
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     Dashboard
                   </NavLink>
-                </motion.div>
-              )}
+                )}
 
-              {!isLoggedIn ? (
-                <motion.div variants={menuItemVariants} className="w-full mt-2">
-                  <motion.button
+                {!isLoggedIn ? (
+                  <button
                     onClick={handleSignInClick}
-                    className="w-full px-6 py-3 bg-[#2C2C2C] text-white rounded-md hover:bg-[#3C3C3C] transition-colors font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="w-full px-6 py-3 bg-[#7333b8] text-white rounded-full hover:bg-[#6527a8] transition"
                   >
                     Sign In
-                  </motion.button>
-                </motion.div>
-              ) : (
-                <motion.div
-                  variants={menuItemVariants}
-                  className="w-full flex flex-col gap-3 mt-2"
-                >
-                  <motion.button
-                    onClick={() => {
-                      navigate("/dashboard");
-                      closeMobileMenu();
-                    }}
-                    className="w-full px-6 py-3 bg-[#8C4DCF] text-white rounded-md hover:bg-[#7C3CBF] transition-colors font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Dashboard
-                  </motion.button>
-                  <motion.button
+                  </button>
+                ) : (
+                  <button
                     onClick={handleLogout}
-                    className="w-full px-6 py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    className="w-full px-6 py-3 bg-gray-500 text-white rounded-full hover:bg-gray-600 transition"
                   >
                     Logout
-                  </motion.button>
-                </motion.div>
-              )}
-
-              {isPwaInstallable && (
-                <motion.div variants={menuItemVariants} className="w-full">
-                  <motion.button
-                    onClick={() => {
-                      handleInstallClick();
-                      closeMobileMenu();
-                    }}
-                    className="w-full px-6 py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 font-medium"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  </button>
+                )}
+                {isPwaInstallable && (
+                  <button
+                    onClick={handleInstallClick}
+                    className="w-full px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
                     Install App
-                  </motion.button>
-                </motion.div>
-              )}
+                  </button>
+                )}
+              </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+          )}
+        </AnimatePresence>
+      </nav>
+    </header>
   );
 };
 

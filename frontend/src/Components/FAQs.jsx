@@ -156,27 +156,18 @@ const FAQs = () => {
   };
 
   return (
-    <div className="min-h-screen faq-container">
-      {/* Background with overlay */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-pink-100 opacity-90"></div> */}
-      
+    <div className="min-h-screen bg-[#E3E7F0]">
       {/* Navbar */}
-      <div className="relative z-10">
+      <div className="fixed top-0 left-0 w-full z-50 bg-[#E3E7F0] shadow-md">
         <Navbar />
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 min-h-screen pt-8">
         {/* Hero Section */}
-        <div className="text-center mb-12 px-6 lg:px-8">
-          <div className="flex items-center justify-center mb-6">
-            <AiFillThunderbolt className="h-12 w-12 text-purple-600" />
-            <span className="ml-2 text-3xl font-bold text-white">
-              ThunderLean
-            </span>
-          </div>
+        <div className="text-center mb-12 px-6 lg:px-8 pt-40">
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-4xl md:text-5xl font-bold text-[#1F2937] mb-4"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -184,7 +175,7 @@ const FAQs = () => {
             Frequently Asked Questions
           </motion.h1>
           <motion.p 
-            className="text-xl text-white/80 max-w-2xl mx-auto"
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -208,7 +199,7 @@ const FAQs = () => {
                 placeholder="Search questions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#8C4DCF] focus:border-transparent transition-all shadow-sm"
               />
             </div>
           </motion.div>
@@ -226,10 +217,10 @@ const FAQs = () => {
                   key={category.id}
                   variants={itemVariants}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all backdrop-blur-md border ${
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all border ${
                     activeCategory === category.id
-                      ? "bg-purple-600/80 text-white border-purple-500 shadow-lg"
-                      : "bg-white/10 text-white border-white/20 hover:bg-white/20"
+                      ? "bg-[#8C4DCF] text-white border-[#8C4DCF] shadow-lg"
+                      : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -257,20 +248,20 @@ const FAQs = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 overflow-hidden"
+                  className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                 >
                   <button
                     onClick={() => toggleExpanded(faq.id)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
                   >
-                    <span className="font-semibold text-white text-lg pr-4">
+                    <span className="font-semibold text-gray-800 text-lg pr-4">
                       {faq.question}
                     </span>
                     <motion.div
                       animate={{ rotate: expandedItems.has(faq.id) ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <FaChevronDown className="text-purple-300" />
+                      <FaChevronDown className="text-[#8C4DCF]" />
                     </motion.div>
                   </button>
                   
@@ -283,20 +274,20 @@ const FAQs = () => {
                         transition={{ duration: 0.3 }}
                       >
                         <div className="px-6 pb-6">
-                          <p className="text-white/80 leading-relaxed mb-4">
+                          <p className="text-gray-600 leading-relaxed mb-4">
                             {faq.answer}
                           </p>
                           
                           {/* Feedback Section */}
-                          <div className="flex items-center gap-4 pt-4 border-t border-white/20">
-                            <span className="text-sm text-white/60">Was this helpful?</span>
+                          <div className="flex items-center gap-4 pt-4 border-t border-gray-100">
+                            <span className="text-sm text-gray-500">Was this helpful?</span>
                             <div className="flex gap-2">
                               <button
                                 onClick={() => handleFeedback(faq.id, true)}
                                 className={`p-2 rounded-full transition-colors ${
                                   feedback[faq.id] === true
-                                    ? "bg-green-500/30 text-green-300"
-                                    : "bg-white/10 text-white/60 hover:bg-green-500/20"
+                                    ? "bg-green-100 text-green-600"
+                                    : "bg-gray-100 text-gray-500 hover:bg-green-50"
                                 }`}
                               >
                                 <FaThumbsUp size={14} />
@@ -305,8 +296,8 @@ const FAQs = () => {
                                 onClick={() => handleFeedback(faq.id, false)}
                                 className={`p-2 rounded-full transition-colors ${
                                   feedback[faq.id] === false
-                                    ? "bg-red-500/30 text-red-300"
-                                    : "bg-white/10 text-white/60 hover:bg-red-500/20"
+                                    ? "bg-red-100 text-red-600"
+                                    : "bg-gray-100 text-gray-500 hover:bg-red-50"
                                 }`}
                               >
                                 <FaThumbsDown size={14} />
@@ -329,26 +320,26 @@ const FAQs = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <FaQuestionCircle className="mx-auto text-6xl text-white/40 mb-4" />
-              <h3 className="text-xl font-semibold text-white mb-2">No questions found</h3>
-              <p className="text-white/60">Try adjusting your search or browse different categories</p>
+              <FaQuestionCircle className="mx-auto text-6xl text-gray-300 mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">No questions found</h3>
+              <p className="text-gray-600">Try adjusting your search or browse different categories</p>
             </motion.div>
           )}
 
           {/* Contact Support Section */}
           <motion.div 
-            className="mt-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 text-center"
+            className="mt-16 bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4">Still need help?</h3>
-            <p className="text-white/80 mb-6 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Still need help?</h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               Can't find the answer you're looking for? Our support team is here to help you get the most out of ThunderLean.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button 
-                className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-colors border border-white/20"
+                className="flex items-center justify-center gap-2 bg-[#8C4DCF] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#7A42B8] transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -357,7 +348,7 @@ const FAQs = () => {
               </motion.button>
               <motion.button 
                 onClick={() => navigate('/auth')}
-                className="flex items-center justify-center gap-2 border-2 border-white/40 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors backdrop-blur-md"
+                className="flex items-center justify-center gap-2 border-2 border-[#8C4DCF] text-[#8C4DCF] px-6 py-3 rounded-xl font-semibold hover:bg-[#8C4DCF] hover:text-white transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
