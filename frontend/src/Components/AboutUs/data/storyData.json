@@ -1,0 +1,46 @@
+{
+  "sectionTitle": "Our Story",
+  "tabs": [
+    {
+      "id": "mission",
+      "label": "Mission",
+      "icon": "/assets/mission.png",
+      "title": "Our Mission",
+      "content": "To democratize fitness and nutrition by making advanced AI technology accessible to everyone. We believe that everyone deserves personalized, intelligent guidance on their health journey, regardless of their technical expertise or fitness background. ThunderLean transforms complex nutritional data into simple, actionable insights that empower users to make informed decisions about their health and wellness."
+    },
+    {
+      "id": "vision", 
+      "label": "Vision",
+      "icon": "/assets/vision.png",
+      "title": "Our Vision",
+      "content": "To become the world's most trusted AI-powered health companion, creating a future where personalized nutrition and fitness guidance is as easy as taking a photo of your meal. We envision a world where technology seamlessly integrates with daily life to promote healthier habits, prevent chronic diseases, and enhance the quality of life for millions of people worldwide."
+    },
+    {
+      "id": "values",
+      "label": "Values", 
+      "icon": "/assets/values.png",
+      "title": "Our Values",
+      "content": "",
+      "valuesList": [
+        {
+          "icon": "/assets/mission.png",
+          "iconAlt": "accuracy",
+          "title": "Accuracy",
+          "description": "We prioritize precision in every calorie count and nutritional analysis."
+        },
+        {
+          "icon": "/assets/Accessibility.png",
+          "iconAlt": "accessibility", 
+          "title": "Accessibility",
+          "description": "Making advanced AI technology simple and accessible for everyone."
+        },
+        {
+          "icon": "/assets/privacy.png",
+          "iconAlt": "privacy",
+          "title": "Privacy", 
+          "description": "Your health data is sacred, and we protect it with the highest standards."
+        }
+      ]
+    }
+  ]
+}

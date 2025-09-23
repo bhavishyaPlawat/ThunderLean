@@ -1,0 +1,24 @@
+{
+  "features": [
+    {
+      "icon": "/assets/ai_tracker.png",
+      "title": "AI-Powered Tracking",
+      "description": "Our Gemini-powered AI analyzes your meals with unprecedented accuracy, providing detailed nutritional breakdowns from simple descriptions or photos."
+    },
+    {
+      "icon": "/assets/Tdee_Calculator.png",
+      "title": "Smart TDEE Calculator",
+      "description": "Get personalized calorie targets based on your unique metabolism, activity level, and fitness goals with our advanced calculation system."
+    },
+    {
+      "icon": "/assets/Detailed_Dashboard.png",
+      "title": "Interactive Dashboard",
+      "description": "Visualize your progress with beautiful charts and graphs, track your journey with our interactive calendar, and monitor achievements."
+    },
+    {
+      "icon": "/assets/Get_tips.png",
+      "title": "Personalized Insights",
+      "description": "Receive customized recommendations and tips tailored to your specific fitness goals, whether it's weight loss, gain, or muscle building."
+    }
+  ]
+}
