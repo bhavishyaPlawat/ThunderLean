@@ -19,18 +19,18 @@ const textVariant = {
 const Hero = () => {
   return (
     <div className="relative w-full bg-custom-gradient rounded-b-[4rem] sm:rounded-b-[6rem] lg:rounded-b-[8rem] overflow-hidden">
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto">
         <Navbar />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[70vh] sm:min-h-[80vh] flex flex-col justify-center text-center md:text-left pb-56 md:pb-0">
+      <div className="container mx-auto px-4 sm:px-6  lg:px-8 min-h-[80vh] sm:min-h-[90vh] flex flex-col justify-center text-center md:text-left pb-56 md:pb-0">
         <div className="w-full lg:ml-[8%] md:w-1/2">
           <motion.h1
             variants={textVariant}
             initial="hidden"
             animate="visible"
             custom={0}
-            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#1A1A1A]"
+            className="font-heading text-4xl pt-8 sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#1A1A1A]"
           >
             Track Your <br /> Calories <br /> Smartly
           </motion.h1>
