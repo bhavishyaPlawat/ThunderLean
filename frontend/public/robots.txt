@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thunderlean.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /uploads/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Allow important pages
+Allow: /
+Allow: /auth
+Allow: /dashboard
+Allow: /food-log
+Allow: /exercise-log
+Allow: /community
+Allow: /settings
+
+# Crawl delay (optional)
+Crawl-delay: 1

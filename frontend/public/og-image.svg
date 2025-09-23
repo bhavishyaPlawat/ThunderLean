@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8C4DCF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6B46C1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F3F4F6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="530" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="200" cy="500" r="30" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1000" cy="150" r="40" fill="rgba(255,255,255,0.1)"/>
+  
+  <!-- Main content -->
+  <g transform="translate(600, 315)">
+    <!-- Logo/Icon placeholder -->
+    <circle cx="-200" cy="-80" r="60" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.3)" stroke-width="3"/>
+    <text x="-200" y="-70" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="40" font-weight="bold">⚡</text>
+    
+    <!-- Main title -->
+    <text x="0" y="-20" text-anchor="middle" fill="url(#textGradient)" font-family="Arial, sans-serif" font-size="64" font-weight="bold">ThunderLean</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="40" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="28" font-weight="normal">AI-Powered Fitness &amp; Nutrition Tracker</text>
+    
+    <!-- Description -->
+    <text x="0" y="90" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="20" font-weight="normal">Transform your fitness journey with intelligent tracking</text>
+    
+    <!-- Features -->
+    <g transform="translate(0, 140)">
+      <text x="-150" y="0" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="18" font-weight="bold">🍎 AI Meal Analysis</text>
+      <text x="0" y="0" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="18" font-weight="bold">📊 Smart Tracking</text>
+      <text x="150" y="0" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="Arial, sans-serif" font-size="18" font-weight="bold">🎯 Goal Achievement</text>
+    </g>
+  </g>
+  
+  <!-- Bottom branding -->
+  <text x="600" y="580" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="Arial, sans-serif" font-size="16">thunderlean.com</text>
+</svg>

@@ -5,6 +5,8 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa"; // Import Google icon
 import { IoClose } from "react-icons/io5";
 import { supabase } from "../supabaseClient";
+import SEOHead from "./SEOHead";
+import { getSEOConfig } from "../utils/seoConfig";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -107,8 +109,12 @@ const Auth = () => {
     setName("");
   };
 
+  const seoData = getSEOConfig('auth');
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
+    <>
+      <SEOHead {...seoData} />
+      <div className="min-h-screen bg-gradient-to-br from-purple-100 to-pink-100 auth-container flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center flex justify-center items-center flex-col mb-8">
           <div className="flex items-center justify-center mb-4">
@@ -238,6 +244,7 @@ const Auth = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
