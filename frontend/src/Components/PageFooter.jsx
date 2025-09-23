@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const PageFooter = () => {
   const socialLinks = [
@@ -56,51 +56,50 @@ const PageFooter = () => {
             </div>
           </div>
 
-          {/* Footer Links - Now visible on mobile */}
-          {footerLinks.map((section) => (
-            <div key={section.title} className="mb-6">
-              <h4 className="font-semibold text-lg tracking-wider mb-4 text-white">
-                {section.title}
-              </h4>
-              <ul className="space-y-2 text-sm">
-                {section.links.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors block py-1"
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Footer Links */}
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:col-span-4">
+            {footerLinks.map((section) => (
+              <div key={section.title} className="mb-6">
+                <h4 className="font-semibold text-lg tracking-wider mb-4 text-white">
+                  {section.title}
+                </h4>
+                <ul className="space-y-2 text-sm">
+                  {section.links.map((link) => (
+                    <li key={link.name}>
+                      <a
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors block py-1"
+                      >
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Mobile Quick Links */}
-        <div className="md:hidden mt-8 pt-6 border-t border-gray-700">
-          <h4 className="font-semibold text-lg tracking-wider mb-4 text-white text-center">
-            Quick Navigation
-          </h4>
-          <div className="grid grid-cols-2 gap-4 text-center">
-            <a href="/" className="text-gray-400 hover:text-white transition-colors py-2">
+        <div className="md:hidden mt-6 pt-4 border-t border-gray-700">
+          <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
+            <a href="/" className="text-gray-400 hover:text-white transition-colors">
               Home
             </a>
-            <a href="/#features" className="text-gray-400 hover:text-white transition-colors py-2">
+            <a href="/#features" className="text-gray-400 hover:text-white transition-colors">
               Features
             </a>
-            <a href="/faqs" className="text-gray-400 hover:text-white transition-colors py-2">
+            <a href="/faqs" className="text-gray-400 hover:text-white transition-colors">
               FAQs
             </a>
-            <a href="/#whyus" className="text-gray-400 hover:text-white transition-colors py-2">
+            <a href="/#whyus" className="text-gray-400 hover:text-white transition-colors">
               About
             </a>
           </div>
         </div>
 
-        {/* Reduced top margin for the copyright section on mobile (`mt-8`) */}
-        <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500 md:mt-12">
+        {/* Copyright */}
+        <div className="mt-4 border-t border-gray-700 pt-4 text-center text-sm text-gray-500 md:mt-12 md:pt-6">
           <p>
             &copy; {new Date().getFullYear()} Thunderlean. All rights reserved.
           </p>
