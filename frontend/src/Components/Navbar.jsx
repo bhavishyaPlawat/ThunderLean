@@ -320,6 +320,32 @@ const Navbar = () => {
             >
               <motion.div variants={menuItemVariants}>
                 <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `relative transition-colors duration-300 ${isActive
+                      ? "text-[#8C4DCF]"
+                      : "text-black hover:text-[#8C4DCF]"
+                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
+                    }`
+                  }
+                  onClick={closeMobileMenu}
+                >
+                  Home
+                </NavLink>
+              </motion.div>
+
+              <motion.div variants={menuItemVariants}>
+                <a
+                  href="/#features"
+                  className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
+                  onClick={closeMobileMenu}
+                >
+                  Features
+                </a>
+              </motion.div>
+
+              <motion.div variants={menuItemVariants}>
+                <NavLink
                   to="/about"
                   className={({ isActive }) =>
                     `relative transition-colors duration-300 ${isActive
@@ -336,33 +362,7 @@ const Navbar = () => {
 
               <motion.div variants={menuItemVariants}>
                 <a
-                  href="/#features"
-                  className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
-                  onClick={closeMobileMenu}
-                >
-                  Features
-                </a>
-              </motion.div>
-
-              <motion.div variants={menuItemVariants}>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `relative transition-colors duration-300 ${isActive
-                      ? "text-[#8C4DCF]"
-                      : "text-black hover:text-[#8C4DCF]"
-                    } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full ${isActive ? "after:w-full" : ""
-                    }`
-                  }
-                  onClick={closeMobileMenu}
-                >
-                  About Us
-                </NavLink>
-              </motion.div>
-
-              <motion.div variants={menuItemVariants}>
-                <a
-                  href="/about"
+                  href="/#whyus"
                   className="relative text-black hover:text-[#8C4DCF] transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-[#8C4DCF] after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full"
                   onClick={closeMobileMenu}
                 >
