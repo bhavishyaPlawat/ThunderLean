@@ -127,6 +127,12 @@ const Navbar = () => {
                 Why Us?
               </a>
               <a
+                href="/faqs"
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                FAQs
+              </a>
+              <a
                 href="/#contact"
                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
               >
@@ -211,6 +217,10 @@ const Navbar = () => {
                 <a href="/#whyus" onClick={() => setIsMenuOpen(false)}
                  className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
                   Why Us?
+                </a>
+                <a href="/faqs" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                  FAQs
                 </a>
                 <a href="/#contact" onClick={() => setIsMenuOpen(false)}
                  className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
