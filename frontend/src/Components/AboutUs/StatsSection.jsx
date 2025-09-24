@@ -9,7 +9,7 @@ const StatsSection = forwardRef(({ visible, counters, formatNumber }, ref) => {
   ];
 
   return (
-    <div ref={ref} className="bg-gradient-to-r from-purple-100 to-blue-100 py-16">
+    <div ref={ref} className="bg-gradient-to-r bg-custom-gradient py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, index) => (

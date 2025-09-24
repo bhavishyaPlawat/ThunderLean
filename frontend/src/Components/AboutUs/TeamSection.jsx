@@ -15,7 +15,7 @@ const TeamSection = forwardRef(({ visible, teamMembers }, ref) => {
         }`}
       >
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full mb-4 animate-width-expand"></div>
+        <div className="w-24 h-1 bg-[#8C4DCF] mx-auto rounded-full mb-4 animate-width-expand"></div>
         <p className="text-lg text-gray-600">
           The passionate minds behind ThunderLean's revolutionary technology
         </p>
@@ -31,21 +31,21 @@ const TeamSection = forwardRef(({ visible, teamMembers }, ref) => {
             }`}
             style={{ transitionDelay: `${index * 200 + 400}ms` }}
           >
-            <div className={`h-2 bg-gradient-to-r ${member.gradient} group-hover:h-4 transition-all duration-300`}></div>
+            <div className={`h-2 bg-[#8C4DCF] group-hover:h-4 transition-all duration-300`}></div>
             <div className="p-6 text-center">
               <div className="relative mb-4">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-24 h-24 rounded-full mx-auto border-4 border-purple-100 group-hover:border-purple-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
+                  className="w-24 h-24 rounded-full mx-auto border-4 border-purple-100 group-hover:border-[#8C4DCF] transition-all duration-300 group-hover:scale-110 group-hover:rotate-6"
                 />
-                <div className="absolute inset-0 w-24 h-24 rounded-full mx-auto bg-gradient-to-tr from-transparent to-purple-100/20 group-hover:to-purple-100/40 transition-all duration-300"></div>
+                <div className="absolute inset-0 w-24 h-24 rounded-full mx-auto bg-gradient-to-tr from-transparent to-purple-100/20 group-hover:to-[#8C4DCF]/20 transition-all duration-300"></div>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-1 group-hover:text-purple-700 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-gray-800 mb-1 group-hover:text-[#8C4DCF] transition-colors duration-300">
                 {member.name}
               </h3>
               <p
-                className={`text-sm font-semibold bg-gradient-to-r ${member.gradient} bg-clip-text text-transparent mb-3`}
+                className={`text-sm font-semibold text-[#8C4DCF] mb-3`}
               >
                 {member.role}
               </p>

@@ -62,13 +62,13 @@ const AboutUs = () => {
   
   return (
     <div className="bg-[#E3E7F0] min-h-screen relative">
-      {/* Scroll Progress Bar */}
+      {/* Scroll Progress Bar
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
         <div
           className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
-      </div>
+      </div> */}
 
       {/* Floating Navigation Buttons */}
       <FloatingNav
@@ -113,5 +113,6 @@ const AboutUs = () => {
     </div>
   )
 }
+
 
 export default AboutUs;

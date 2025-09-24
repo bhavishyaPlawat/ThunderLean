@@ -19,7 +19,7 @@ const StorySection = ({ storyRef, visibleSections, activeSection, setActiveSecti
         }`}
       >
         <h2 className="text-4xl font-bold text-gray-800 mb-4">{sectionTitle}</h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full animate-width-expand"></div>
+      <div className="w-24 h-1 bg-[#8C4DCF] mx-auto rounded-full animate-width-expand"></div>
       </div>
 
       {/* Tabs */}
@@ -32,15 +32,11 @@ const StorySection = ({ storyRef, visibleSections, activeSection, setActiveSecti
           <button
             key={tab.id}
             onClick={() => setActiveSection(tab.id)}
-            className={`mx-2 mb-4 px-6 py-3 rounded-full font-semibold transition-all duration-500 transform hover:scale-110 ${
+            className={`mx-2 mb-4 px-6 py-3 rounded-full font-semibold hover:scale-110 ${
               activeSection === tab.id
-                ? "bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg scale-105 animate-pulse-subtle"
-                : "bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50"
+                ? "bg-[#8C4DCF] hover:bg-[#7A3BB8] text-white shadow-lg"
+                : "bg-white text-gray-600 hover:bg-[#F3F0FF] hover:text-[#8C4DCF] shadow-md hover:shadow-lg hover:scale-105"
             } ${visibleSections.story ? `opacity-100 translate-y-0` : "opacity-0 translate-y-4"}`}
-            style={{
-              animationDelay: `${index * 100 + 600}ms`,
-              transitionDelay: `${index * 100 + 600}ms`,
-            }}
           >
             {tab.label}
           </button>
@@ -55,7 +51,7 @@ const StorySection = ({ storyRef, visibleSections, activeSection, setActiveSecti
       >
         {activeTabData && (
           <div className="text-center animate-fade-in">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6 animate-spin-slow hover:animate-bounce">
+            <div className="w-16 h-16 bg-[#8C4DCF] rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-6 animate-spin-slow hover:animate-bounce">
               <img src={activeTabData.icon} alt={activeTabData.id} />
             </div>
             <h3 className="text-3xl font-bold text-gray-800 mb-6">{activeTabData.title}</h3>
@@ -76,7 +72,7 @@ const StorySection = ({ storyRef, visibleSections, activeSection, setActiveSecti
                     className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-100 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up"
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-4 hover:animate-spin">
+                    <div className="w-12 h-12  bg-[#8C4DCF] rounded-full flex items-center justify-center text-white text-xl mx-auto mb-4 hover:animate-spin">
                       <img src={value.icon} alt={value.iconAlt} />
                     </div>
                     <h4 className="font-bold text-gray-800 mb-2">{value.title}</h4>

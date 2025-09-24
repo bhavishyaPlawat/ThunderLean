@@ -4,7 +4,7 @@ const CTASection = forwardRef(({ visible }, ref) => {
   return (
     <div
       ref={ref}
-      className={`bg-gradient-to-r from-purple-200 to-blue-200 py-16 transition-all duration-1000 ${
+      className={`bg-gradient-to-r bg-custom-gradient py-16 transition-all duration-1000 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
