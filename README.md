@@ -91,7 +91,7 @@ Experience ThunderLean live here:
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 ![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=flat)
 ![Built with Love](https://img.shields.io/badge/Built%20with-%E2%9D%A4-red?style=for-the-badge)
-![Visitors](https://api.visitorbadge.io/api/Visitors?path=eccentriccoder01%2FVenturalink%20&countColor=%23263759&style=flat)bhavishyaPlawat/ThunderLean
+![Visitors](https://api.visitorbadge.io/api/Visitors?path=bhavishyaPlawat%2FThunderLean%20&countColor=%23263759&style=flat)
 ![GitHub Contributors](https://img.shields.io/github/contributors/bhavishyaPlawat/ThunderLean)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/bhavishyaPlawat/ThunderLean)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/bhavishyaPlawat/ThunderLean)
@@ -166,40 +166,52 @@ To get a local copy of ThunderLean up and running, please follow these simple st
 1.  **Clone the repository:**
 
     ```sh
-    git clone [https://github.com/bhavishyaplawat/thunderlean.git](https://github.com/bhavishyaplawat/thunderlean.git)
+    git clone https://github.com/bhavishyaplawat/thunderlean.git
     cd thunderlean
     ```
 
 2.  **Setup the Backend:**
+3.  
     * Navigate to the backend directory:
         ```sh
         cd Backend
         ```
+        
     * Install NPM packages:
+      
         ```sh
         npm install
         ```
+        
     * Create a `.env` file in the `Backend` directory and add your Google Gemini API key:
+      
         ```
         GEMINI_API_KEY=YOUR_API_KEY_HERE
         PORT=8080
         ```
+        
     * Start the backend server:
+      
         ```sh
         node app.js
         ```
         The server will be running at `http://localhost:8080`.
 
-3.  **Setup the Frontend:**
+4.  **Setup the Frontend:**
+   
     * In a new terminal, navigate to the frontend directory:
         ```sh
         cd frontend
         ```
+        
     * Install NPM packages:
+      
         ```sh
         npm install
         ```
+
     * Start the frontend development server:
+    
         ```sh
         npm run dev
         ```
