@@ -1,23 +1,22 @@
 @import "tailwindcss";
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
-/* Custom utilities */
-@layer utilities {
-  .bg-custom-gradient {
-    background-image: radial-gradient(
-      circle at 90% 100%,
-      #ffffff 0%,
-      #e5e8f5 40%,
-      #879AE3 100%
-    );
-  }
-} /* ← Closing bracket was missing here */
 
 @theme {
   --font-heading: "Inter", "sans-serif";
   --font-body: "Inter", "sans-serif";
 }
-/* Global styles */
+
+/* ✅ Custom utility for reusable gradient */
+@layer utilities {
+  .bg-custom-gradient {
+    background-image: radial-gradient(circle at 90% 100%,
+        #ffffff 0%,
+        #e5e8f5 40%,
+        #879AE3 100%);
+  }
+}
+
 * {
   box-sizing: border-box;
 }

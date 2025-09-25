@@ -15,6 +15,7 @@ const Settings = lazy(() => import("../Components/Settings"));
 const ResetPassword = lazy(() => import("../Components/ResetPassword"));
 const ProfileSetup = lazy(() => import("../Components/ProfileSetup/ProfileSetup"));
 const AboutUs = lazy(() => import("../Components/AboutUs"));
+const FAQs = lazy(() => import("../Components/FAQs"));
 
 const publicRoutes = [
   { path: "/", element: LandingPage },
@@ -22,6 +23,7 @@ const publicRoutes = [
   { path: "/auth", element: Auth },
   { path: "/forgot-password", element: ForgotPassword },
   { path: "/reset-password", element: ResetPassword },
+  { path: "/faqs", element: FAQs },
 ];
 
 const protectedRoutes = [
