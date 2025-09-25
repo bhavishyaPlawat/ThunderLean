@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from calorie_calculator import load_database, calculate_daily_recommendations, calculate_percentages
 from ai_nutrition_advisor import load_ai_model, analyze_meal_balance
+import sys
+import os
 
 # Set better default figure size for Streamlit
 plt.rcParams['figure.figsize'] = [6, 6]

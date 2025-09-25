@@ -1,10 +1,8 @@
 [server]
-headless=true
-enableCORS=false
-port=8501
+headless = true
+enableCORS = false
+port = 8501
 
-[global]
-developmentMode=false
-
-[logger]
-level="error"
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = false
