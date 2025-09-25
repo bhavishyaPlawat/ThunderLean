@@ -477,6 +477,8 @@ st.header("📈 Advanced Meal Analysis")
 base_dir = os.path.dirname(__file__)
 filepath = os.path.join(base_dir, 'sample_meal_history.csv')
 # Provide sample file download
+base_dir = os.path.dirname(__file__)  # directory of app.py
+filepath = os.path.join(base_dir, 'sample_meal_history.csv')
 with open('sample_meal_history.csv', 'r') as f:
     st.download_button(
         label="📥 Download Sample CSV Template",
