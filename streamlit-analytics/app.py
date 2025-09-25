@@ -474,7 +474,8 @@ else:
 # ⬆️⬆️⬆️ END OF AI SECTION ⬆️⬆️⬆️
 # --- NEW SECTION: Enhanced Historical Meal Analysis ---
 st.header("📈 Advanced Meal Analysis")
-
+base_dir = os.path.dirname(__file__)
+filepath = os.path.join(base_dir, 'sample_meal_history.csv')
 # Provide sample file download
 with open('sample_meal_history.csv', 'r') as f:
     st.download_button(
