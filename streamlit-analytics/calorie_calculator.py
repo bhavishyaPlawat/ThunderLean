@@ -1,12 +1,14 @@
 import pandas as pd
 import re
+import os
 
 # Load the food database
 def load_database():
     # Read the CSV file
-    df = pd.read_csv('food_database.csv')
-    # REMOVE DUPLICATES based on the 'Name' column
-    df = df.drop_duplicates(subset=['Name'], keep='first')
+    base_dir = os.path.dirname(__file__)
+    csv_path = os.path.join(base_dir, 'food_database.csv')
+    df = pd.read_csv(csv_path)
+    df = df.drop_duplicates(subset='Name', keep='first')
     return df
 
 # Calculate daily recommended values based on user profile
