@@ -483,7 +483,7 @@ csv_path = os.path.join(base_dir, 'sample_meal_history.csv')
 
 
 
-with open('sample_meal_history.csv', 'r') as f:
+with open(, 'r') as f:
     st.download_button(
         label="📥 Download Sample CSV Template",
         data=f,
