@@ -8,6 +8,11 @@ This folder contains the **Streamlit Analytics Dashboard**, part of the ThunderL
 
 ---
 
+## 🔗 Live Demo
+Check out the live deployed app here:  
+[ThunderLean Meal Analytics Dashboard](https://girlscript25-thunderlean-meal-analytics-dashboard.streamlit.app/)
+
+---
 ## 🚀 Project Overview
 The Streamlit Analytics Dashboard allows users to:
 - Load and explore datasets interactively.
@@ -107,5 +112,6 @@ If you find this project helpful, feel free to:
 - Submit issues or pull requests.
 
 - Suggest improvements or report bugs.
+
 
 
