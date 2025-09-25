@@ -9,7 +9,6 @@ import FeaturesSection from "./AboutUs/FeatureSection";
 import TeamSection from "./AboutUs/TeamSection";
 import StatsSection from "./AboutUs/StatsSection";
 import CTASection from "./AboutUs/CTASection";
-import ScrollTopButton from "./AboutUs/ScrollToTop";
 import FloatingNav from './AboutUs/FloatingNav';
 
 
@@ -62,13 +61,6 @@ const AboutUs = () => {
   
   return (
     <div className="bg-[#E3E7F0] min-h-screen relative">
-      {/* Scroll Progress Bar
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
-        <div
-          className="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div> */}
 
       {/* Floating Navigation Buttons */}
       <FloatingNav
@@ -104,8 +96,6 @@ const AboutUs = () => {
       {/* Call To Action */}
       <CTASection visible={visibleSections.cta} ref={ctaRef} />
 
-      {/* Scroll to Top Button */}
-      <ScrollTopButton show={showScrollTop} onClick={scrollToTop} />
       {/* Footer */}
       <PageFooter />
 
