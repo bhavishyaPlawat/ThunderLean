@@ -1,0 +1,501 @@
+Name,Unit,Calories,Protein (g),Fat (g),Carbs (g),Fiber (g),Sugar (g),Sodium (mg),Cholesterol (mg),Saturated Fat (g),Potassium (mg),Calcium (mg),Category,Meal_Type
+Bread (Whole Wheat),1 slice (28g),50,4.1,0.7,10.6,1.1,3.0,151,0,0.6,0,11,Grain,Breakfast
+"Rice (White, cooked)",1 cup (158g),199,4.3,0.0,43.8,0.9,0.4,0,8,0.5,0,46,Grain,Lunch
+Kulfi (Ice Cream),1 piece (80g),207,3.7,9.4,23.8,0.0,13.6,7,42,7.4,204,86,Sweet,Snack
+Kulfi (Ice Cream),1 piece (80g),209,4.1,11.4,21.5,0.1,18.0,74,43,6.3,230,74,Sweet,Snack
+Orange - homemade,1 medium (140g),56,1.7,1.7,16.8,3.8,11.3,8,20,1.4,178,45,Fruit,Snack
+Tea (Milk & Sugar),1 cup (240ml),97,2.4,2.7,14.3,0.3,16.2,21,0,0.9,85,79,Beverage,Breakfast
+Bread (Whole Wheat) - homemade,1 slice (28g),84,3.0,0.9,13.1,1.0,3.5,122,5,0.0,34,68,Grain,Breakfast
+Sushi (Salmon Roll) - homemade,6 pieces,300,11.4,6.2,45.5,2.3,1.9,567,5,2.8,387,16,Seafood,Lunch
+Rajma (Kidney Bean Curry) (large),1 cup (240g),247,13.8,5.0,38.9,11.0,4.1,441,0,2.3,389,80,Legume,Lunch
+Milk (Whole) (store-bought),1 cup (244g),157,8.2,8.0,12.4,0.0,10.5,120,4,4.6,295,289,Dairy,Breakfast
+Protein Shake (Whey) (large),1 scoop (30g),117,24.5,1.4,2.2,0.0,0.0,92,11,2.4,195,31,Dairy,Snack
+Hummus,2 tbsp (30g),90,1.6,5.6,4.4,0.3,1.9,134,13,2.3,131,30,Snack,Snack
+Apple Juice,1 cup (248g),101,1.1,1.5,29.3,0.1,21.3,32,0,0.0,224,42,Beverage,Snack
+Oatmeal (Cooked) (store-bought),1 cup (234g),180,6.5,2.9,27.9,4.1,0.0,29,7,2.6,202,39,Grain,Breakfast
+Chole (Chickpea Curry) - homemade,1 cup (240g),261,15.4,8.5,45.7,11.7,9.4,592,0,0.2,391,71,Legume,Lunch
+Banana (large),1 medium (118g),120,0.8,0.0,25.3,3.4,12.4,0,1,0.0,382,0,Fruit,Breakfast
+Peanut Butter (Smooth) (small),2 tbsp (32g),181,7.1,16.8,8.5,2.1,1.5,152,6,2.0,64,32,Snack,Snack
+Grilled Fish (grilled),150g,337,35.8,19.2,0.0,0.3,0.9,97,75,6.3,377,5,Seafood,Dinner
+Egg (Boiled),1 large (50g),92,5.9,5.1,0.0,0.0,3.1,68,201,0.0,129,32,Protein,Breakfast
+Avocado,1 medium (150g),219,3.9,22.1,10.7,10.0,0.0,11,0,1.7,387,12,Fruit,Snack
+Mixed Nuts (store-bought),1 oz (28g),182,4.6,16.7,6.9,2.2,2.2,12,0,1.6,142,1,Snack,Snack
+Greek Yogurt (Plain) - homemade,1 cup (245g),144,10.1,0.0,15.2,0.0,9.5,77,0,0.0,270,175,Dairy,Snack
+Quinoa (Cooked),1 cup (185g),206,8.2,4.3,37.9,4.2,3.9,0,17,0.8,376,6,Grain,Lunch
+Salad (Veg Mix) - homemade,1 cup (100g),97,3.1,1.8,14.0,5.3,4.9,183,5,0.0,265,29,Vegetable,Dinner
+Sambar (grilled),1 cup (245g),134,7.0,5.6,20.3,7.2,2.2,334,0,0.0,189,86,Legume,Breakfast
+Oatmeal (Cooked),1 cup (234g),169,5.6,3.7,28.2,3.6,3.9,35,13,0.0,205,10,Grain,Breakfast
+Peanut Butter (Smooth),2 tbsp (32g),176,6.5,17.2,8.0,1.2,1.7,118,1,2.0,202,44,Snack,Snack
+Mixed Nuts (large),1 oz (28g),184,4.5,17.3,4.2,1.9,3.2,0,0,2.1,120,38,Snack,Snack
+Mixed Nuts,1 oz (28g),181,5.1,16.1,4.0,0.8,3.5,0,14,0.9,181,35,Snack,Snack
+French Fries,1 medium (117g),372,2.7,16.8,49.6,4.6,2.5,241,0,3.7,670,0,Fast Food,Snack
+Tea (Milk & Sugar) (store-bought),1 cup (240ml),115,2.8,2.0,16.5,0.0,18.6,10,0,2.6,22,31,Beverage,Breakfast
+Rajma (Kidney Bean Curry) (grilled),1 cup (240g),246,13.6,6.2,41.2,9.5,5.7,443,4,2.4,470,54,Legume,Lunch
+Egg (Boiled) (store-bought),1 large (50g),87,5.7,6.1,2.1,0.0,1.6,63,187,0.6,0,47,Protein,Breakfast
+Peanut Butter (grilled),1 tbsp (16g),107,3.8,9.5,3.1,1.9,0.0,43,0,1.9,50,0,Snack,Snack
+"Rice (Brown, cooked) (large)",1 cup (195g),223,4.7,2.8,43.7,4.5,0.0,33,0,0.0,165,7,Grain,Lunch
+Apple (large),1 medium (182g),109,0.9,1.7,25.9,3.8,18.6,36,1,0.6,264,35,Fruit,Snack
+Chapati (Whole Wheat) - homemade,1 piece (40g),119,3.5,4.7,19.3,3.4,0.8,94,6,2.4,117,28,Grain,Dinner
+Rajma (Kidney Bean Curry),1 cup (240g),259,13.1,5.0,41.3,9.6,2.3,530,17,1.3,432,69,Legume,Lunch
+Idli (Steamed Rice Cake) (small),1 piece (39g),32,1.4,1.2,9.8,1.1,1.4,106,12,0.7,93,0,Grain,Breakfast
+"Rice (White, cooked) (store-bought)",1 cup (158g),200,4.6,0.0,43.8,0.0,0.0,12,19,1.5,0,27,Grain,Lunch
+Salad (Veg Mix) - homemade,1 cup (100g),96,2.4,2.7,15.0,4.5,6.9,150,0,1.6,156,21,Vegetable,Dinner
+Kulfi (Ice Cream) - homemade,1 piece (80g),213,3.9,10.4,23.7,0.0,13.8,54,53,8.0,202,90,Sweet,Snack
+Butter Chicken (small),1 cup (250g),449,25.6,29.2,16.7,1.8,4.7,840,90,7.8,412,25,Protein,Dinner
+Avocado - homemade,1 medium (150g),231,3.5,21.3,12.5,9.5,0.0,0,0,2.1,468,45,Fruit,Snack
+Pasta (Cooked),1 cup (140g),209,7.3,1.3,41.6,1.9,2.2,0,14,0.2,10,23,Grain,Lunch
+Avocado (small),1 medium (150g),238,3.8,21.5,12.8,10.7,1.8,8,10,1.0,477,7,Fruit,Snack
+Butter Chicken (small),1 cup (250g),436,25.1,28.8,18.2,1.8,4.9,854,87,7.9,319,31,Protein,Dinner
+Peanut Butter (Smooth) - homemade,2 tbsp (32g),193,7.4,17.1,8.7,2.9,3.2,142,17,3.5,46,0,Snack,Snack
+Butter (Salted) (small),1 tbsp (14g),90,0.8,11.0,0.0,0.0,0.0,83,35,6.1,10,0,Dairy,Breakfast
+Avocado,1 medium (150g),244,2.0,21.3,14.0,9.7,1.1,59,0,4.0,450,0,Fruit,Snack
+Avocado,1 medium (150g),253,2.3,20.3,12.7,10.1,0.0,49,0,4.1,429,26,Fruit,Snack
+Almonds - homemade,1 oz (28g),151,6.6,13.4,5.2,3.7,3.8,23,4,0.7,283,58,Snack,Snack
+Oatmeal (Cooked) (large),1 cup (234g),186,5.5,4.3,27.2,4.4,2.8,24,0,0.1,173,33,Grain,Breakfast
+Coca-Cola,1 can (355ml),152,0.3,0.0,38.7,0.0,38.6,41,20,1.6,26,24,Beverage,Snack
+Paneer (Cottage Cheese) (small),100g,256,18.5,21.4,5.1,0.6,2.2,33,69,11.7,267,215,Dairy,Dinner
+Peanut Butter (grilled),1 tbsp (16g),90,4.7,7.2,4.5,0.5,0.8,88,4,0.9,109,41,Snack,Snack
+Burger (Veg Patty),1 piece (150g),365,10.4,17.0,44.4,5.8,7.2,705,15,7.0,158,0,Fast Food,Lunch
+"Fish (Salmon, grilled) - homemade",100g,214,20.0,13.9,0.8,0.3,0.0,11,40,2.2,366,23,Seafood,Dinner
+"Fish (Salmon, grilled) (grilled)",100g,225,19.7,13.4,0.0,1.0,0.3,54,64,2.1,327,0,Seafood,Dinner
+Chapati (Whole Wheat) - homemade,1 piece (40g),112,3.1,4.9,21.8,3.4,0.0,164,10,0.8,170,33,Grain,Dinner
+Tofu (Firm) (large),100g,74,9.0,5.9,1.1,0.0,0.0,47,14,0.0,32,323,Protein,Dinner
+French Fries (grilled),1 medium (117g),353,3.7,17.9,46.4,3.0,0.0,257,8,2.4,513,4,Fast Food,Snack
+Chia Seeds (small),1 oz (28g),125,5.3,8.7,10.6,10.9,0.0,0,16,3.1,0,162,Snack,Snack
+Chapati (Whole Wheat) (large),1 piece (40g),126,3.7,5.0,18.9,3.0,0.2,126,0,3.1,129,4,Grain,Dinner
+Sushi (Salmon Roll) (large),6 pieces,283,12.2,6.9,45.8,1.4,2.3,634,0,0.4,294,35,Seafood,Lunch
+Oatmeal (Cooked),1 cup (234g),146,5.8,4.3,27.9,3.1,0.0,0,9,0.0,123,50,Grain,Breakfast
+Mixed Nuts (store-bought),1 oz (28g),193,5.2,17.0,4.8,0.8,0.0,0,0,4.1,105,1,Snack,Snack
+Milk (Whole) (store-bought),1 cup (244g),149,8.2,9.1,13.7,0.0,11.8,88,29,5.7,394,280,Dairy,Breakfast
+Apple Juice (small),1 cup (248g),99,0.4,1.5,28.9,0.7,21.2,0,16,0.4,105,38,Beverage,Snack
+Omelette (2 eggs) (store-bought),1 serving,151,12.2,11.9,0.0,0.0,1.1,235,411,5.6,137,70,Protein,Breakfast
+Pomegranate (small),1 cup (174g),129,2.9,2.0,31.3,6.2,21.0,5,11,0.0,668,50,Fruit,Snack
+Butter Chicken (large),1 cup (250g),412,24.9,27.8,16.3,1.9,4.4,885,60,8.6,358,39,Protein,Dinner
+Salad (Veg Mix),1 cup (100g),72,3.0,2.6,15.0,4.9,3.3,184,15,0.0,173,38,Vegetable,Dinner
+Protein Shake (Whey) - homemade,1 scoop (30g),131,23.2,2.9,3.4,0.0,0.0,70,0,0.7,23,34,Dairy,Snack
+Avocado,1 medium (150g),243,3.9,21.6,10.6,10.9,0.0,50,0,2.7,510,18,Fruit,Snack
+"Fish (Salmon, grilled) (small)",100g,223,19.3,12.5,0.4,0.5,0.0,17,52,4.1,369,0,Seafood,Dinner
+Pav Bhaji (large),1 plate,397,10.6,14.7,59.2,8.2,9.0,912,0,4.8,443,42,Fast Food,Lunch
+Coffee (Black) (large),1 cup (240ml),16,0.1,1.3,1.5,1.0,0.0,4,0,1.4,121,0,Beverage,Breakfast
+Burger (Veg Patty) - homemade,1 piece (150g),364,11.4,17.0,44.5,5.3,7.9,689,11,10.9,142,27,Fast Food,Lunch
+Greek Yogurt (Plain) (grilled),1 cup (245g),116,11.7,0.1,17.1,0.0,8.3,62,0,0.0,340,186,Dairy,Snack
+Coffee (Black) (large),1 cup (240ml),7,0.6,1.1,1.4,0.7,0.0,0,20,0.9,210,7,Beverage,Breakfast
+Chia Seeds (large),1 oz (28g),120,4.9,8.3,13.0,10.2,0.0,0,7,3.2,138,187,Snack,Snack
+Aloo Paratha (store-bought),1 medium (120g),286,5.9,12.7,41.6,2.1,3.8,487,2,3.1,287,20,Grain,Breakfast
+Tofu (Firm) (small),100g,92,8.4,4.3,0.6,0.5,0.0,44,0,0.9,170,329,Protein,Dinner
+Mutton Curry (small),1 cup (200g),370,24.5,24.6,4.0,2.6,4.4,886,114,8.0,333,50,Protein,Dinner
+Tea (Milk & Sugar) (large),1 cup (240ml),99,2.3,2.1,15.0,0.7,14.2,39,10,0.0,113,56,Beverage,Breakfast
+Tea (Milk & Sugar) (large),1 cup (240ml),98,3.0,1.7,17.9,0.3,14.6,62,0,2.7,206,51,Beverage,Breakfast
+Avocado (grilled),1 medium (150g),228,3.2,20.9,12.5,10.2,1.3,52,0,3.5,547,29,Fruit,Snack
+Orange (grilled),1 medium (140g),70,0.3,0.1,13.9,3.9,11.0,3,0,0.0,275,78,Fruit,Snack
+Coca-Cola (large),1 can (355ml),152,0.8,1.1,38.0,0.6,38.9,32,1,1.2,28,0,Beverage,Snack
+Paneer (Cottage Cheese) (store-bought),100g,259,18.7,20.8,7.9,0.9,3.8,18,45,13.2,83,194,Dairy,Dinner
+Pasta (Cooked),1 cup (140g),230,7.7,2.2,42.0,2.3,3.5,0,0,1.0,115,11,Grain,Lunch
+Walnuts (large),1 oz (28g),185,4.8,17.6,2.3,2.5,3.2,0,6,0.0,36,58,Snack,Snack
+Orange (grilled),1 medium (140g),73,0.4,0.0,15.6,2.9,11.2,45,14,0.0,327,68,Fruit,Snack
+Paneer (Cottage Cheese) (small),100g,251,18.7,20.5,7.8,0.0,3.1,0,68,11.8,140,232,Dairy,Dinner
+Coca-Cola,1 can (355ml),143,0.1,1.4,38.4,0.0,37.1,10,9,0.0,0,20,Beverage,Snack
+Bread (Whole Wheat) (large),1 slice (28g),50,2.7,0.9,14.0,2.5,0.0,179,15,0.0,35,62,Grain,Breakfast
+Chia Seeds,1 oz (28g),139,5.2,9.7,12.7,10.2,3.7,0,14,0.3,0,154,Snack,Snack
+Peanut Butter (Smooth) (store-bought),2 tbsp (32g),169,6.3,15.9,8.2,2.1,0.1,125,0,1.7,147,23,Snack,Snack
+Chapati (Whole Wheat) - homemade,1 piece (40g),104,3.5,4.9,20.1,2.2,0.5,148,0,2.6,188,18,Grain,Dinner
+Pizza (Cheese Slice) (small),1 slice (107g),266,11.1,10.2,35.6,2.4,3.9,646,0,7.5,162,208,Fast Food,Dinner
+Paneer (Cottage Cheese),100g,253,17.6,20.6,6.2,0.0,5.0,39,58,11.8,234,205,Dairy,Dinner
+"Rice (Brown, cooked) (store-bought)",1 cup (195g),203,5.7,2.4,45.1,3.9,0.0,17,0,0.0,100,5,Grain,Lunch
+Salad (Veg Mix) - homemade,1 cup (100g),66,2.6,1.8,14.0,5.9,7.1,210,0,0.0,121,15,Vegetable,Dinner
+Grilled Fish,150g,333,36.6,18.4,0.3,0.1,0.0,105,76,4.8,520,50,Seafood,Dinner
+Butter Chicken (small),1 cup (250g),413,25.9,28.5,16.4,1.2,3.3,904,90,6.9,247,32,Protein,Dinner
+Quinoa (Cooked) (large),1 cup (185g),225,7.2,3.3,37.9,4.9,2.0,61,19,0.9,382,36,Grain,Lunch
+Banana (large),1 medium (118g),102,0.4,0.1,28.0,3.9,13.1,0,0,0.4,424,0,Fruit,Breakfast
+Paneer (Cottage Cheese) - homemade,100g,285,18.9,19.2,6.1,0.0,1.7,0,63,11.2,163,227,Dairy,Dinner
+Sushi (Salmon Roll) (large),6 pieces,285,12.8,5.4,45.0,1.1,1.5,606,17,1.7,363,26,Seafood,Lunch
+Peanut Butter,1 tbsp (16g),107,3.2,8.1,2.1,1.4,0.9,95,0,0.0,84,25,Snack,Snack
+Strawberries,1 cup (150g),41,0.6,0.0,10.2,2.5,6.0,0,11,1.1,164,0,Fruit,Snack
+Ladoo (Besan) (large),1 piece (50g),214,5.0,13.1,25.2,1.1,20.2,5,7,5.1,39,37,Sweet,Snack
+Burger (Veg Patty) (large),1 piece (150g),361,11.1,16.8,44.7,4.2,3.1,711,0,10.2,268,24,Fast Food,Lunch
+Avocado - homemade,1 medium (150g),237,2.2,22.1,11.0,10.2,0.3,10,0,4.0,443,9,Fruit,Snack
+Naan (White Flour),1 piece (65g),244,8.0,5.3,44.0,2.8,3.1,545,0,2.1,47,16,Grain,Dinner
+Egg (Boiled),1 large (50g),96,5.3,5.9,0.0,0.9,1.4,71,202,2.5,77,41,Protein,Breakfast
+Protein Shake (Whey) (large),1 scoop (30g),140,25.0,1.3,4.9,0.0,0.6,60,23,1.0,70,57,Dairy,Snack
+Strawberries (grilled),1 cup (150g),60,0.1,0.7,9.9,2.7,5.7,33,0,0.6,249,16,Fruit,Snack
+Sambar (large),1 cup (245g),165,8.9,5.8,18.2,8.8,2.4,294,0,1.9,228,39,Legume,Breakfast
+Strawberries (small),1 cup (150g),34,1.6,1.6,13.6,2.2,7.9,0,0,0.9,232,25,Fruit,Snack
+Tofu (Firm) (large),100g,66,7.7,6.1,1.4,0.8,1.4,0,20,1.5,37,341,Protein,Dinner
+"Rice (Brown, cooked) (large)",1 cup (195g),220,4.6,2.6,44.6,4.3,2.9,2,0,0.5,20,38,Grain,Lunch
+Tea (Milk & Sugar) (grilled),1 cup (240ml),105,1.3,2.8,14.3,0.1,16.9,32,0,1.8,205,63,Beverage,Breakfast
+Tofu (Firm),100g,83,8.0,3.8,1.1,1.2,0.0,55,11,0.0,56,329,Protein,Dinner
+Oatmeal (Cooked) (grilled),1 cup (234g),152,6.0,3.9,29.0,4.1,2.0,50,19,0.0,160,0,Grain,Breakfast
+Milk (Whole),1 cup (244g),169,8.6,7.4,11.8,0.0,13.1,80,32,4.3,458,293,Dairy,Breakfast
+Pav Bhaji (small),1 plate,394,10.1,14.8,61.2,7.9,8.0,897,16,6.9,438,69,Fast Food,Lunch
+Samosa (store-bought),1 piece (100g),266,4.0,17.0,22.6,2.4,2.6,399,0,9.2,135,25,Fast Food,Snack
+"Rice (Brown, cooked) - homemade",1 cup (195g),229,5.7,1.5,45.1,3.0,3.1,0,7,0.0,40,32,Grain,Lunch
+Idli (Steamed Rice Cake) (grilled),1 piece (39g),20,1.2,0.2,7.5,0.4,0.0,98,0,0.0,0,28,Grain,Breakfast
+Aloo Paratha - homemade,1 medium (120g),301,6.6,11.3,39.1,3.7,3.2,467,10,3.4,251,62,Grain,Breakfast
+"Rice (White, cooked)",1 cup (158g),201,3.7,0.0,46.8,0.8,0.0,51,0,0.0,0,1,Grain,Lunch
+"Fish (Salmon, grilled) (small)",100g,228,20.6,13.1,0.0,0.8,0.6,11,75,3.1,324,24,Seafood,Dinner
+Paneer (Cottage Cheese) (grilled),100g,272,17.0,19.9,6.3,0.0,3.0,39,63,10.3,214,212,Dairy,Dinner
+Hummus (store-bought),2 tbsp (30g),82,2.1,5.0,3.9,1.3,3.2,97,0,0.0,0,32,Snack,Snack
+"Fish (Salmon, grilled) - homemade",100g,228,19.2,13.5,1.0,0.0,0.0,52,46,4.3,438,8,Seafood,Dinner
+Masala Dosa (small),1 medium (100g),188,2.9,4.3,28.9,3.3,0.0,289,0,3.0,130,10,Grain,Breakfast
+Pizza (Cheese Slice) (large),1 slice (107g),290,13.0,10.4,35.0,2.5,2.1,635,0,7.4,164,187,Fast Food,Dinner
+Chapati (Whole Wheat) (store-bought),1 piece (40g),123,3.4,4.0,19.8,3.9,0.0,93,11,2.5,114,44,Grain,Dinner
+Kulfi (Ice Cream) (large),1 piece (80g),197,4.6,10.8,20.3,0.2,17.9,64,38,5.3,70,90,Sweet,Snack
+Peanut Butter (Smooth) (grilled),2 tbsp (32g),187,6.9,16.8,5.7,1.8,2.7,185,2,3.7,151,7,Snack,Snack
+Bread (Whole Wheat) (store-bought),1 slice (28g),52,2.8,1.7,11.5,2.5,2.7,85,0,1.6,153,60,Grain,Breakfast
+Idli (Steamed Rice Cake),1 piece (39g),27,0.5,1.1,7.5,0.4,0.8,147,0,0.7,29,0,Grain,Breakfast
+Idli (Steamed Rice Cake) (store-bought),1 piece (39g),23,1.5,0.5,7.6,0.9,0.0,84,0,0.9,62,8,Grain,Breakfast
+Ladoo (Besan) (large),1 piece (50g),207,4.5,11.7,23.8,3.0,16.7,62,0,5.5,38,10,Sweet,Snack
+Curd (Plain Yogurt) - homemade,1 cup (245g),157,9.5,9.0,12.9,1.0,12.0,153,4,3.0,354,327,Dairy,Snack
+Pizza (Cheese Slice) (store-bought),1 slice (107g),275,12.4,11.3,36.6,2.6,4.1,605,0,7.1,140,220,Fast Food,Dinner
+Apple Juice,1 cup (248g),117,0.3,0.2,29.2,0.6,24.7,0,0,0.0,283,36,Beverage,Snack
+Vegetable Pulao (large),1 cup (200g),256,6.5,9.1,38.3,3.9,2.9,707,9,3.2,198,38,Grain,Lunch
+Protein Shake (Whey) (store-bought),1 scoop (30g),135,24.3,1.0,4.9,0.0,3.5,7,2,0.6,77,30,Dairy,Snack
+Milk (Whole) (grilled),1 cup (244g),144,7.7,9.4,13.6,0.7,10.5,131,39,3.0,426,265,Dairy,Breakfast
+Walnuts (large),1 oz (28g),170,4.0,17.4,5.8,1.2,1.7,42,18,0.9,169,0,Snack,Snack
+Pomegranate (store-bought),1 cup (174g),125,2.2,3.4,33.1,6.5,21.3,26,6,0.7,573,29,Fruit,Snack
+Protein Shake (Whey) - homemade,1 scoop (30g),134,23.6,2.9,2.9,0.6,2.1,38,24,0.0,15,30,Dairy,Snack
+Idli (Steamed Rice Cake) (small),1 piece (39g),49,1.3,0.1,6.6,1.3,0.0,114,5,0.0,29,7,Grain,Breakfast
+French Fries,1 medium (117g),365,2.9,16.3,47.8,3.3,0.0,245,19,2.7,540,40,Fast Food,Snack
+Burger (Veg Patty) (large),1 piece (150g),354,10.4,15.4,47.0,4.9,8.3,733,0,7.4,210,27,Fast Food,Lunch
+Sambar,1 cup (245g),143,8.2,4.1,19.1,8.2,4.1,356,10,0.6,102,84,Legume,Breakfast
+"Rice (Brown, cooked) (small)",1 cup (195g),204,5.8,2.6,45.1,3.2,0.1,32,15,0.0,125,0,Grain,Lunch
+Oatmeal (Cooked) (small),1 cup (234g),178,5.9,4.0,29.3,4.2,1.7,0,0,0.3,150,26,Grain,Breakfast
+Coca-Cola (store-bought),1 can (355ml),129,0.0,0.3,39.0,0.0,36.8,37,10,0.1,0,17,Beverage,Snack
+Hummus,2 tbsp (30g),70,2.9,4.8,3.6,1.2,2.4,140,1,0.6,108,44,Snack,Snack
+Apple Juice - homemade,1 cup (248g),130,0.0,1.3,27.5,0.8,26.9,34,0,1.3,285,45,Beverage,Snack
+Masala Dosa - homemade,1 medium (100g),149,3.7,4.7,28.6,3.3,2.6,293,0,2.1,163,23,Grain,Breakfast
+Bread (Whole Wheat) - homemade,1 slice (28g),88,4.1,1.1,13.3,1.4,2.0,171,0,0.0,92,30,Grain,Breakfast
+Salad (Veg Mix),1 cup (100g),86,3.4,2.0,16.1,5.8,8.2,244,0,1.3,232,23,Vegetable,Dinner
+French Fries (grilled),1 medium (117g),375,3.5,16.8,46.7,4.8,0.0,241,0,3.4,549,3,Fast Food,Snack
+Peanut Butter (large),1 tbsp (16g),94,3.4,9.4,2.2,0.6,0.0,100,11,0.9,72,22,Snack,Snack
+Pav Bhaji - homemade,1 plate,397,9.6,15.4,60.2,8.8,5.4,894,0,4.2,393,65,Fast Food,Lunch
+"Rice (White, cooked) (grilled)",1 cup (158g),213,4.6,1.3,43.9,1.3,0.0,23,0,0.0,112,45,Grain,Lunch
+Greek Yogurt (Plain),1 cup (245g),125,10.1,1.3,15.9,0.0,4.6,52,15,0.0,337,178,Dairy,Snack
+Apple (large),1 medium (182g),85,0.3,1.6,26.5,4.4,17.2,0,0,0.0,110,39,Fruit,Snack
+Naan (White Flour),1 piece (65g),276,7.5,6.8,45.4,1.1,6.5,505,0,4.9,19,53,Grain,Dinner
+Chocolate Cake (store-bought),1 slice (80g),361,3.4,15.9,53.5,1.6,32.2,288,16,9.4,135,18,Sweet,Snack
+Sambar - homemade,1 cup (245g),164,8.0,6.2,18.5,8.0,0.6,284,1,0.1,217,71,Legume,Breakfast
+Mixed Nuts - homemade,1 oz (28g),164,4.0,15.8,5.2,1.9,0.0,28,20,4.4,196,30,Snack,Snack
+Burger (Veg Patty),1 piece (150g),359,11.3,15.5,43.6,4.6,4.5,703,4,7.9,302,12,Fast Food,Lunch
+Coffee (Black) (grilled),1 cup (240ml),19,0.7,0.0,0.6,0.4,0.0,0,9,0.0,119,19,Beverage,Breakfast
+Hummus - homemade,2 tbsp (30g),69,2.4,5.6,5.8,0.7,0.0,82,10,0.0,169,48,Snack,Snack
+Coke (small),1 can (355ml),155,0.8,0.9,40.2,0.7,40.6,82,18,1.5,0,12,Beverage,Snack
+Idli (Steamed Rice Cake) (large),1 piece (39g),42,0.6,0.6,6.2,0.7,0.4,143,14,0.0,18,29,Grain,Breakfast
+Tofu (Firm) (small),100g,63,8.4,5.6,1.9,1.1,0.0,0,9,0.0,127,349,Protein,Dinner
+Sushi (Salmon Roll),6 pieces,315,11.9,7.0,44.9,1.8,5.9,645,3,2.1,261,27,Seafood,Lunch
+Tea (Milk & Sugar) - homemade,1 cup (240ml),84,2.1,1.2,17.6,1.0,15.8,26,6,0.0,50,69,Beverage,Breakfast
+Butter (Salted) - homemade,1 tbsp (14g),108,0.0,12.7,0.0,0.8,0.0,50,45,5.5,0,0,Dairy,Breakfast
+Curd (Plain Yogurt) (large),1 cup (245g),154,8.6,8.8,9.9,0.0,8.1,101,29,3.5,419,297,Dairy,Snack
+Pasta (Cooked) (small),1 cup (140g),215,7.5,1.2,42.1,3.4,4.1,0,0,1.5,102,49,Grain,Lunch
+Naan (White Flour),1 piece (65g),255,7.4,5.3,42.1,2.2,5.2,458,0,4.2,112,28,Grain,Dinner
+Mutton Curry (large),1 cup (200g),343,25.5,25.9,4.6,3.0,0.4,893,116,8.7,373,39,Protein,Dinner
+Omelette (2 eggs) (store-bought),1 serving,154,11.5,12.2,3.1,0.0,0.9,235,403,3.8,177,86,Protein,Breakfast
+Rajma (Kidney Bean Curry),1 cup (240g),260,13.4,5.4,38.2,9.7,4.9,478,13,0.2,456,66,Legume,Lunch
+Paneer (Cottage Cheese) (grilled),100g,269,17.4,20.3,5.0,0.0,4.1,0,69,13.7,223,204,Dairy,Dinner
+Salad (Veg Mix) (large),1 cup (100g),93,2.3,1.6,13.8,5.3,8.5,197,0,0.6,148,13,Vegetable,Dinner
+Peanut Butter (small),1 tbsp (16g),113,4.2,9.2,1.8,1.5,2.3,81,0,1.5,68,6,Snack,Snack
+Apple,1 medium (182g),87,1.4,0.0,27.0,4.4,17.5,28,0,0.0,156,16,Fruit,Snack
+Burger (Veg Patty) (store-bought),1 piece (150g),352,10.8,16.3,44.4,4.5,6.1,733,9,7.4,294,25,Fast Food,Lunch
+Butter Chicken (store-bought),1 cup (250g),430,25.8,27.9,16.7,1.1,3.3,838,61,7.0,369,47,Protein,Dinner
+Chole (Chickpea Curry) (small),1 cup (240g),267,14.3,8.3,44.5,12.7,7.0,618,1,0.2,500,96,Legume,Lunch
+Butter (Salted) - homemade,1 tbsp (14g),113,0.0,12.3,0.0,0.0,0.4,63,45,9.0,0,10,Dairy,Breakfast
+Orange (store-bought),1 medium (140g),46,2.1,0.9,16.5,2.9,14.1,0,0,0.9,139,35,Fruit,Snack
+Hummus (small),2 tbsp (30g),73,1.1,5.6,5.7,1.8,1.3,67,0,0.7,83,10,Snack,Snack
+Banana (large),1 medium (118g),102,1.4,0.1,27.0,3.5,13.6,0,0,1.8,456,0,Fruit,Breakfast
+"Fish (Salmon, grilled)",100g,227,20.1,14.0,0.0,0.0,0.0,60,64,3.3,441,0,Seafood,Dinner
+Pizza (Cheese Slice) - homemade,1 slice (107g),270,12.3,11.1,37.0,1.2,3.3,660,10,4.1,82,214,Fast Food,Dinner
+Milk (Whole),1 cup (244g),161,8.7,8.6,11.3,1.0,14.8,117,6,2.8,443,302,Dairy,Breakfast
+Sushi (Salmon Roll) (small),6 pieces,297,11.1,5.2,45.7,2.8,4.4,554,1,3.5,330,1,Seafood,Lunch
+Chicken Breast (Grilled) (large),100g,154,31.5,4.4,0.0,0.0,0.0,54,101,2.3,255,26,Protein,Lunch
+Pasta (Cooked) (grilled),1 cup (140g),225,8.5,0.6,45.0,2.9,2.7,0,0,0.0,54,63,Grain,Lunch
+Oatmeal (Cooked) (grilled),1 cup (234g),184,6.5,5.0,27.6,4.5,0.0,0,8,0.7,155,26,Grain,Breakfast
+Ladoo (Besan) (small),1 piece (50g),211,5.4,12.7,22.3,2.2,19.8,91,0,5.3,59,6,Sweet,Snack
+Aloo Paratha (store-bought),1 medium (120g),320,5.3,12.0,39.4,2.2,4.7,506,3,4.6,276,13,Grain,Breakfast
+"Rice (White, cooked)",1 cup (158g),212,4.2,0.8,44.6,0.0,0.0,0,18,0.5,38,53,Grain,Lunch
+Ladoo (Besan),1 piece (50g),218,4.8,12.9,24.9,2.1,21.0,31,16,7.1,195,6,Sweet,Snack
+Milk (Whole),1 cup (244g),147,7.6,8.2,10.3,0.0,11.5,111,8,3.3,329,292,Dairy,Breakfast
+Bread (Whole Wheat) (small),1 slice (28g),87,3.8,1.2,10.5,0.9,1.0,161,4,1.4,64,38,Grain,Breakfast
+Coffee (Black) (small),1 cup (240ml),20,0.0,0.0,1.8,0.0,0.0,5,0,0.0,193,16,Beverage,Breakfast
+Apple Juice (large),1 cup (248g),109,0.0,0.0,29.1,0.2,26.6,0,17,2.1,146,33,Beverage,Snack
+Naan (White Flour) (large),1 piece (65g),241,8.9,6.2,44.8,1.9,2.7,540,0,4.5,114,43,Grain,Dinner
+Apple Juice,1 cup (248g),134,0.0,0.0,26.6,0.3,23.3,17,18,0.0,202,24,Beverage,Snack
+Hummus (store-bought),2 tbsp (30g),76,2.1,6.0,3.4,1.8,0.5,146,0,0.0,41,52,Snack,Snack
+Peanut Butter (Smooth) (grilled),2 tbsp (32g),178,7.3,15.1,8.9,2.3,2.4,188,1,5.1,150,0,Snack,Snack
+Apple,1 medium (182g),91,0.0,1.2,25.2,4.8,17.3,0,5,0.0,268,18,Fruit,Snack
+Masala Dosa (large),1 medium (100g),157,3.2,4.1,26.4,2.2,4.9,278,0,1.2,207,19,Grain,Breakfast
+Pav Bhaji,1 plate,413,10.0,15.2,59.8,8.4,4.9,888,0,6.2,349,21,Fast Food,Lunch
+Quinoa (Cooked) (grilled),1 cup (185g),208,8.4,3.0,40.9,4.5,0.0,0,1,0.6,336,15,Grain,Lunch
+Kulfi (Ice Cream) (small),1 piece (80g),220,3.4,10.6,21.7,0.0,16.7,20,48,6.4,149,70,Sweet,Snack
+Aloo Paratha,1 medium (120g),293,5.6,12.8,41.2,3.2,3.8,518,0,3.1,300,34,Grain,Breakfast
+Chapati (Whole Wheat) (grilled),1 piece (40g),131,3.6,4.6,20.4,3.2,1.0,114,2,3.1,178,0,Grain,Dinner
+Pomegranate - homemade,1 cup (174g),143,3.8,2.5,32.7,6.6,21.4,0,0,0.0,602,30,Fruit,Snack
+Ladoo (Besan) (small),1 piece (50g),238,4.3,12.0,22.7,2.3,19.2,82,0,7.2,145,0,Sweet,Snack
+Dal (Lentil Curry),1 cup (200g),230,15.7,6.5,36.5,8.9,2.9,424,4,4.2,399,46,Legume,Lunch
+Apple Juice (small),1 cup (248g),125,0.0,1.4,28.0,0.0,21.2,57,0,0.0,170,4,Beverage,Snack
+Pasta (Cooked) (grilled),1 cup (140g),211,8.6,1.7,44.1,2.5,2.8,24,0,0.0,134,62,Grain,Lunch
+Coca-Cola (large),1 can (355ml),122,0.5,0.1,37.9,0.0,40.4,78,0,0.0,0,7,Beverage,Snack
+Mixed Nuts (grilled),1 oz (28g),158,4.9,17.5,7.1,1.1,3.1,25,2,4.2,243,38,Snack,Snack
+Grilled Fish,150g,349,35.3,17.5,0.0,0.0,0.0,125,88,5.6,432,35,Seafood,Dinner
+Samosa (grilled),1 piece (100g),278,3.5,18.1,25.9,3.4,0.0,463,6,10.3,110,45,Fast Food,Snack
+Butter (Salted),1 tbsp (14g),90,0.0,12.3,1.3,0.5,1.2,102,20,7.3,0,17,Dairy,Breakfast
+Salad (Veg Mix) (small),1 cup (100g),88,2.2,3.0,16.1,4.8,7.5,238,3,0.3,224,30,Vegetable,Dinner
+Greek Yogurt (Plain),1 cup (245g),115,11.5,0.1,17.7,0.0,4.4,78,10,0.0,249,222,Dairy,Snack
+Chicken Breast (Grilled) (small),100g,162,30.6,3.3,0.2,0.0,2.1,124,86,2.6,351,0,Protein,Lunch
+Orange,1 medium (140g),82,1.8,0.3,13.9,3.8,11.6,0,7,0.0,313,80,Fruit,Snack
+Dal (Lentil Curry) - homemade,1 cup (200g),229,14.3,7.3,34.1,8.3,1.5,447,0,0.5,430,24,Legume,Lunch
+Chole (Chickpea Curry) - homemade,1 cup (240g),263,14.9,7.7,43.4,11.4,4.5,610,0,1.3,488,50,Legume,Lunch
+Apple - homemade,1 medium (182g),96,1.1,1.8,24.7,3.7,16.4,0,0,1.0,121,0,Fruit,Snack
+Burger (Veg Patty) (grilled),1 piece (150g),353,10.3,16.9,46.0,4.3,9.0,688,0,9.1,112,34,Fast Food,Lunch
+Butter (Salted),1 tbsp (14g),110,0.0,11.0,1.0,0.8,0.8,96,24,5.3,0,0,Dairy,Breakfast
+Butter Chicken,1 cup (250g),447,25.5,27.9,16.7,1.6,3.5,902,65,7.0,373,48,Protein,Dinner
+Chole (Chickpea Curry) (large),1 cup (240g),267,15.6,9.2,46.4,12.3,5.8,601,18,1.2,566,75,Legume,Lunch
+Samosa - homemade,1 piece (100g),245,4.6,18.0,23.0,2.8,0.4,448,18,6.9,43,13,Fast Food,Snack
+Burger (Veg Patty),1 piece (150g),358,11.7,16.4,44.5,5.4,7.6,768,0,7.1,127,0,Fast Food,Lunch
+Mixed Nuts,1 oz (28g),155,5.8,17.4,5.6,1.2,2.5,48,6,2.5,189,3,Snack,Snack
+Bread (Whole Wheat) (large),1 slice (28g),83,3.8,0.8,11.2,1.9,0.0,101,14,0.0,130,50,Grain,Breakfast
+Butter Chicken (store-bought),1 cup (250g),414,24.6,28.1,18.8,0.5,3.5,875,67,7.8,375,13,Protein,Dinner
+Pizza (Cheese Slice) - homemade,1 slice (107g),276,11.2,10.8,36.8,1.3,6.7,656,13,7.0,264,186,Fast Food,Dinner
+Milk (Whole) (grilled),1 cup (244g),138,8.5,9.2,12.9,0.0,14.4,92,31,3.0,282,262,Dairy,Breakfast
+Aloo Paratha (large),1 medium (120g),320,5.2,12.1,39.4,3.0,2.4,497,0,2.6,276,62,Grain,Breakfast
+Sushi (Salmon Roll) - homemade,6 pieces,287,11.5,6.3,42.2,2.7,2.5,610,13,1.3,288,11,Seafood,Lunch
+Quinoa (Cooked),1 cup (185g),237,8.6,4.4,39.6,4.4,0.1,55,0,0.0,237,37,Grain,Lunch
+Coca-Cola,1 can (355ml),152,0.3,0.0,37.9,0.0,36.3,46,0,1.5,0,28,Beverage,Snack
+Quinoa (Cooked) (grilled),1 cup (185g),222,7.2,3.7,38.5,4.6,3.3,57,19,0.0,312,38,Grain,Lunch
+Apple Juice (store-bought),1 cup (248g),106,0.7,0.7,29.2,0.0,26.6,0,0,0.3,262,43,Beverage,Snack
+Masala Dosa,1 medium (100g),169,2.5,5.6,29.4,2.9,0.0,331,0,1.5,135,0,Grain,Breakfast
+Aloo Paratha (grilled),1 medium (120g),285,5.1,11.6,41.4,2.8,4.4,508,0,3.9,379,13,Grain,Breakfast
+Bread (Whole Wheat) (store-bought),1 slice (28g),74,2.7,1.5,11.7,2.8,0.0,115,0,1.9,80,54,Grain,Breakfast
+Avocado - homemade,1 medium (150g),234,2.6,20.7,10.3,9.4,1.9,34,0,1.6,429,16,Fruit,Snack
+Sambar (grilled),1 cup (245g),156,7.2,4.9,21.1,7.9,1.8,285,0,0.1,275,49,Legume,Breakfast
+Pomegranate - homemade,1 cup (174g),162,2.1,3.1,31.3,6.2,21.5,0,5,0.3,739,17,Fruit,Snack
+Mixed Nuts (store-bought),1 oz (28g),164,4.1,16.0,5.8,2.1,0.0,9,0,4.0,122,5,Snack,Snack
+Apple,1 medium (182g),89,0.0,1.4,24.5,4.7,19.9,25,17,0.0,114,0,Fruit,Snack
+Oatmeal (Cooked),1 cup (234g),174,6.6,2.8,29.4,4.6,0.0,11,0,0.0,210,18,Grain,Breakfast
+Pomegranate - homemade,1 cup (174g),149,3.0,2.0,31.7,6.7,25.4,0,0,0.0,604,0,Fruit,Snack
+Walnuts (large),1 oz (28g),204,3.5,17.7,3.6,2.0,0.0,0,4,0.0,76,39,Snack,Snack
+Protein Shake (Whey) (store-bought),1 scoop (30g),133,23.5,3.0,3.2,0.0,0.3,91,17,0.4,200,51,Dairy,Snack
+Tea (Milk & Sugar) (large),1 cup (240ml),112,1.6,1.7,14.1,0.2,13.2,89,0,0.0,136,53,Beverage,Breakfast
+Tea (Milk & Sugar) (store-bought),1 cup (240ml),117,3.0,3.4,14.4,0.3,14.6,84,0,2.2,72,56,Beverage,Breakfast
+Quinoa (Cooked) (store-bought),1 cup (185g),226,7.7,4.7,40.4,4.4,2.2,57,2,2.1,225,46,Grain,Lunch
+Masala Dosa (grilled),1 medium (100g),184,3.6,5.4,26.8,3.4,4.4,327,14,1.0,245,0,Grain,Breakfast
+"Rice (White, cooked)",1 cup (158g),199,4.5,0.0,44.9,0.3,0.8,0,1,1.0,37,1,Grain,Lunch
+Banana,1 medium (118g),122,1.7,0.0,25.4,3.2,13.2,0,3,0.9,491,1,Fruit,Breakfast
+Greek Yogurt (Plain),1 cup (245g),131,10.6,0.0,15.6,0.9,8.8,72,5,0.0,283,214,Dairy,Snack
+Protein Shake (Whey) (large),1 scoop (30g),122,23.4,2.0,1.7,0.0,2.1,16,6,1.4,179,80,Dairy,Snack
+Sushi (Salmon Roll) (small),6 pieces,316,11.1,6.5,45.7,2.9,2.3,622,0,3.5,286,21,Seafood,Lunch
+Rajma (Kidney Bean Curry),1 cup (240g),235,12.7,4.8,40.5,10.9,5.9,515,20,1.8,435,68,Legume,Lunch
+Apple (grilled),1 medium (182g),88,0.0,0.0,24.0,3.6,16.0,0,8,1.0,137,37,Fruit,Snack
+Salad (Veg Mix) (small),1 cup (100g),84,2.7,1.9,16.3,5.6,6.5,247,0,0.0,118,61,Vegetable,Dinner
+Quinoa (Cooked),1 cup (185g),220,7.0,3.3,37.4,4.7,3.9,0,0,0.6,241,22,Grain,Lunch
+Almonds (large),1 oz (28g),174,6.4,14.1,6.6,3.7,0.8,0,0,0.4,148,72,Snack,Snack
+Masala Dosa (large),1 medium (100g),182,3.0,4.7,27.0,1.5,2.5,326,0,0.0,120,17,Grain,Breakfast
+"Rice (White, cooked) (grilled)",1 cup (158g),225,4.5,0.0,43.1,0.0,0.0,0,10,1.5,33,48,Grain,Lunch
+Chocolate Cake (small),1 slice (80g),361,4.8,14.7,52.6,1.8,34.2,298,3,7.7,61,16,Sweet,Snack
+Idli (Steamed Rice Cake) (small),1 piece (39g),35,0.9,0.0,6.2,1.1,1.4,80,2,1.2,40,23,Grain,Breakfast
+Greek Yogurt (Plain),1 cup (245g),145,10.1,0.0,17.1,0.9,8.1,70,21,1.5,261,189,Dairy,Snack
+"Rice (White, cooked) (small)",1 cup (158g),187,4.3,1.7,46.2,1.0,0.8,0,8,0.0,0,11,Grain,Lunch
+Kulfi (Ice Cream),1 piece (80g),188,3.1,9.2,22.7,0.0,17.9,13,58,5.0,236,128,Sweet,Snack
+Kulfi (Ice Cream),1 piece (80g),185,3.8,10.0,21.3,0.0,15.7,0,59,6.4,250,96,Sweet,Snack
+Chapati (Whole Wheat) (small),1 piece (40g),109,2.8,4.5,21.0,3.9,3.0,142,0,2.8,157,41,Grain,Dinner
+Tea (Milk & Sugar) (small),1 cup (240ml),96,1.8,2.2,16.4,0.0,14.7,8,19,1.5,193,45,Beverage,Breakfast
+Orange (small),1 medium (140g),63,1.6,0.0,15.3,2.6,11.2,0,0,0.0,262,76,Fruit,Snack
+Masala Dosa - homemade,1 medium (100g),154,4.4,4.6,27.2,2.9,3.7,305,0,2.7,274,31,Grain,Breakfast
+"Rice (White, cooked)",1 cup (158g),213,3.7,1.5,46.0,1.1,2.3,0,12,1.3,0,17,Grain,Lunch
+Aloo Paratha (large),1 medium (120g),305,5.3,13.1,41.5,2.1,0.2,475,0,2.6,366,8,Grain,Breakfast
+Coca-Cola - homemade,1 can (355ml),132,0.0,1.1,39.0,0.3,36.7,0,0,0.0,61,7,Beverage,Snack
+Curd (Plain Yogurt) (store-bought),1 cup (245g),159,8.7,7.9,9.7,0.8,12.5,151,5,1.9,378,273,Dairy,Snack
+Milk (Whole) (store-bought),1 cup (244g),166,8.6,7.5,10.9,0.0,10.2,133,30,4.0,465,295,Dairy,Breakfast
+Omelette (2 eggs),1 serving,164,12.8,11.6,1.6,0.0,0.0,239,417,3.3,122,84,Protein,Breakfast
+Tea (Milk & Sugar) (small),1 cup (240ml),96,1.4,1.8,16.1,0.2,16.5,0,12,3.1,111,55,Beverage,Breakfast
+Butter (Salted) (large),1 tbsp (14g),120,0.0,12.2,0.0,0.0,0.0,81,28,6.0,85,37,Dairy,Breakfast
+Butter (Salted) (grilled),1 tbsp (14g),94,0.0,12.4,1.6,0.6,1.9,116,36,7.6,77,0,Dairy,Breakfast
+Chole (Chickpea Curry),1 cup (240g),280,16.0,8.1,44.7,11.8,4.2,625,16,2.5,462,96,Legume,Lunch
+Aloo Paratha,1 medium (120g),314,6.3,12.2,41.8,2.7,0.8,471,15,2.3,274,35,Grain,Breakfast
+Dal (Lentil Curry) - homemade,1 cup (200g),226,15.5,6.4,36.7,8.9,5.4,483,0,1.2,327,52,Legume,Lunch
+Chia Seeds (grilled),1 oz (28g),144,5.3,8.5,11.3,10.2,2.9,15,0,2.8,93,184,Snack,Snack
+Walnuts,1 oz (28g),195,4.8,18.3,5.5,1.7,0.0,0,0,0.0,76,19,Snack,Snack
+Salad (Veg Mix) (large),1 cup (100g),89,2.3,3.2,13.7,4.2,5.0,172,0,1.0,101,38,Vegetable,Dinner
+Peanut Butter,1 tbsp (16g),85,4.2,7.4,4.1,1.6,0.0,65,20,1.3,92,17,Snack,Snack
+Ladoo (Besan),1 piece (50g),202,5.1,12.8,25.8,2.8,19.5,67,0,5.1,21,22,Sweet,Snack
+Chole (Chickpea Curry),1 cup (240g),263,15.4,8.4,43.5,11.8,7.5,556,0,2.5,451,110,Legume,Lunch
+Samosa (small),1 piece (100g),275,4.2,16.8,25.6,4.0,1.1,429,2,9.6,82,50,Fast Food,Snack
+Kulfi (Ice Cream) (small),1 piece (80g),181,3.5,10.8,20.5,0.5,16.5,16,27,5.5,216,120,Sweet,Snack
+Orange (small),1 medium (140g),82,0.7,0.5,13.6,4.1,13.0,33,0,0.0,166,48,Fruit,Snack
+Idli (Steamed Rice Cake) (small),1 piece (39g),26,1.5,0.4,6.6,1.0,1.2,108,6,0.6,104,8,Grain,Breakfast
+Peanut Butter (large),1 tbsp (16g),113,4.4,8.0,4.6,1.0,1.7,46,0,2.7,110,0,Snack,Snack
+Almonds,1 oz (28g),160,6.7,15.4,5.4,3.3,0.0,20,11,2.7,276,105,Snack,Snack
+Vegetable Pulao (grilled),1 cup (200g),245,5.0,8.7,41.6,3.7,3.0,669,0,3.6,129,76,Grain,Lunch
+Chole (Chickpea Curry),1 cup (240g),265,15.3,8.6,46.9,11.5,4.3,557,0,2.6,467,101,Legume,Lunch
+Omelette (2 eggs) (grilled),1 serving,161,12.5,10.2,2.2,0.0,3.5,284,410,2.9,138,69,Protein,Breakfast
+Peanut Butter - homemade,1 tbsp (16g),80,3.7,7.9,1.5,0.8,0.7,59,10,2.8,149,43,Snack,Snack
+Kulfi (Ice Cream),1 piece (80g),187,3.3,10.8,23.9,0.7,13.6,70,50,7.2,223,98,Sweet,Snack
+Curd (Plain Yogurt) (large),1 cup (245g),153,9.1,8.5,12.5,0.8,12.4,79,30,4.5,308,326,Dairy,Snack
+Salad (Veg Mix) (small),1 cup (100g),62,2.1,2.6,13.0,5.7,6.1,245,16,1.4,157,52,Vegetable,Dinner
+Chia Seeds (grilled),1 oz (28g),151,4.7,9.5,10.7,10.9,0.0,0,4,0.0,86,204,Snack,Snack
+Walnuts,1 oz (28g),165,4.3,17.4,5.4,2.6,2.9,0,11,0.8,109,15,Snack,Snack
+Strawberries (large),1 cup (150g),42,1.1,0.4,13.0,2.2,6.7,24,8,0.0,247,20,Fruit,Snack
+Burger (Veg Patty),1 piece (150g),365,11.5,15.0,44.6,4.1,6.3,681,18,10.9,273,14,Fast Food,Lunch
+Protein Shake (Whey) (large),1 scoop (30g),135,23.4,2.2,4.8,0.0,0.0,28,24,0.0,196,59,Dairy,Snack
+Almonds (small),1 oz (28g),167,6.4,13.3,7.0,2.9,0.2,31,0,1.3,195,90,Snack,Snack
+"Rice (Brown, cooked)",1 cup (195g),206,5.0,2.9,45.0,3.3,0.0,0,0,0.0,84,0,Grain,Lunch
+Sambar (store-bought),1 cup (245g),142,8.4,4.3,19.7,8.9,4.0,345,0,2.6,215,59,Legume,Breakfast
+Peanut Butter (Smooth) (large),2 tbsp (32g),200,6.3,16.2,7.1,1.0,5.6,166,10,4.9,239,48,Snack,Snack
+Curd (Plain Yogurt) - homemade,1 cup (245g),166,7.8,9.0,9.4,0.3,11.6,104,32,4.3,387,308,Dairy,Snack
+Masala Dosa (store-bought),1 medium (100g),163,3.0,6.4,29.9,2.3,0.0,316,18,2.6,311,22,Grain,Breakfast
+Pizza (Cheese Slice) (store-bought),1 slice (107g),300,12.7,10.8,37.7,2.3,2.2,669,0,6.6,252,178,Fast Food,Dinner
+Aloo Paratha - homemade,1 medium (120g),291,6.0,12.7,39.3,2.2,1.1,511,17,3.9,420,50,Grain,Breakfast
+Salad (Veg Mix) - homemade,1 cup (100g),94,2.6,3.1,16.2,5.0,3.2,168,0,1.2,151,27,Vegetable,Dinner
+Butter Chicken (store-bought),1 cup (250g),420,26.0,28.7,15.6,0.1,6.7,846,94,6.1,335,16,Protein,Dinner
+Walnuts (store-bought),1 oz (28g),200,4.7,18.9,4.2,1.4,2.4,39,0,2.3,37,57,Snack,Snack
+Ladoo (Besan) (small),1 piece (50g),226,5.9,13.4,23.3,2.1,15.1,32,0,7.5,219,37,Sweet,Snack
+Chia Seeds (small),1 oz (28g),132,5.5,9.5,12.9,11.1,1.1,32,0,2.4,0,165,Snack,Snack
+Idli (Steamed Rice Cake),1 piece (39g),23,0.8,0.0,8.1,0.4,0.0,141,0,0.0,84,29,Grain,Breakfast
+Mixed Nuts,1 oz (28g),174,4.9,17.3,4.2,2.5,1.8,49,20,3.3,256,17,Snack,Snack
+Apple Juice (store-bought),1 cup (248g),130,0.3,0.0,28.8,0.6,26.7,26,0,1.2,140,16,Beverage,Snack
+Pasta (Cooked) (large),1 cup (140g),226,7.2,0.9,41.9,2.2,1.9,0,19,0.4,138,62,Grain,Lunch
+Butter Chicken - homemade,1 cup (250g),410,24.2,27.9,16.0,1.3,7.5,851,62,8.7,302,34,Protein,Dinner
+Pav Bhaji,1 plate,404,9.5,15.8,58.1,8.0,7.6,915,12,4.8,331,38,Fast Food,Lunch
+Butter (Salted),1 tbsp (14g),102,0.1,12.9,0.0,0.9,0.3,40,51,5.3,74,17,Dairy,Breakfast
+Naan (White Flour),1 piece (65g),267,8.7,5.5,45.3,2.8,5.4,507,0,4.2,49,1,Grain,Dinner
+Sambar - homemade,1 cup (245g),151,7.1,4.2,18.7,7.5,0.0,299,0,1.1,215,70,Legume,Breakfast
+Chocolate Cake (small),1 slice (80g),350,3.0,15.7,52.1,2.3,35.7,346,17,7.2,68,22,Sweet,Snack
+Hummus,2 tbsp (30g),68,2.6,4.8,2.3,1.5,0.0,115,0,0.5,114,24,Snack,Snack
+Dal (Lentil Curry) - homemade,1 cup (200g),235,15.6,7.1,34.2,8.3,1.8,493,3,4.1,272,40,Legume,Lunch
+Chia Seeds (large),1 oz (28g),127,3.9,7.7,12.7,10.7,3.5,0,0,2.3,129,169,Snack,Snack
+Chicken Breast (Grilled) (small),100g,177,30.3,3.1,0.5,0.0,0.0,109,101,2.4,348,42,Protein,Lunch
+French Fries (small),1 medium (117g),380,2.5,17.7,47.0,3.4,0.8,238,2,1.5,667,3,Fast Food,Snack
+"Rice (Brown, cooked) (grilled)",1 cup (195g),235,4.1,1.3,43.9,3.2,1.7,48,17,0.0,129,3,Grain,Lunch
+Kulfi (Ice Cream) (grilled),1 piece (80g),207,3.3,9.8,23.1,0.4,16.8,30,43,4.5,237,91,Sweet,Snack
+Protein Shake (Whey) (small),1 scoop (30g),129,23.9,2.4,2.9,0.0,1.9,10,12,1.9,35,77,Dairy,Snack
+Pasta (Cooked),1 cup (140g),217,8.5,1.9,43.9,3.3,4.8,31,0,1.6,143,35,Grain,Lunch
+Naan (White Flour) (large),1 piece (65g),253,8.8,6.4,44.2,3.0,3.8,551,0,2.7,67,57,Grain,Dinner
+Naan (White Flour) (large),1 piece (65g),258,7.3,6.3,42.4,1.7,1.1,482,19,3.9,203,32,Grain,Dinner
+Dal (Lentil Curry) (small),1 cup (200g),220,14.4,7.4,35.6,8.9,4.4,461,2,0.5,464,36,Legume,Lunch
+Mutton Curry,1 cup (200g),346,24.7,24.1,4.8,2.8,1.2,860,109,10.9,230,31,Protein,Dinner
+Burger (Veg Patty),1 piece (150g),367,11.3,15.7,46.0,5.2,6.4,718,4,8.5,277,52,Fast Food,Lunch
+Avocado,1 medium (150g),247,2.5,22.4,10.9,9.8,2.1,4,11,4.2,541,0,Fruit,Snack
+Hummus,2 tbsp (30g),78,1.3,4.2,4.6,0.4,0.0,111,18,1.5,8,52,Snack,Snack
+Mutton Curry (small),1 cup (200g),351,25.4,25.2,5.9,1.4,0.0,852,81,8.4,252,26,Protein,Dinner
+Greek Yogurt (Plain),1 cup (245g),118,11.3,0.0,17.3,0.0,5.5,33,18,1.8,293,206,Dairy,Snack
+Bread (Whole Wheat),1 slice (28g),67,4.5,0.6,12.4,1.8,1.5,110,6,0.6,129,62,Grain,Breakfast
+Naan (White Flour),1 piece (65g),279,8.3,5.7,44.9,1.7,3.7,527,0,2.1,108,8,Grain,Dinner
+"Rice (Brown, cooked)",1 cup (195g),208,5.0,3.1,44.7,4.2,1.3,0,10,1.8,137,0,Grain,Lunch
+Protein Shake (Whey) (store-bought),1 scoop (30g),134,24.0,0.8,2.9,0.0,1.6,0,22,0.6,94,75,Dairy,Snack
+Orange - homemade,1 medium (140g),75,1.1,1.5,15.3,3.6,11.1,44,16,0.0,171,38,Fruit,Snack
+Vegetable Pulao (store-bought),1 cup (200g),244,6.8,7.2,40.4,3.1,0.5,650,0,2.8,140,63,Grain,Lunch
+Apple (small),1 medium (182g),88,0.9,0.1,24.4,3.7,19.9,0,0,1.5,203,17,Fruit,Snack
+Coca-Cola (large),1 can (355ml),137,1.0,0.0,37.8,0.1,39.3,17,3,0.2,32,0,Beverage,Snack
+Pizza (Cheese Slice) (large),1 slice (107g),287,12.5,10.0,34.6,2.7,1.7,619,8,7.0,121,176,Fast Food,Dinner
+Chicken Breast (Grilled) (large),100g,170,31.6,4.6,0.5,0.4,0.0,73,105,0.0,179,35,Protein,Lunch
+Paneer (Cottage Cheese) (small),100g,283,17.9,19.2,4.9,0.0,0.0,21,65,12.5,213,196,Dairy,Dinner
+Aloo Paratha (large),1 medium (120g),283,6.9,13.1,40.6,2.9,0.2,534,13,2.7,258,55,Grain,Breakfast
+Almonds (large),1 oz (28g),177,6.4,14.5,6.7,3.2,2.1,0,0,3.1,299,71,Snack,Snack
+Tea (Milk & Sugar) - homemade,1 cup (240ml),105,1.8,1.5,14.1,0.4,18.5,60,0,2.0,159,78,Beverage,Breakfast
+Greek Yogurt (Plain) (grilled),1 cup (245g),132,11.9,0.0,17.4,0.0,9.6,83,0,0.0,244,202,Dairy,Snack
+"Rice (Brown, cooked) (large)",1 cup (195g),200,5.0,1.6,42.5,3.5,0.0,28,16,0.0,97,4,Grain,Lunch
+Sushi (Salmon Roll) (small),6 pieces,295,12.5,7.4,43.8,1.9,4.5,553,20,0.3,267,24,Seafood,Lunch
+Bread (Whole Wheat) (store-bought),1 slice (28g),63,4.0,0.7,11.3,2.8,1.7,83,0,0.0,3,35,Grain,Breakfast
+Omelette (2 eggs) - homemade,1 serving,155,11.2,12.3,1.1,0.0,3.8,234,411,5.4,200,89,Protein,Breakfast
+Egg (Boiled) (small),1 large (50g),70,5.5,4.6,0.0,0.0,2.6,91,188,0.1,0,5,Protein,Breakfast
+"Rice (White, cooked) - homemade",1 cup (158g),216,4.5,1.3,45.2,0.0,0.0,31,0,0.1,102,53,Grain,Lunch
+Peanut Butter (small),1 tbsp (16g),86,5.0,9.3,2.1,0.4,1.5,16,13,2.8,105,47,Snack,Snack
+Pasta (Cooked),1 cup (140g),233,7.7,2.5,44.1,2.4,0.4,17,9,0.0,0,10,Grain,Lunch
+Omelette (2 eggs),1 serving,158,12.2,10.8,1.7,0.0,1.7,230,417,3.5,182,51,Protein,Breakfast
+Coca-Cola,1 can (355ml),151,0.0,0.0,40.0,0.0,38.4,52,0,0.3,56,22,Beverage,Snack
+Mutton Curry (store-bought),1 cup (200g),336,25.4,26.0,6.2,2.7,0.2,894,89,9.3,222,1,Protein,Dinner
+Salad (Veg Mix) (small),1 cup (100g),68,4.0,3.1,15.1,5.4,7.7,188,0,0.7,245,13,Vegetable,Dinner
+Chocolate Cake,1 slice (80g),340,3.1,16.0,51.9,2.3,34.7,292,0,8.4,193,35,Sweet,Snack
+Kulfi (Ice Cream) (grilled),1 piece (80g),202,3.0,9.3,23.5,0.9,14.2,68,54,4.7,249,88,Sweet,Snack
+Tea (Milk & Sugar) (grilled),1 cup (240ml),112,2.0,2.8,17.6,0.0,14.7,70,0,2.6,179,71,Beverage,Breakfast
+Coffee (Black) (small),1 cup (240ml),22,0.5,0.0,1.6,0.0,0.0,0,0,0.6,197,0,Beverage,Breakfast
+Almonds - homemade,1 oz (28g),169,5.5,14.1,7.5,3.2,1.7,7,6,0.0,105,54,Snack,Snack
+Chole (Chickpea Curry),1 cup (240g),265,15.9,9.3,43.3,11.3,4.6,543,10,1.4,381,99,Legume,Lunch
+Chocolate Cake (large),1 slice (80g),335,3.2,15.5,50.3,2.9,34.3,279,0,10.0,163,40,Sweet,Snack
+Dal (Lentil Curry),1 cup (200g),243,15.7,5.1,35.7,8.7,2.0,460,9,4.2,408,64,Legume,Lunch
+Peanut Butter (large),1 tbsp (16g),103,3.3,9.4,3.2,1.2,0.7,105,20,3.1,94,20,Snack,Snack
+Bread (Whole Wheat) - homemade,1 slice (28g),83,3.2,1.0,12.2,2.5,1.3,128,6,0.0,57,10,Grain,Breakfast
+Apple (large),1 medium (182g),83,0.2,0.5,23.0,5.2,21.7,12,0,0.0,205,32,Fruit,Snack
+Samosa (large),1 piece (100g),256,4.6,17.4,22.8,3.8,1.6,398,0,9.5,205,14,Fast Food,Snack
+Avocado (small),1 medium (150g),228,2.5,21.1,11.0,10.5,2.7,48,0,2.1,577,22,Fruit,Snack
+Kulfi (Ice Cream) (grilled),1 piece (80g),206,3.4,9.2,20.5,0.0,15.7,52,37,6.8,175,82,Sweet,Snack
+Burger (Veg Patty),1 piece (150g),343,10.1,16.3,43.7,4.2,4.6,761,8,9.9,169,0,Fast Food,Lunch
+Paneer (Cottage Cheese),100g,276,17.4,20.1,7.1,0.0,1.2,61,42,11.3,272,238,Dairy,Dinner
+Paneer (Cottage Cheese),100g,262,18.6,19.2,5.9,0.0,4.0,20,40,10.5,276,223,Dairy,Dinner
+"Fish (Salmon, grilled) (small)",100g,216,19.5,14.5,0.0,0.5,0.0,94,48,2.9,437,0,Seafood,Dinner
+Burger (Veg Patty),1 piece (150g),374,11.5,16.9,45.2,4.2,5.9,708,0,8.4,123,50,Fast Food,Lunch
+Peanut Butter (Smooth),2 tbsp (32g),175,6.5,16.1,5.1,2.5,3.5,142,0,1.2,50,27,Snack,Snack
+Pav Bhaji - homemade,1 plate,410,10.4,14.4,61.1,7.5,6.0,937,19,4.4,514,60,Fast Food,Lunch
+Strawberries,1 cup (150g),50,1.3,1.3,12.9,2.3,5.4,22,2,1.3,232,38,Fruit,Snack
+Egg (Boiled),1 large (50g),82,5.7,4.3,2.2,0.0,0.2,49,200,2.3,11,34,Protein,Breakfast
+Curd (Plain Yogurt) (large),1 cup (245g),151,8.1,8.2,12.5,0.2,13.2,83,4,2.9,395,288,Dairy,Snack
+Pomegranate (grilled),1 cup (174g),158,2.7,1.0,32.6,6.8,21.1,0,19,1.6,764,37,Fruit,Snack
+"Fish (Salmon, grilled) (grilled)",100g,192,20.3,13.3,0.0,0.0,0.0,79,44,3.5,345,5,Seafood,Dinner
+Butter (Salted) (grilled),1 tbsp (14g),89,0.0,12.1,0.0,0.9,0.0,44,23,5.4,0,0,Dairy,Breakfast
+Orange (large),1 medium (140g),66,1.5,0.5,16.2,2.6,11.2,27,0,0.0,190,63,Fruit,Snack
+Apple Juice (store-bought),1 cup (248g),99,0.1,0.9,27.4,1.0,26.3,7,0,1.4,168,23,Beverage,Snack
+Orange - homemade,1 medium (140g),46,1.9,0.0,14.3,3.1,9.6,0,14,0.0,186,55,Fruit,Snack
+Peanut Butter (Smooth),2 tbsp (32g),204,7.3,15.4,8.0,1.7,0.6,173,16,2.6,157,34,Snack,Snack
+Peanut Butter (Smooth) (small),2 tbsp (32g),174,6.3,15.5,6.6,1.6,0.9,168,8,4.9,120,25,Snack,Snack
+Burger (Veg Patty) (store-bought),1 piece (150g),357,10.8,16.6,46.3,4.6,4.4,739,0,8.5,250,54,Fast Food,Lunch
+Rajma (Kidney Bean Curry) (grilled),1 cup (240g),243,13.9,5.1,39.6,10.5,6.9,506,0,1.0,427,40,Legume,Lunch
+Pizza (Cheese Slice),1 slice (107g),278,12.7,9.1,37.3,2.4,2.7,660,12,6.1,226,179,Fast Food,Dinner
+"Rice (Brown, cooked)",1 cup (195g),225,4.7,1.1,43.5,3.7,0.0,0,0,0.5,129,38,Grain,Lunch
+Chicken Breast (Grilled) - homemade,100g,149,31.4,4.6,0.0,0.7,1.1,97,71,1.4,232,0,Protein,Lunch
+Chole (Chickpea Curry) (store-bought),1 cup (240g),285,14.8,9.5,46.7,11.7,9.3,590,6,2.9,405,105,Legume,Lunch
+Naan (White Flour),1 piece (65g),278,8.9,6.6,44.5,1.1,4.1,492,14,3.5,93,32,Grain,Dinner
+Masala Dosa,1 medium (100g),157,2.6,5.8,27.6,2.3,2.7,328,0,0.7,194,40,Grain,Breakfast
+Chocolate Cake,1 slice (80g),338,3.7,15.2,53.0,2.1,33.6,301,12,8.7,228,8,Sweet,Snack
+Butter Chicken,1 cup (250g),440,25.1,28.2,17.6,0.4,5.7,914,93,7.0,238,27,Protein,Dinner
+Naan (White Flour) (small),1 piece (65g),260,8.4,6.4,42.5,1.8,3.2,476,0,2.6,177,1,Grain,Dinner
+Naan (White Flour) (grilled),1 piece (65g),250,9.0,6.5,46.0,1.9,1.9,457,0,2.0,105,9,Grain,Dinner
+Butter Chicken - homemade,1 cup (250g),415,24.2,27.1,18.8,1.9,7.2,856,60,7.4,248,29,Protein,Dinner
+Idli (Steamed Rice Cake) (small),1 piece (39g),20,1.1,1.1,6.8,0.7,1.9,140,10,0.5,0,19,Grain,Breakfast
+Masala Dosa - homemade,1 medium (100g),149,3.3,6.3,28.1,1.9,0.0,289,19,0.9,239,31,Grain,Breakfast
+Apple,1 medium (182g),99,0.8,1.0,26.7,4.1,16.6,0,4,0.0,192,13,Fruit,Snack
+Aloo Paratha,1 medium (120g),300,6.0,12.5,38.4,2.4,4.8,521,0,1.8,385,24,Grain,Breakfast
+Coffee (Black) (small),1 cup (240ml),7,0.8,0.0,0.7,0.0,0.0,19,0,1.2,176,0,Beverage,Breakfast
+Protein Shake (Whey) (small),1 scoop (30g),101,24.9,2.9,1.9,0.0,0.4,17,0,1.4,133,63,Dairy,Snack
+Walnuts (store-bought),1 oz (28g),205,4.4,18.0,4.3,1.8,0.0,27,1,1.3,58,11,Snack,Snack
+Butter (Salted),1 tbsp (14g),119,0.2,12.5,1.5,0.0,1.3,107,19,6.7,100,0,Dairy,Breakfast
+Butter (Salted) (large),1 tbsp (14g),92,0.0,11.9,1.8,0.0,0.0,58,12,8.1,8,3,Dairy,Breakfast
+Pizza (Cheese Slice) (small),1 slice (107g),305,12.9,9.7,37.1,1.2,2.1,687,19,6.4,235,206,Fast Food,Dinner
+Walnuts,1 oz (28g),203,3.5,18.7,3.4,2.3,0.6,14,18,1.4,191,21,Snack,Snack
+Curd (Plain Yogurt) (store-bought),1 cup (245g),153,8.5,7.3,9.8,0.0,12.6,64,17,4.6,336,317,Dairy,Snack
+Peanut Butter (Smooth),2 tbsp (32g),181,6.1,17.3,8.9,2.6,2.9,133,9,4.8,149,15,Snack,Snack
+Naan (White Flour),1 piece (65g),278,8.5,6.0,43.3,2.2,5.5,528,14,3.3,190,50,Grain,Dinner
+Orange (large),1 medium (140g),48,1.1,1.3,13.6,4.1,12.1,0,0,0.3,269,70,Fruit,Snack
+Bread (Whole Wheat),1 slice (28g),61,3.2,1.1,11.2,2.6,1.4,136,0,0.7,0,54,Grain,Breakfast
+Tofu (Firm),100g,85,8.7,4.9,2.8,0.0,2.0,46,14,0.0,126,340,Protein,Dinner
+Idli (Steamed Rice Cake),1 piece (39g),30,1.3,1.4,9.6,1.4,0.0,111,0,0.9,0,0,Grain,Breakfast
+Chapati (Whole Wheat) - homemade,1 piece (40g),128,3.8,3.2,20.8,3.5,3.4,148,0,1.2,117,0,Grain,Dinner
+Naan (White Flour),1 piece (65g),261,8.1,6.6,42.6,2.7,2.1,543,0,2.9,89,46,Grain,Dinner
+Naan (White Flour) (small),1 piece (65g),258,8.3,5.3,42.5,1.4,4.7,484,0,3.0,137,34,Grain,Dinner
+Kulfi (Ice Cream),1 piece (80g),218,4.8,9.6,22.4,0.0,15.5,5,58,6.4,112,126,Sweet,Snack
+French Fries (grilled),1 medium (117g),384,3.7,18.1,46.8,3.4,0.0,240,0,1.6,508,30,Fast Food,Snack
+Sushi (Salmon Roll) (store-bought),6 pieces,318,11.6,7.3,42.2,1.8,2.1,636,8,2.2,427,44,Seafood,Lunch
+Almonds (large),1 oz (28g),179,5.4,14.1,6.3,4.4,0.0,0,0,0.6,197,98,Snack,Snack
+Oatmeal (Cooked) (store-bought),1 cup (234g),173,6.7,2.8,27.9,3.2,3.2,0,13,0.4,117,35,Grain,Breakfast
+Chicken Breast (Grilled) (large),100g,148,30.2,4.4,0.5,1.0,0.0,112,103,2.7,336,1,Protein,Lunch
+Grilled Fish (large),150g,330,35.5,18.4,0.5,0.9,0.7,153,83,6.3,477,21,Seafood,Dinner
+Kulfi (Ice Cream),1 piece (80g),219,3.5,9.7,20.8,0.0,15.8,10,33,7.2,156,96,Sweet,Snack
+Orange (grilled),1 medium (140g),64,1.3,0.8,13.4,2.5,10.7,0,0,0.0,277,42,Fruit,Snack
+Naan (White Flour),1 piece (65g),247,8.4,5.9,44.9,2.2,1.2,474,0,2.5,96,59,Grain,Dinner
+Omelette (2 eggs) (small),1 serving,164,12.6,11.6,1.1,0.3,3.8,268,421,3.4,131,89,Protein,Breakfast
+Rajma (Kidney Bean Curry),1 cup (240g),253,12.6,5.8,39.3,10.1,2.2,517,1,2.1,440,44,Legume,Lunch
+Paneer (Cottage Cheese) (grilled),100g,246,17.7,19.9,6.1,0.0,2.6,0,78,10.5,280,226,Dairy,Dinner
+Pizza (Cheese Slice) - homemade,1 slice (107g),285,12.4,9.7,34.3,2.8,3.2,628,0,6.0,124,177,Fast Food,Dinner
+Coca-Cola (store-bought),1 can (355ml),122,0.6,1.3,38.8,0.0,38.9,59,0,0.0,32,25,Beverage,Snack
+Chia Seeds (large),1 oz (28g),137,5.3,8.1,13.8,11.2,3.4,41,0,0.1,0,176,Snack,Snack
+Ladoo (Besan) - homemade,1 piece (50g),233,4.2,11.8,22.2,2.7,20.2,42,9,8.6,46,15,Sweet,Snack
+Naan (White Flour) - homemade,1 piece (65g),259,7.0,6.9,44.6,1.4,2.2,488,0,3.3,207,28,Grain,Dinner
+Peanut Butter (Smooth),2 tbsp (32g),185,6.3,15.7,5.1,2.1,3.1,118,14,2.6,121,7,Snack,Snack
+Paneer (Cottage Cheese) - homemade,100g,263,18.1,19.4,5.2,0.8,2.2,0,48,10.1,252,181,Dairy,Dinner
+"Rice (Brown, cooked) (small)",1 cup (195g),199,4.2,1.8,44.8,4.3,1.5,48,8,0.7,63,1,Grain,Lunch
+Pomegranate,1 cup (174g),158,2.2,3.3,33.1,7.1,20.6,42,9,0.0,645,41,Fruit,Snack
+Butter (Salted) - homemade,1 tbsp (14g),111,0.0,12.9,0.0,0.8,0.0,86,36,5.7,73,0,Dairy,Breakfast
+Pav Bhaji (store-bought),1 plate,400,9.9,14.1,59.9,7.7,5.8,871,0,6.1,474,56,Fast Food,Lunch
+Dal (Lentil Curry) (large),1 cup (200g),216,14.8,6.8,33.4,8.1,0.4,438,14,2.1,421,31,Legume,Lunch
+"Fish (Salmon, grilled) (large)",100g,203,20.1,14.4,0.0,0.0,1.9,84,62,4.1,374,15,Seafood,Dinner
+Pav Bhaji (grilled),1 plate,414,10.4,14.4,60.7,8.5,7.3,912,0,5.4,438,40,Fast Food,Lunch
+French Fries,1 medium (117g),373,2.8,18.4,46.3,3.2,2.2,294,4,2.3,665,30,Fast Food,Snack
+Strawberries,1 cup (150g),41,1.6,1.7,13.3,3.3,4.0,0,0,0.0,194,16,Fruit,Snack
