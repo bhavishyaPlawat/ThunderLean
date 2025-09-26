@@ -130,13 +130,27 @@ const PageFooter = () => {
 
       {/* Scroll to Top Button */}
       {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-colors"
-        >
-          <FaArrowUp />
-        </button>
-      )}
+  <button
+    onClick={scrollToTop}
+    className="fixed bottom-6 right-6 p-4 rounded-full bg-purple-600 text-white shadow-2xl hover:bg-purple-700 hover:scale-110 hover:shadow-purple-500/25 transition-all duration-300 ease-in-out transform hover:-translate-y-1 animate-bounce z-50"
+    style={{
+      animation: 'float 3s ease-in-out infinite',
+      background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
+    }}
+  >
+    <FaArrowUp className="text-lg" />
+    <style jsx>{`
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+    `}</style>
+  </button>
+)}
     </footer>
   );
 };

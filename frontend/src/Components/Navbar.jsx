@@ -121,6 +121,12 @@ const Navbar = () => {
                 Features
               </a>
               <a
+                href="/about"
+                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              >
+                About Us
+              </a>
+              <a
                 href="/#whyus"
                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
               >
@@ -213,6 +219,10 @@ const Navbar = () => {
                 <a href="/#features" onClick={() => setIsMenuOpen(false)}
                  className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
                   Features
+                </a>
+                <a href="/about" onClick={() => setIsMenuOpen(false)}
+                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                  About Us
                 </a>
                 <a href="/#whyus" onClick={() => setIsMenuOpen(false)}
                  className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">

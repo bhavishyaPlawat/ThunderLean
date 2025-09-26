@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -33,10 +32,15 @@ const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
     <div className={`flex flex-col ${flexDirection} items-center gap-8 lg:gap-16`}>
       {/* Text Box */}
       <motion.div
-        className="md:w-1/2 bg-[#D9D9D9] rounded-2xl p-6 lg:p-8 text-center shadow-md"
+        className="md:w-1/2 bg-white rounded-2xl p-6 lg:p-8 text-center shadow-md border-1 border-transparent cursor-pointer"
         variants={textVariants}
         initial="hidden"
         whileInView="visible"
+        whileHover={{ 
+          scale: 1.05,
+          borderColor: "#8C4DCF",
+          transition: { duration: 0.3 }
+        }}
         viewport={{ once: true, amount: 0.2 }}
       >
         <h3 className="text-2xl sm:text-3xl font-bold text-black mb-4">
@@ -63,7 +67,6 @@ const FeatureCard = ({ title, items, imageUrl, imageAlt, reverse = false }) => {
   );
 };
 
-
 const Features = () => {
   const featureData = [
     {
@@ -74,7 +77,7 @@ const Features = () => {
         "Simple, fast, and tailored to your fitness goals.",
       ],
       imageUrl:
-        "/assets/WhatsApp_Image_2025-07-27_at_14.37.47_210d55e7-removebg-preview.png",
+        "/assets/Tdee_Calculator.png",
       imageAlt: "TDEE Calculator",
     },
     {
