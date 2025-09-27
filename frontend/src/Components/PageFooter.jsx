@@ -1,5 +1,5 @@
-import React , { useState, useEffect }from "react";
-import { FaTwitter, FaGithub, FaLinkedin,FaArrowUp } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaTwitter, FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
 
 const PageFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,34 +25,52 @@ const PageFooter = () => {
     });
   };
   const socialLinks = [
-    { icon: <FaGithub />, href: "https://github.com/bhavishyaPlawat/ThunderLean" },
-    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/bhavishya-plawat-165184303/" },
+    {
+      icon: <FaGithub />,
+      href: "https://github.com/bhavishyaPlawat/ThunderLean",
+    },
+    {
+      icon: <FaLinkedin />,
+      href: "https://www.linkedin.com/in/bhavishya-plawat-165184303/",
+    },
   ];
 
   const footerLinks = [
-    { title: "Product", links: [
-      { name: "Features", href: "/#features" },
-      { name: "Pricing", href: "#" },
-      { name: "Updates", href: "#" }
-    ]},
-    { title: "Company", links: [
-      { name: "About", href: "/#whyus" },
-      { name: "Contact Us", href: "#" },
-      { name: "Careers", href: "#" }
-    ]},
-    { title: "Support", links: [
-      { name: "FAQs", href: "/faqs" },
-      { name: "Help Center", href: "#" },
-      { name: "Community", href: "/community" }
-    ]},
-    { title: "Legal", links: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" }
-    ]},
+    {
+      title: "Product",
+      links: [
+        { name: "Features", href: "/#features" },
+        { name: "Pricing", href: "#" },
+        { name: "Updates", href: "#" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { name: "About", href: "/#whyus" },
+        { name: "Contact Us", href: "#" },
+        { name: "Careers", href: "#" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { name: "FAQs", href: "/faqs" },
+        { name: "Help Center", href: "#" },
+        { name: "Community", href: "/community" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Privacy Policy", href: "#" },
+        { name: "Terms of Service", href: "#" },
+      ],
+    },
   ];
 
   return (
-    <footer id="whyus" className="bg-[#1F2937] text-white pt-12 pb-8 md:pt-16">
+    <footer id="whyus" className="bg-[#1E1E1E] text-white pt-12 pb-8 md:pt-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
@@ -105,16 +123,28 @@ const PageFooter = () => {
         {/* Mobile Quick Links */}
         <div className="md:hidden mt-6 pt-4 border-t border-gray-700">
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
-            <a href="/" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               Home
             </a>
-            <a href="/#features" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/#features"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               Features
             </a>
-            <a href="/faqs" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/faqs"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               FAQs
             </a>
-            <a href="/#whyus" className="text-gray-400 hover:text-white transition-colors">
+            <a
+              href="/#whyus"
+              className="text-gray-400 hover:text-white transition-colors"
+            >
               About
             </a>
           </div>
@@ -130,27 +160,28 @@ const PageFooter = () => {
 
       {/* Scroll to Top Button */}
       {isVisible && (
-  <button
-    onClick={scrollToTop}
-    className="fixed bottom-6 right-6 p-4 rounded-full bg-purple-600 text-white shadow-2xl hover:bg-purple-700 hover:scale-110 hover:shadow-purple-500/25 transition-all duration-300 ease-in-out transform hover:-translate-y-1 animate-bounce z-50"
-    style={{
-      animation: 'float 3s ease-in-out infinite',
-      background: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
-    }}
-  >
-    <FaArrowUp className="text-lg" />
-    <style jsx>{`
-      @keyframes float {
-        0%, 100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-    `}</style>
-  </button>
-)}
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 p-4 rounded-full bg-purple-600 text-white shadow-2xl hover:bg-purple-700 hover:scale-110 hover:shadow-purple-500/25 transition-all duration-300 ease-in-out transform hover:-translate-y-1 animate-bounce z-50"
+          style={{
+            animation: "float 3s ease-in-out infinite",
+            background: "linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)",
+          }}
+        >
+          <FaArrowUp className="text-lg" />
+          <style jsx>{`
+            @keyframes float {
+              0%,
+              100% {
+                transform: translateY(0px);
+              }
+              50% {
+                transform: translateY(-8px);
+              }
+            }
+          `}</style>
+        </button>
+      )}
     </footer>
   );
 };
