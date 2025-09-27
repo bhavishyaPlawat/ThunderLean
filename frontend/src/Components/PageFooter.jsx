@@ -70,15 +70,15 @@ const PageFooter = () => {
   ];
 
   return (
-    <footer id="whyus" className="bg-[#1E1E1E] text-white pt-12 pb-8 md:pt-16">
+    <footer id="whyus" className="bg-[#e3e7f0] text-white pt-12 pb-8 md:pt-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="sm:col-span-2 lg:col-span-1 mb-6 md:mb-0">
-            <h1 className="text-2xl font-bold tracking-wide text-white">
+            <h1 className="text-2xl font-bold tracking-wide text-black">
               Thunderlean
             </h1>
-            <p className="mt-4 text-gray-400 text-sm leading-relaxed">
+            <p className="mt-4 text-black text-sm leading-relaxed">
               AI-powered insights to elevate your fitness journey.
             </p>
             <div className="flex gap-4 mt-6">
@@ -86,7 +86,7 @@ const PageFooter = () => {
                 <a
                   key={index}
                   href={social.href}
-                  className="text-gray-400 hover:text-white transition-colors text-2xl"
+                  className="text-black hover:text-gray-800 transition-colors text-2xl"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -100,7 +100,7 @@ const PageFooter = () => {
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:col-span-4">
             {footerLinks.map((section) => (
               <div key={section.title} className="mb-6">
-                <h4 className="font-semibold text-lg tracking-wider mb-4 text-white">
+                <h4 className="font-semibold text-lg tracking-wider mb-4 text-black">
                   {section.title}
                 </h4>
                 <ul className="space-y-2 text-sm">
@@ -108,7 +108,7 @@ const PageFooter = () => {
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-gray-400 hover:text-white transition-colors block py-1"
+                        className="text-black hover:text-gray-800 transition-colors block py-1"
                       >
                         {link.name}
                       </a>
@@ -125,25 +125,25 @@ const PageFooter = () => {
           <div className="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm">
             <a
               href="/"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-black hover:text-gray-800 transition-colors"
             >
               Home
             </a>
             <a
               href="/#features"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-black hover:text-gray-800 transition-colors"
             >
               Features
             </a>
             <a
               href="/faqs"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-black hover:text-gray-800 transition-colors"
             >
               FAQs
             </a>
             <a
               href="/#whyus"
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-black hover:text-gray-800 transition-colors"
             >
               About
             </a>
@@ -151,7 +151,7 @@ const PageFooter = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-4 border-t border-gray-700 pt-4 text-center text-sm text-gray-500 md:mt-12 md:pt-6">
+        <div className="mt-4 border-t border-black pt-4 text-center text-sm text-black md:mt-12 md:pt-6">
           <p>
             &copy; {new Date().getFullYear()} Thunderlean. All rights reserved.
           </p>
