@@ -1,4 +1,4 @@
-// frontend/src/Components/Community/Community.jsx
+// frontimport { apiClient } from \"../apiClient\";nd/src/Components/Community/Community.jsx
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
@@ -28,37 +28,24 @@ const Community = () => {
   }, []);
 
   const fetchUser = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    setUser(user);
+    try {
+      const response = await apiClient.getUser();
+      setUser(response.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      setUser(null);
+    }
   };
 
   const fetchPosts = async () => {
-    const { data, error } = await supabase
-      .from("posts")
-      .select(
-        `
-        *,
-        profiles (
-          full_name,
-          avatar_url
-        ),
-        likes (
-          user_id
-        ),
-        comments (
-          id
-        )
-      `
-      )
-      .order("created_at", { ascending: false });
-
-    if (error) {
+    try {
+      const response = await apiClient.getPosts();
+      setPosts(response.posts || []);
+    } catch (error) {
       console.error("Error fetching posts:", error);
-    } else {
-      setPosts(data);
+      setPosts([]);
     }
+  };
   };
 
   const handlePostAction = () => {

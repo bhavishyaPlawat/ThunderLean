@@ -60,20 +60,21 @@ exports.signup = async (req, res) => {
 
 /**
  * Handles user login.
- * Expects 'identifier' (which can be email or phone) and 'password'.
+ * Expects 'email' and 'password' or 'identifier' (which can be email or phone) and 'password'.
  */
 exports.login = async (req, res) => {
   try {
-    const { identifier, password } = req.body;
+    const { identifier, email, password } = req.body;
+    const loginField = email || identifier;
 
-    if (!identifier || !password) {
+    if (!loginField || !password) {
       return res
         .status(400)
         .json({ message: "Email/phone and password are required." });
     }
 
     const user = await User.findOne({
-      $or: [{ email: identifier }, { phone: identifier }],
+      $or: [{ email: loginField }, { phone: loginField }],
     });
     if (!user) {
       return res.status(404).json({ message: "User not found." });
@@ -175,5 +176,42 @@ exports.loginWithOtp = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error during OTP login." });
+  }
+};
+
+// JWT verification middleware
+exports.verifyToken = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+      return res.status(401).json({ message: "Access token required" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id).select('-password');
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error("Token verification error:", error);
+    res.status(401).json({ message: "Invalid token" });
+  }
+};
+
+// Get current user
+exports.getMe = async (req, res) => {
+  try {
+    res.status(200).json({ 
+      success: true,
+      user: toUserDTO(req.user) 
+    });
+  } catch (error) {
+    console.error("Get me error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

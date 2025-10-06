@@ -8,33 +8,12 @@ import {
 import { RiMenu3Fill } from "react-icons/ri";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { supabase } from "../supabaseClient";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPwaInstallable, setIsPwaInstallable] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const getSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setIsLoggedIn(!!session);
-    };
-    getSession();
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setIsLoggedIn(!!session);
-      }
-    );
-
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
-  }, []);
 
   useEffect(() => {
     const handler = (e) => {
@@ -71,7 +50,6 @@ const Navbar = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
     navigate("/");
     setIsMenuOpen(false);
   };
