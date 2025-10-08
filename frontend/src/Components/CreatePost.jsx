@@ -1,6 +1,6 @@
 // frontend/src/Components/Community/CreatePost.jsx
 import React, { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { IoImageOutline, IoCloseCircle } from "react-icons/io5";
 
 // Preset hashtags for users to choose from

@@ -1,6 +1,6 @@
 // frontend/src/Components/Community/EditPostModal.jsx
 import React, { useState } from "react";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { IoClose, IoSaveOutline } from "react-icons/io5";
 
 const EditPostModal = ({ isOpen, onClose, post, onPostUpdated }) => {

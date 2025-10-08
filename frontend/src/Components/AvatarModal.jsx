@@ -1,6 +1,6 @@
 // frontend/src/Components/Settings/AvatarModal.jsx
 import React, { useState, useRef } from "react";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoClose, IoSaveOutline, IoCloudUploadOutline } from "react-icons/io5";
 

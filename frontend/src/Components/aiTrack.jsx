@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Sidebar from "./Sidebar";
 import { FaCamera, FaBars } from "react-icons/fa";
 import axios from "axios";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 
 const AiTrack = () => {
   const [goal, setGoal] = useState("loose");

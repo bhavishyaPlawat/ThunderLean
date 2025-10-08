@@ -1,6 +1,6 @@
 // frontend/src/Components/Community/PostCard.jsx
 import React, { useState, useEffect } from "react";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import EditPostModal from "./EditPostModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import CommentModal from "./CommentModal"; // Make sure this component is created

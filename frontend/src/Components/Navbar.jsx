@@ -8,7 +8,7 @@ import {
 import { RiMenu3Fill } from "react-icons/ri";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
+ 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

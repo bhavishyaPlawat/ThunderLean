@@ -1,4 +1,4 @@
-// frontimport { apiClient } from \"../apiClient\";nd/src/Components/Community/Community.jsx
+// frontend/src/Components/Community/Community.jsx
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
@@ -6,7 +6,7 @@ import BottomNav from "./BottomNav";
 import GetTip from "./GetTip";
 import CreatePost from "./CreatePost";
 import PostCard from "./PostCard";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { IoChatbubbleEllipsesOutline, IoSyncOutline } from "react-icons/io5";
 
 const Community = () => {
@@ -45,7 +45,6 @@ const Community = () => {
       console.error("Error fetching posts:", error);
       setPosts([]);
     }
-  };
   };
 
   const handlePostAction = () => {
