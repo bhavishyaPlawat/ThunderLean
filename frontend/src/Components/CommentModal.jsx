@@ -1,6 +1,6 @@
 // frontend/src/Components/Community/CommentModal.jsx
 import React, { useState, useEffect, useRef } from "react";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { IoClose, IoSend, IoSyncOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 

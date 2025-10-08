@@ -6,7 +6,7 @@ import SetupStep2 from "./SetupStep2";
 import SetupStep3 from "./SetupStep3";
 import SetupStep4 from "./SetupStep4";
 import SetupStep5 from "./SetupStep5";
-import { supabase } from "../../supabaseClient";
+import { apiClient } from "../../apiClient";
 import { useNavigate } from "react-router-dom";
 
 const ProfileSetup = () => {

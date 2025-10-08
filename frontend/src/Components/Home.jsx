@@ -12,7 +12,7 @@ import {
 import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
 import GetTip from "./GetTip";
-import { supabase } from "../supabaseClient"; // Make sure to import supabase
+import { apiClient } from "../apiClient";
 
 const ActivityItem = ({
   icon,

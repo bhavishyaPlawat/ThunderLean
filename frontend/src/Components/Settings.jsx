@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import BottomNav from "./BottomNav";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import {
   IoPersonCircleOutline,
   IoLogOutOutline,

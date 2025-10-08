@@ -7,6 +7,10 @@ const tdeeRoutes = require("./routes/tdeeRoutes");
 const calorieRoutes = require("./routes/aiCalorieRoutes");
 const helmet = require("helmet");
 const authRoutes = require("./routes/authRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+const likeRoutes = require("./routes/likeRoutes");
 const connectToDB = require("./db/db");
 
 dotenv.config();
@@ -25,6 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/tdee", tdeeRoutes);
 app.use("/api/ai", calorieRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/profiles", profileRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/likes", likeRoutes);
 
 // Health Check
 app.get("/", (req, res) => {

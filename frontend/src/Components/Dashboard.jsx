@@ -22,7 +22,7 @@ import {
 import { SiStrava } from "react-icons/si";
 import { FaTrophy, FaShoePrints, FaPencilAlt } from "react-icons/fa";
 import GetTip from "./GetTip";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 
 ChartJS.register(
   CategoryScale,

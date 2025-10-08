@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineMail, AiFillThunderbolt } from "react-icons/ai";
-import { supabase } from "../supabaseClient"; // Import the Supabase client
+import { apiClient } from "../apiClient";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

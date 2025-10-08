@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
+import { apiClient } from "../apiClient";
 import Sidebar from "./Sidebar";
 import GetTip from "./GetTip";
 import BottomNav from "./BottomNav";
@@ -20,10 +20,8 @@ import {
   IoLeafOutline,
 } from "react-icons/io5";
 
-// --- Supabase Client Setup ---
-const supabaseUrl = import.meta.env.VITE_SUPABASE_PROJECT_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// --- API Client Setup ---
+// Using the apiClient imported above
 
 // NEW: Nutrition Details Modal
 const NutritionModal = ({ isOpen, onClose, meal }) => {

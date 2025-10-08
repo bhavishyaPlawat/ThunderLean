@@ -6,7 +6,7 @@ import BottomNav from "./BottomNav";
 import GetTip from "./GetTip";
 import CreatePost from "./CreatePost";
 import PostCard from "./PostCard";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 import { IoChatbubbleEllipsesOutline, IoSyncOutline } from "react-icons/io5";
 
 const Community = () => {
@@ -28,36 +28,22 @@ const Community = () => {
   }, []);
 
   const fetchUser = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    setUser(user);
+    try {
+      const response = await apiClient.getUser();
+      setUser(response.user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      setUser(null);
+    }
   };
 
   const fetchPosts = async () => {
-    const { data, error } = await supabase
-      .from("posts")
-      .select(
-        `
-        *,
-        profiles (
-          full_name,
-          avatar_url
-        ),
-        likes (
-          user_id
-        ),
-        comments (
-          id
-        )
-      `
-      )
-      .order("created_at", { ascending: false });
-
-    if (error) {
+    try {
+      const response = await apiClient.getPosts();
+      setPosts(response.posts || []);
+    } catch (error) {
       console.error("Error fetching posts:", error);
-    } else {
-      setPosts(data);
+      setPosts([]);
     }
   };
 

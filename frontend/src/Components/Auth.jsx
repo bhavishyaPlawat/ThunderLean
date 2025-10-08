@@ -4,7 +4,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa"; // Import Google icon
 import { IoClose } from "react-icons/io5";
-import { supabase } from "../supabaseClient";
+import { apiClient } from "../apiClient";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,37 +17,10 @@ const Auth = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/home";
 
-  useEffect(() => {
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === "SIGNED_IN" && session) {
-        // Check if the user has a profile
-        const { data: profile, error } = await supabase
-          .from("profiles")
-          .select("id")
-          .eq("id", session.user.id)
-          .single();
-
-        if (error && error.code !== "PGRST116") {
-          // PGRST116 means no rows found
-          console.error("Error checking profile:", error);
-        }
-
-        if (profile) {
-          // If profile exists, user is returning
-          navigate("/home");
-        } else {
-          // If no profile, it's a new user
-          navigate("/profile-setup");
-        }
-      }
-    });
-
-    return () => {
-      subscription?.unsubscribe();
-    };
-  }, [navigate]);
+  // useEffect(() => {
+  //   // Auth state management would need to be implemented separately
+  //   // For now, we'll handle navigation in the handleSubmit function
+  // }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,24 +29,20 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        navigate(from, { replace: true });
+        const response = await apiClient.signIn(email, password);
+        if (response.token) {
+          // Check if user has profile
+          try {
+            await apiClient.getProfile();
+            navigate("/home");
+          } catch (profileError) {
+            // No profile found, redirect to profile setup
+            navigate("/profile-setup");
+          }
+        }
       } else {
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              full_name: name,
-            },
-          },
-        });
-        if (error) throw error;
-        if (data.user) {
+        const response = await apiClient.signUp(email, password, name);
+        if (response.token) {
           navigate("/profile-setup");
         }
       }
@@ -84,19 +53,9 @@ const Auth = () => {
     }
   };
 
-  // New function for Google Sign-In
+  // Google Sign-In temporarily disabled during migration
   const signInWithGoogle = async () => {
-    setIsLoading(true);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: window.location.origin, // Redirect back to the app
-      },
-    });
-    if (error) {
-      setError(error.message);
-      setIsLoading(false);
-    }
+    setError("Google Sign-In not yet implemented with MongoDB backend");
   };
 
   const toggleAuthMode = () => {
