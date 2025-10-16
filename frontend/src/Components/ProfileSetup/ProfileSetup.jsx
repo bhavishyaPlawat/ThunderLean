@@ -1,13 +1,13 @@
 // frontend/src/Components/ProfileSetup/ProfileSetup.jsx
-import React, { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { apiClient } from "../../apiClient";
 import SetupStep1 from "./SetupStep1";
 import SetupStep2 from "./SetupStep2";
 import SetupStep3 from "./SetupStep3";
 import SetupStep4 from "./SetupStep4";
 import SetupStep5 from "./SetupStep5";
-import { apiClient } from "../../apiClient";
-import { useNavigate } from "react-router-dom";
 
 const ProfileSetup = () => {
   const [step, setStep] = useState(1);
@@ -29,19 +29,15 @@ const ProfileSetup = () => {
   };
 
   const submitProfile = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      const { error } = await supabase
-        .from("profiles")
-        .update(formData)
-        .eq("id", user.id);
-      if (error) {
-        console.error("Error updating profile:", error);
-      } else {
+    try {
+      const response = await apiClient.updateProfile(formData);
+      if (response.success) {
+        console.log("Profile created successfully:", response.profile);
         navigate("/home");
       }
+    } catch (error) {
+      console.error("Error creating profile:", error);
+      alert("Failed to create profile. Please try again.");
     }
   };
 
