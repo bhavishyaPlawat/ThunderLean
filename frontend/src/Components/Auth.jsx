@@ -1,9 +1,9 @@
 // frontend/src/Components/Auth.jsx
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useState } from "react";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa"; // Import Google icon
 import { IoClose } from "react-icons/io5";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { apiClient } from "../apiClient";
 
 const Auth = () => {
@@ -13,6 +13,7 @@ const Auth = () => {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/home";
@@ -26,6 +27,7 @@ const Auth = () => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
+    setSuccessMessage("");
 
     try {
       if (isLogin) {
@@ -37,13 +39,22 @@ const Auth = () => {
             navigate("/home");
           } catch (profileError) {
             // No profile found, redirect to profile setup
+            console.log("No profile found, redirecting to setup...");
             navigate("/profile-setup");
           }
+          return; // Prevent further error handling
         }
       } else {
         const response = await apiClient.signUp(email, password, name);
         if (response.token) {
-          navigate("/profile-setup");
+          // Show success message for registration
+          setSuccessMessage("🎉 Registration successful! Redirecting to profile setup...");
+          
+          // Redirect after showing message
+          setTimeout(() => {
+            navigate("/profile-setup");
+          }, 2000); // Wait 2 seconds to show success message
+          return;
         }
       }
     } catch (err) {
@@ -61,6 +72,7 @@ const Auth = () => {
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
     setError("");
+    setSuccessMessage("");
     setEmail("");
     setPassword("");
     setName("");
@@ -138,6 +150,17 @@ const Auth = () => {
             {error && (
               <div className="bg-red-900 bg-opacity-50 text-red-300 p-3 rounded-lg text-sm">
                 {error}
+              </div>
+            )}
+            {successMessage && (
+              <div className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 text-white p-4 rounded-xl shadow-2xl transform animate-slideIn flex items-center gap-3 border-2 border-green-300">
+                <div className="relative flex-shrink-0">
+                  <svg className="w-8 h-8 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-20"></div>
+                </div>
+                <span className="font-bold text-base">{successMessage}</span>
               </div>
             )}
             <button
