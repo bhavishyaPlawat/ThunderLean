@@ -33,26 +33,36 @@ const Auth = () => {
       if (isLogin) {
         const response = await apiClient.signIn(email, password);
         if (response.token) {
-          // Check if user has profile
-          try {
-            await apiClient.getProfile();
-            navigate("/home");
-          } catch (profileError) {
-            // No profile found, redirect to profile setup
-            console.log("No profile found, redirecting to setup...");
-            navigate("/profile-setup");
-          }
+          // Show success message for login
+          setSuccessMessage("✨ Login successful! Welcome back...");
+          
+          // Check if user has profile and redirect after showing message
+          setTimeout(async () => {
+            try {
+              await apiClient.getProfile();
+              navigate("/home");
+            } catch (profileError) {
+              // No profile found, redirect to profile setup
+              console.log("No profile found, redirecting to setup...");
+              navigate("/profile-setup");
+            }
+          }, 2000); // Wait 2 seconds to show success message
           return; // Prevent further error handling
         }
       } else {
         const response = await apiClient.signUp(email, password, name);
         if (response.token) {
           // Show success message for registration
-          setSuccessMessage("🎉 Registration successful! Redirecting to profile setup...");
+          setSuccessMessage("🎉 Registration successful! Please login to continue...");
           
-          // Redirect after showing message
+          // Clear token and redirect to login after showing message
+          apiClient.signOut();
           setTimeout(() => {
-            navigate("/profile-setup");
+            setIsLogin(true);
+            setEmail("");
+            setPassword("");
+            setName("");
+            setSuccessMessage("");
           }, 2000); // Wait 2 seconds to show success message
           return;
         }
@@ -148,12 +158,17 @@ const Auth = () => {
               />
             </div>
             {error && (
-              <div className="bg-red-900 bg-opacity-50 text-red-300 p-3 rounded-lg text-sm">
-                {error}
+              <div className="bg-gradient-to-r from-pink-500 to-rose-600 text-white p-4 rounded-xl shadow-[0_0_30px_rgba(236,72,153,0.5)] animate-shake flex items-center gap-3 border-2 border-pink-300">
+                <div className="flex-shrink-0">
+                  <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="font-semibold text-base">{error}</span>
               </div>
             )}
             {successMessage && (
-              <div className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 text-white p-4 rounded-xl shadow-2xl transform animate-slideIn flex items-center gap-3 border-2 border-green-300">
+              <div className="bg-gradient-to-r from-purple-500 via-purple-600 to-pink-600 text-white p-4 rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.6)] transform animate-slideIn flex items-center gap-3 border-2 border-purple-300">
                 <div className="relative flex-shrink-0">
                   <svg className="w-8 h-8 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

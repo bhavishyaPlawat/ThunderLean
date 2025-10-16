@@ -66,7 +66,7 @@ class ApiClient {
   async signUp(email, password, fullName) {
     const response = await this.request('/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name: fullName, email, password }),
     });
     
     if (response.token) {
