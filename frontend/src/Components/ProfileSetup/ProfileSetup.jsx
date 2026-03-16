@@ -30,7 +30,34 @@ const ProfileSetup = () => {
 
   const submitProfile = async () => {
     try {
-      const response = await apiClient.updateProfile(formData);
+      // 1. Format gender to lowercase ("Male" -> "male")
+      const formattedGender = formData.gender
+        ? formData.gender.toLowerCase()
+        : "other";
+
+      // 2. Map the goal object to the exact string the backend expects
+      let formattedGoal = "maintain_weight"; // default fallback
+      if (formData.goal && formData.goal.type) {
+        const goalType = formData.goal.type.toLowerCase();
+        if (goalType.includes("lose")) formattedGoal = "lose_weight";
+        else if (goalType.includes("gain")) formattedGoal = "gain_weight";
+        else formattedGoal = "maintain_weight";
+      } else if (typeof formData.goal === "string") {
+        formattedGoal = formData.goal; // Just in case it's already a string
+      }
+
+      // 3. Construct the final safe payload to send to the backend
+      const payloadToSend = {
+        ...formData,
+        gender: formattedGender,
+        goal: formattedGoal,
+        // Fallback name if none of your steps collect the full_name
+        full_name: formData.full_name || "Fitness Enthusiast",
+      };
+
+      // Send the cleaned payload instead of raw formData
+      const response = await apiClient.updateProfile(payloadToSend);
+
       if (response.success) {
         console.log("Profile created successfully:", response.profile);
         navigate("/home");
