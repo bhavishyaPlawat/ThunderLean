@@ -1,22 +1,61 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../Components/Home";
-import Dashboard from "../Components/Dashboard";
-import TdeeCalculator from "../Components/TdeeCalculator";
-// CORRECT
-import AiTrack from "../Components/aiTrack";
-import GetTip from "../Components/GetTip"; // 1. Import the new component
+import ProtectedRoute from "../Components/ProtectedRoute";
+
+// Lazy load components
+const LandingPage = lazy(() => import("../Components/LandingPage"));
+const Home = lazy(() => import("../Components/Home"));
+const Dashboard = lazy(() => import("../Components/Dashboard"));
+const Auth = lazy(() => import("../Components/Auth"));
+const ForgotPassword = lazy(() => import("../Components/ForgotPassword"));
+const FoodLog = lazy(() => import("../Components/FoodLog"));
+const ExerciseLog = lazy(() => import("../Components/ExerciseLog"));
+const Community = lazy(() => import("../Components/Community"));
+const Settings = lazy(() => import("../Components/Settings"));
+const ResetPassword = lazy(() => import("../Components/ResetPassword"));
+const ProfileSetup = lazy(() => import("../Components/ProfileSetup/ProfileSetup"));
+const AboutUs = lazy(() => import("../Components/AboutUs"));
+const FAQs = lazy(() => import("../Components/FAQs"));
+
+const publicRoutes = [
+  { path: "/", element: LandingPage },
+  { path: "/about", element: AboutUs },
+  { path: "/auth", element: Auth },
+  { path: "/forgot-password", element: ForgotPassword },
+  { path: "/reset-password", element: ResetPassword },
+  { path: "/faqs", element: FAQs },
+];
+
+const protectedRoutes = [
+  { path: "/profile-setup", element: ProfileSetup },
+  { path: "/home", element: Home },
+  { path: "/dashboard", element: Dashboard },
+  { path: "/food-log", element: FoodLog },
+  { path: "/exercise-log", element: ExerciseLog },
+  { path: "/community", element: Community },
+  { path: "/settings", element: Settings },
+];
 
 const Routing = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/tdee-calculator" element={<TdeeCalculator />} />
-      <Route path="/ai-track" element={<AiTrack />} />
-      <Route path="/get-tip" element={<GetTip />} />{" "}
-      {/* 2. Add the new route */}
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        {publicRoutes.map(({ path, element: Element }) => (
+          <Route key={path} path={path} element={<Element />} />
+        ))}
+        {protectedRoutes.map(({ path, element: Element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <ProtectedRoute>
+                <Element />
+              </ProtectedRoute>
+            }
+          />
+        ))}
+      </Routes>
+    </Suspense>
   );
 };
 

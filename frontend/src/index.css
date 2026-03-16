@@ -1,42 +1,74 @@
 @import "tailwindcss";
 @import "locomotive-scroll/dist/locomotive-scroll.css";
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/src/assets/fonts/Gilroy-Regular.woff2') format('woff2'),
-       url('/src/assets/fonts/Gilroy-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/src/assets/fonts/Gilroy-Bold.woff2') format('woff2'),
-       url('/src/assets/fonts/Gilroy-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: bold;
+
+@theme {
+  --font-heading: "Inter", "sans-serif";
+  --font-body: "Inter", "sans-serif";
 }
 
 /* ✅ Custom utility for reusable gradient */
 @layer utilities {
   .bg-custom-gradient {
-    background-image: radial-gradient(
-      circle at 90% 100%,
-      #ffffff 0%,
-      #e5e8f5 40%,
-      #879AE3 100%
-    );
+    background-image: radial-gradient(circle at 90% 100%,
+        #ffffff 0%,
+        #e5e8f5 40%,
+        #879AE3 100%);
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+.auth-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
 
+/* Success popup animation */
+@keyframes slideIn {
+  0% {
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
 
+/* Error shake animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-8px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(8px);
+  }
+}
 
+.animate-slideIn {
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
 
-
-
-
+.animate-slideIn {
+  animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
