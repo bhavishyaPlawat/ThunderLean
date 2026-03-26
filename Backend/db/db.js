@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
 function connectToDB() {
+  console.log('MongoDB URI:', process.env.MONGO_URI); // Move inside the function
+  
+  if (!process.env.MONGO_URI) {
+    console.error('MONGO_URI is not defined in environment variables');
+    process.exit(1);
+  }
+  
   mongoose
     .connect(process.env.MONGO_URI)
     .then(() => console.log("Successfully connected to MongoDB."))

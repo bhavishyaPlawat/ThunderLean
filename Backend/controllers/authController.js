@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const otpGenerator = require("otp-generator");
 const jwt = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
 const User = require("../models/user");
 const { sendOtpEmail } = require("../services/emailService");
 
@@ -213,5 +214,93 @@ exports.getMe = async (req, res) => {
   } catch (error) {
     console.error("Get me error:", error);
     res.status(500).json({ message: "Server error" });
+  }
+};
+
+// Google OAuth Sign-In
+exports.signInWithGoogle = async (req, res) => {
+  try {
+    console.log("Google Sign-In request received");
+    console.log("Request body:", req.body);
+    
+    const { token } = req.body;
+
+    if (!token) {
+      console.log("No token provided");
+      return res.status(400).json({ message: "Google token is required." });
+    }
+
+    console.log("Google Client ID:", process.env.GOOGLE_CLIENT_ID);
+    console.log("JWT Secret available:", !!process.env.JWT_SECRET);
+
+    if (!process.env.GOOGLE_CLIENT_ID) {
+      console.log("GOOGLE_CLIENT_ID not set in environment");
+      return res.status(500).json({ message: "Google OAuth not configured on server." });
+    }
+
+    if (!process.env.JWT_SECRET) {
+      console.log("JWT_SECRET not set in environment");
+      return res.status(500).json({ message: "JWT secret not configured on server." });
+    }
+
+    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+    
+    console.log("Verifying Google token...");
+    // Verify the Google token
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    console.log("Google payload:", payload);
+    const { sub: googleId, email, name, picture } = payload;
+
+    // Check if user exists with this Google ID
+    let user = await User.findOne({ googleId });
+    console.log("User found by Google ID:", !!user);
+
+    if (!user) {
+      // Check if user exists with this email
+      user = await User.findOne({ email });
+      console.log("User found by email:", !!user);
+      
+      if (user) {
+        // Link Google account to existing user
+        user.googleId = googleId;
+        await user.save();
+        console.log("Linked Google account to existing user");
+      } else {
+        // Create new user
+        user = new User({
+          name,
+          email,
+          googleId,
+          // No password for Google OAuth users
+        });
+        await user.save();
+        console.log("Created new user with Google account");
+      }
+    }
+
+    // Create JWT
+    const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
+    });
+
+    console.log("Google Sign-In successful for user:", user._id);
+    res.status(200).json({
+      message: "Google Sign-In successful!",
+      token: jwtToken,
+      user: toUserDTO(user),
+    });
+  } catch (error) {
+    console.error("Google Sign-In Error:", error);
+    console.error("Error details:", error.message);
+    console.error("Error stack:", error.stack);
+    res.status(500).json({ 
+      message: "Server error during Google Sign-In.",
+      error: error.message 
+    });
   }
 };

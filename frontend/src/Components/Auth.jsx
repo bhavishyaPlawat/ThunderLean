@@ -1,5 +1,4 @@
-// frontend/src/Components/Auth.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { FaGoogle } from "react-icons/fa"; // Import Google icon
 import { IoClose } from "react-icons/io5";
@@ -74,9 +73,157 @@ const Auth = () => {
     }
   };
 
-  // Google Sign-In temporarily disabled during migration
+  // Initialize Google OAuth when component mounts
+  useEffect(() => {
+    console.log("Auth component mounted");
+    console.log("Google client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+    console.log("Google object:", typeof google !== 'undefined' ? 'Available' : 'Not available');
+    
+    const initializeGoogleAuth = () => {
+      console.log("Initializing Google Auth...");
+      if (typeof google !== 'undefined' && google.accounts) {
+        try {
+          google.accounts.id.initialize({
+            client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+            callback: handleGoogleCallback,
+            auto_select: false,
+            cancel_on_tap_outside: true
+          });
+          console.log("Google Auth initialized successfully");
+        } catch (error) {
+          console.error("Error initializing Google Auth:", error);
+        }
+      } else {
+        console.log("Google accounts not available");
+      }
+    };
+
+    // Wait for Google script to load
+    if (typeof google !== 'undefined') {
+      initializeGoogleAuth();
+    } else {
+      console.log("Waiting for Google script to load...");
+      // Wait for Google script to load
+      const checkGoogle = setInterval(() => {
+        if (typeof google !== 'undefined' && google.accounts) {
+          console.log("Google script loaded, initializing...");
+          initializeGoogleAuth();
+          clearInterval(checkGoogle);
+        }
+      }, 100);
+
+      // Cleanup interval after 10 seconds
+      setTimeout(() => {
+        clearInterval(checkGoogle);
+        console.log("Google script loading timeout");
+      }, 10000);
+    }
+  }, []);
+
+  // Google Sign-In implementation
   const signInWithGoogle = async () => {
-    setError("Google Sign-In not yet implemented with MongoDB backend");
+    console.log("Google Sign-In button clicked");
+    console.log("Google available:", typeof google !== 'undefined');
+    console.log("Google accounts available:", typeof google !== 'undefined' && google.accounts);
+    console.log("Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+    
+    setIsLoading(true);
+    setError("");
+    setSuccessMessage("");
+
+    try {
+      if (typeof google !== 'undefined' && google.accounts) {
+        console.log("Attempting Google Sign-In...");
+        
+        // Create a temporary div and render the Google Sign-In button
+        const tempDiv = document.createElement('div');
+        tempDiv.style.position = 'absolute';
+        tempDiv.style.left = '-9999px';
+        tempDiv.style.top = '-9999px';
+        document.body.appendChild(tempDiv);
+        
+        // Render the Google Sign-In button
+        google.accounts.id.renderButton(tempDiv, {
+          theme: 'outline',
+          size: 'large',
+          text: 'signin_with',
+          shape: 'rectangular',
+          width: 250
+        });
+        
+        // Find and click the button
+        setTimeout(() => {
+          const button = tempDiv.querySelector('div[role="button"]');
+          if (button) {
+            console.log("Clicking Google Sign-In button...");
+            button.click();
+            
+            // Clean up after a delay
+            setTimeout(() => {
+              if (document.body.contains(tempDiv)) {
+                document.body.removeChild(tempDiv);
+              }
+            }, 2000);
+          } else {
+            console.error("Could not find Google sign-in button");
+            setError("Failed to open Google Sign-In popup. Please try again.");
+            setIsLoading(false);
+            if (document.body.contains(tempDiv)) {
+              document.body.removeChild(tempDiv);
+            }
+          }
+        }, 100);
+        
+      } else {
+        console.log("Google not available");
+        setError("Google Sign-In is not available. Please refresh the page and try again.");
+        setIsLoading(false);
+      }
+    } catch (err) {
+      console.error("Google Sign-In Error:", err);
+      setError("Failed to initialize Google Sign-In. Please try again.");
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleCallback = async (response) => {
+    console.log("Google callback received:", response);
+    setIsLoading(true);
+    setError("");
+    setSuccessMessage("");
+
+    try {
+      if (!response.credential) {
+        throw new Error("No credential received from Google");
+      }
+
+      const credential = response.credential;
+      console.log("Using credential from response:", credential.substring(0, 50) + "...");
+
+      console.log("Sending credential to backend...");
+      const result = await apiClient.signInWithGoogle(credential);
+      console.log("Backend response:", result);
+      
+      if (result.token) {
+        setSuccessMessage("✨ Google Sign-In successful! Welcome...");
+        
+        // Check if user has profile and redirect after showing message
+        setTimeout(async () => {
+          try {
+            await apiClient.getProfile();
+            navigate("/home");
+          } catch (profileError) {
+            // No profile found, redirect to profile setup
+            console.log("No profile found, redirecting to setup...");
+            navigate("/profile-setup");
+          }
+        }, 2000);
+      }
+    } catch (err) {
+      console.error("Google Sign-In Error:", err);
+      setError(err.message || "Google Sign-In failed. Please try again.");
+      setIsLoading(false);
+    }
   };
 
   const toggleAuthMode = () => {
@@ -212,6 +359,8 @@ const Auth = () => {
               <FaGoogle className="mr-3" />
               {isLogin ? "Sign in with Google" : "Sign up with Google"}
             </button>
+            {/* Hidden div for Google button rendering */}
+            <div id="google-signin-button" style={{ display: 'none' }}></div>
           </div>
 
           <div className="mt-6 text-center">

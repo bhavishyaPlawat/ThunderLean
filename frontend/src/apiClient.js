@@ -3,15 +3,15 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080
 
 class ApiClient {
   constructor() {
-    this.token = localStorage.getItem('authToken');
+    this.token = localStorage.getItem('token');
   }
 
   setToken(token) {
     this.token = token;
     if (token) {
-      localStorage.setItem('authToken', token);
+      localStorage.setItem('token', token);
     } else {
-      localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
     }
   }
 
@@ -64,7 +64,7 @@ class ApiClient {
   }
 
   async signUp(email, password, fullName) {
-    const response = await this.request('/auth/register', {
+    const response = await this.request('/auth/signup', {
       method: 'POST',
       body: JSON.stringify({ name: fullName, email, password }),
     });
@@ -79,6 +79,19 @@ class ApiClient {
   async signOut() {
     this.setToken(null);
     return { success: true };
+  }
+
+  async signInWithGoogle(credential) {
+    const response = await this.request('/auth/google', {
+      method: 'POST',
+      body: JSON.stringify({ token: credential }),
+    });
+    
+    if (response.token) {
+      this.setToken(response.token);
+    }
+    
+    return response;
   }
 
   async getUser() {
