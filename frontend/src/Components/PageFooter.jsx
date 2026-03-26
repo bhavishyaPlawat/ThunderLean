@@ -52,7 +52,62 @@ const PageFooter = () => {
   ];
 
   return (
-    <footer id="whyus" className="bg-[#1F2937] text-white pt-12 pb-8 md:pt-16">
+    <footer className="bg-[#1F2937] text-white pt-12 pb-8 md:pt-16">
+      {/* Why Us Section */}
+      <section id="whyus" className="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Why Choose ThunderLean?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🤖</span>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">AI-Powered</h3>
+              <p className="text-gray-400">Advanced AI technology for accurate calorie tracking and personalized insights.</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Easy to Use</h3>
+              <p className="text-gray-400">Simple interface designed for everyone, from beginners to fitness enthusiasts.</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📊</span>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">Comprehensive</h3>
+              <p className="text-gray-400">Complete fitness tracking with detailed analytics and progress monitoring.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Get In Touch</h2>
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            Have questions or feedback? We'd love to hear from you. Reach out to us and we'll get back to you as soon as possible.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="mailto:support@thunderlean.com" 
+              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full transition-colors duration-300"
+            >
+              Email Us
+            </a>
+            <a 
+              href="https://github.com/bhavishyaPlawat/ThunderLean" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-full transition-colors duration-300"
+            >
+              View on GitHub
+            </a>
+          </div>
+        </div>
+      </section>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}

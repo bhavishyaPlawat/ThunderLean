@@ -14,6 +14,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPwaInstallable, setIsPwaInstallable] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentHash, setCurrentHash] = useState(window.location.hash);
 
   useEffect(() => {
     const handler = (e) => {
@@ -25,6 +26,17 @@ const Navbar = () => {
     window.addEventListener("beforeinstallprompt", handler);
     return () => {
       window.removeEventListener("beforeinstallprompt", handler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
     };
   }, []);
 
@@ -92,36 +104,90 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-              <a
-                href="/#features"
-                className="relative text-gray-800 dark:text-gray-200 hover:text-purple-600 transition"
+              <NavLink
+                to="/#features"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive || currentHash === '#features'
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.location.pathname !== '/') {
+                    navigate('/#features');
+                  } else {
+                    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Features
-              </a>
-              <a
-                href="/about"
-                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
               >
                 About Us
-              </a>
-              <a
-                href="/#whyus"
-                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              </NavLink>
+              <NavLink
+                to="/#whyus"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive || currentHash === '#whyus'
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.location.pathname !== '/') {
+                    navigate('/#whyus');
+                  } else {
+                    document.getElementById('whyus')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Why Us?
-              </a>
-              <a
-                href="/faqs"
-                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              </NavLink>
+              <NavLink
+                to="/faqs"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
               >
                 FAQs
-              </a>
-              <a
-                href="/#contact"
-                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition"
+              </NavLink>
+              <NavLink
+                to="/#contact"
+                className={({ isActive }) =>
+                  `transition relative ${
+                    isActive || currentHash === '#contact'
+                      ? "text-purple-600 after:w-full"
+                      : "text-gray-800 dark:text-gray-200 hover:text-purple-600"
+                  } after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-0.5 after:bg-purple-600 after:transition-all after:duration-300 after:-translate-x-1/2 hover:after:w-full`
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.location.pathname !== '/') {
+                    navigate('/#contact');
+                  } else {
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
                 Contact
-              </a>
+              </NavLink>
               {isLoggedIn && (
                 <NavLink
                   to="/dashboard"
@@ -190,30 +256,108 @@ const Navbar = () => {
               exit="exit"
             >
               <div className="flex flex-col gap-4">
-                <NavLink to="/" onClick={() => setIsMenuOpen(false)}
-                className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                <NavLink 
+                  to="/" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   Home
                 </NavLink>
-                <a href="/#features" onClick={() => setIsMenuOpen(false)}
-                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                <NavLink
+                  to="/#features"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    if (window.location.pathname !== '/') {
+                      navigate('/#features');
+                    } else {
+                      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive || currentHash === '#features'
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   Features
-                </a>
-                <a href="/about" onClick={() => setIsMenuOpen(false)}
-                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                </NavLink>
+                <NavLink 
+                  to="/about" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   About Us
-                </a>
-                <a href="/#whyus" onClick={() => setIsMenuOpen(false)}
-                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                </NavLink>
+                <NavLink
+                  to="/#whyus"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    if (window.location.pathname !== '/') {
+                      navigate('/#whyus');
+                    } else {
+                      document.getElementById('whyus')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive || currentHash === '#whyus'
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   Why Us?
-                </a>
-                <a href="/faqs" onClick={() => setIsMenuOpen(false)}
-                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                </NavLink>
+                <NavLink 
+                  to="/faqs" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   FAQs
-                </a>
-                <a href="/#contact" onClick={() => setIsMenuOpen(false)}
-                 className="relative text-[#6527a8] dark:text-gray-200 hover:text-purple-600 transition font-semibold">
+                </NavLink>
+                <NavLink
+                  to="/#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    if (window.location.pathname !== '/') {
+                      navigate('/#contact');
+                    } else {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className={({ isActive }) =>
+                    `relative transition font-semibold ${
+                      isActive || currentHash === '#contact'
+                        ? "text-purple-600"
+                        : "text-[#6527a8] dark:text-gray-200 hover:text-purple-600"
+                    }`
+                  }
+                >
                   Contact
-                </a>
+                </NavLink>
                 {isLoggedIn && (
                   <NavLink
                     to="/dashboard"
